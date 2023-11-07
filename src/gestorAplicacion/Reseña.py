@@ -13,6 +13,22 @@ class Reseña(ServiciosClientes):
         countCalificaciones += calificacion
         Recopilatorio.append(self)
 
+    def setCalificacion(self,cal):
+        self._calificacion = cal
+    
+    def getCalificacion(self):
+        return self._calificacion
+    
+    def setReseña(self, texto):
+        super.setRazon(texto)
+
+    def getReseña(self):
+        super.getRazon()
+
+    @classmethod
+    def getRecopilatorio(cls):
+        return cls.Recopilatorio
+
     @classmethod
     def cantidadReseñas(cls):
         return cls.countReseñas
