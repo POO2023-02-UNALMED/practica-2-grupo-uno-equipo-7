@@ -45,6 +45,18 @@ class Queja(ServiciosClientes):
     def getTipo(self):
         return self.tipo
     
+    def __str__(self):
+        if self.tipo == "Menu":
+            return "Nombre: " + super.cliente.getNombre(self) + "\n" + "Realizo una queja sobre el platillo: " + self._plato.getNombre(self) + "\n" + "'" + super.getRazon(self) + "'"
+
+        elif self.tipo == "Empleado":
+            return "Nombre: " + super.cliente.getNombre(self) + "\n" + "Realizo una queja sobre el empleado: " + self._empleado.getNombre(self) + "\n" + "'" + super.getRazon(self) + "'"
+        
+        elif self.tipo == "Sede":
+            return "Nombre: " + super.cliente.getNombre(self) + "\n" + "Realizo una queja sobre la " + self.Restaurante.getUbicacion(self) + "\n"  + "'" + super.getRazon(self) + "'"
+        else:
+            return "Nombre: " + super.cliente.getNombre(self) + "\n"  + "Realizo una queja: " + "'" + super.getRazon(self) + "'"
+    
     @classmethod
     def getAllQuejas(cls):
         return cls.Quejas
@@ -88,4 +100,4 @@ class Queja(ServiciosClientes):
     
     @classmethod
     def cantidadAmonestaciones(self, empleado):
-        empleado.cantidadAmonestaciones(self) #Revisar metodo en la clase Empleado
+         return "Nombre empleado: " + empleado.getNombre(self) + " tiene (" + empleado.cantidadAmonestaciones(self) + ")" #Revisar metodo en la clase Empleado

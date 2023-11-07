@@ -59,6 +59,26 @@ class Sugerencia(ServiciosClientes):
     def cantidadSugerencias(cls):
         countSugerencias = len(cls.Sugerencias)
         return countSugerencias
+    
+    @classmethod
+    def cantidadSugerenciasMenu(cls):
+        countSugerenciasMenu = len(cls.SugerenciasMenu)
+        return countSugerenciasMenu
+    
+    @classmethod
+    def cantidadSugerenciasEmpleados(cls):
+        countSugerenciasEmpleados = len(cls.SugerenciasEmpleados)
+        return countSugerenciasEmpleados
+    
+    @classmethod
+    def cantidadSugerenciasSedes(cls):
+        countSugerenciasSedes = len(cls.SugerenciasSedes)
+        return countSugerenciasSedes
+    
+    @classmethod
+    def cantidadSugerenciasOtros(cls):
+        countSugerenciasOtros = len(cls.SugerenciasOtros)
+        return countSugerenciasOtros
 
 
 
