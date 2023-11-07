@@ -4,11 +4,11 @@ class ServiciosClientes:
     codigoReferencia = 0
     count =  0
 
-    def __init__(self, clientes == "Anonimo", text):
-    self._cliente = clientes
-    self._razon = text
-    codigoReferencia += count
-    count += 1
+    def __init__ (self, clientes = "Anonimo" , text = ""):
+        self._cliente = clientes
+        self._razon = text
+        codigoReferencia += count
+        count += 1
 
     def setCliente(self, cliente):
         self._cliente = cliente
