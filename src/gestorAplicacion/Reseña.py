@@ -13,6 +13,12 @@ class Reseña(ServiciosClientes):
         countCalificaciones += calificacion
         Recopilatorio.append(self)
 
+    def __str__(self):
+        if super._cliente.getNombre(self) != "Anonimo":
+            return "Reseña Numero: " + super.getCodigoReferencia(self) + "\n" + "Nombre: " + super._cliente.getNombre(self) + "\n" + "Calificacion: " + self.getCalificacion(self) + "\n" + "'" + self.getReseña(self) + "'"
+        else:
+            return "Reseña Numero: " + super.getCodigoReferencia(self) + "\n" + "Anonimo" + "\n" + "Calificacion: " + self.getCalificacion(self) + "\n" + "'" + self.getReseña(self) + "'"
+
     def setCalificacion(self,cal):
         self._calificacion = cal
     
