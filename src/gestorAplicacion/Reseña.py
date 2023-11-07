@@ -3,7 +3,6 @@ from gestorAplicacion import ServiciosClientes
 class Reseña(ServiciosClientes):
     
     countCalificaciones = 0
-    countReseñas = 0
     Recopilatorio = []
 
     def __init__(self, nombre, texto, calificacion):
@@ -11,7 +10,7 @@ class Reseña(ServiciosClientes):
         self._calificacion = calificacion
         countReseñas += 1
         countCalificaciones += calificacion
-        Recopilatorio.append(self)
+        Reseña.Recopilatorio.append(self)
 
     def __str__(self):
         if super._cliente.getNombre(self) != "Anonimo":
@@ -37,7 +36,8 @@ class Reseña(ServiciosClientes):
 
     @classmethod
     def cantidadReseñas(cls):
-        return cls.countReseñas
+        countReseñas = len(cls.Recopilatorio)
+        return countReseñas
     @classmethod
     def sumCalificaciones(cls):
         return cls.countCalificaciones

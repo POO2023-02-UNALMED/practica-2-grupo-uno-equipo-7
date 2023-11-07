@@ -1,13 +1,12 @@
 from gestorAplicacion import Cliente
 
 class ServiciosClientes:
-    codigoReferencia = 0
     count =  0
 
-    def __init__ (self, clientes = "Anonimo" , text = ""):
-        self._cliente = clientes
+    def __init__ (self, nombre = "Anonimo" , text = None):
+        self._cliente = nombre # Recuerda: debes cambiar esto despues, cuando este la clase de cliente :D
         self._razon = text
-        codigoReferencia += count
+        self._codigoReferencia += count
         count += 1
 
     def setCliente(self, cliente):
@@ -23,7 +22,7 @@ class ServiciosClientes:
         return self._razon
     
     def getCodigoRerencia(self):
-        return self.codigoReferencia
+        return self._codigoReferencia
     
 
     
