@@ -14,7 +14,7 @@ class Inicio(Frame, Tk):
     # Acá guardamos los datos de los desarrolladores para utilizarlos en la implementación
     VALUES  = [
         {"name": "David Alejandro Silva Uribe", "description":"Amante del fútbol y el arte", "email":"dsilvau@unal.edu.co"},
-        {"name": "", "description":"Amante de la ciencia de datos", "email":"aluribes@unal.edu.co" },
+        {"name": "Andrés Felipe Guido Montoya", "description":"Apasionado por el fútbol y el anime", "email":"aguido@unal.edu.co" },
         {"name":"", "description":"Apasionada por el baile", "email":"anospina@unal.edu.co"},
         {"name": "", "description":"Amante de la comida", "email":"jualopezra@unal.edu.co" },
         {"name":"", "description":"Apasionado por la lectura", "email":"jtobonz@unal.edu.co"}
@@ -61,6 +61,7 @@ class Inicio(Frame, Tk):
 
         self._numeroInicio += 1
         # Como solo son 3 desarroladores para se repita en ciclo
+        #¿no somos 5?
         self._numeroInicio %= 5
 
         nuevos_valores = self.VALUES[self._numeroInicio]
