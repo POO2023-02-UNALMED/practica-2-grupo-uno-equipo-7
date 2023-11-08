@@ -1,6 +1,6 @@
 from typing import List
 class Caja:
-    listado_cajas: List[Caja] = []  # Lista para llevar un registro de todas las cajas
+    listado_cajas = []  # Lista para llevar un registro de todas las cajas
 
     def __init__(self, dinero_caja:int, numero_de_serie:int):
         self.dinero_caja = dinero_caja
