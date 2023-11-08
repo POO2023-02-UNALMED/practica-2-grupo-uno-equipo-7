@@ -7,7 +7,7 @@ class MenuInicio(tk.Menu):
     def __init__(self, padre):
         super().__init__(padre)
         self._padre = padre
-        inicio = Menu(self)
+        inicio = tk.Menu(self)
         self.add_cascade(menu = inicio, label = "Inicio")
         inicio.add_command(label = "Descripcion del sistema", command=self.mostrarInfoSistema)
         inicio.add_command(label = "Salir", command=self.salir)

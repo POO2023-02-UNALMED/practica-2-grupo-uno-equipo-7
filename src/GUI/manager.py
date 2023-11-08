@@ -1,6 +1,7 @@
 from GUI.gestionInterfaz.inicio import Inicio
 from tkinter import *
 from GUI.estilos import style
+from GUI.Menu.menuInicio import MenuInicio
 
 
 
@@ -21,3 +22,5 @@ class Manager(Tk):
         
         self._ventanaInicio = Inicio(contenedor, self)
         self._ventanaInicio.grid(row = 0, column = 0, sticky = NSEW)
+        menuInicio = MenuInicio(self)
+        self['menu'] = menuInicio

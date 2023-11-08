@@ -32,7 +32,7 @@ class MenuPrincipal(Menu):
         menuArchivos.add_command(label="Salir", command=self.salir)
 
         # Para el caso del submenu Procesos y Consultas
-        menuProcesos.add_command(label="Gestionar Productos")
+        menuProcesos.add_command(label="Gestionar Productos", command= self._gestionarVendedores)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)
         
     def salir(self):
@@ -51,4 +51,13 @@ class MenuPrincipal(Menu):
                 message="David \nManuel \n alejandro \n camila\nluan"
             )
         
-    
+    def _gestionarVendedores(self):
+        self._values["criterios"] = ["ID","Nombre","Email","Telefono","Usuario","Contrasena","nroCuenta","saldo","pin"]
+        self._values["habilitado"] = ["ID"]
+        self._values["nombreProceso"] = "Gestionar Vendedores"
+        self._values["descripcionProceso"] = "Guarda la informacion de un nuevo vendedor"
+        #Falta agregar lo nuestro, aqui se hace un llamado a la clase
+        self._values["objeto"] = Vendedor
+        self._values["valores"] = [Vendedor.getId()] + [None]*(len(self._values["criterios"]) - len(self._values['habilitado']))
+        self._values["atributos"] = ['id','nombre','email','telefono','usuario','contrasena','nroCuenta','saldo','pin']
+        self._padre.showFieldFrame(self._values)
