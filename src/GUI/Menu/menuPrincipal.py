@@ -2,7 +2,7 @@
 from distutils import command
 from tkinter import *
 from tkinter import messagebox
-from gestionInterfaz.inventario import Inventario
+#from gestionInterfaz.inventario import Inventario
 
 
 class MenuPrincipal(Menu):
@@ -37,7 +37,7 @@ class MenuPrincipal(Menu):
         # Para el caso del submenu Procesos y Consultas
         menuProcesos.add_command(label="Gestionar Productos", command= self._gestionarVendedores)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
-        menuProcesos.add_command(label="Gestion inventario", comnad=)## ya lo relleno- Andrés
+        #menuProcesos.add_command(label="Gestion inventario", comnad= )## ya lo relleno- Andrés
         
     def salir(self):
         self._controlador.deiconify()
@@ -56,16 +56,20 @@ class MenuPrincipal(Menu):
             )
         
     def _gestionarVendedores(self):
-        self._values["criterios"] = ["ID","Nombre","Email","Telefono","Usuario","Contrasena","nroCuenta","saldo","pin"]
+        self._values["criterios"] = ["ID","Nombre","Email","Fecha Registro", "Direccion"]
         self._values["habilitado"] = ["ID"]
-        self._values["nombreProceso"] = "Gestionar Vendedores"
-        self._values["descripcionProceso"] = "Guarda la informacion de un nuevo vendedor"
-        #Falta agregar lo nuestro, aqui se hace un llamado a la clase
-        self._values["objeto"] = Vendedor
-        self._values["valores"] = [Vendedor.getId()] + [None]*(len(self._values["criterios"]) - len(self._values['habilitado']))
-        self._values["atributos"] = ['id','nombre','email','telefono','usuario','contrasena','nroCuenta','saldo','pin']
+        self._values["nombreProceso"] = "Plato mas vendido"
+        self._values["descripcionProceso"] = "Muestra el plato preferido para el cliente basado en sus compras"
+        from gestorAplicacion.Cliente import Cliente
+        # obtener los IDs de los clientes y agregarlos a una lista de valores
+        valores = []
+        for cliente in Cliente.clientes:
+            valores.append(cliente.id)
+        self._values["objeto"] = Cliente
+        self._values["valores"] = valores + [None]*(len(self._values["criterios"]) - len(self._values['habilitado']))
+        self._values["atributos"] = ["ID","Nombre","Email","Fecha Registro", "Direccion"]
         self._padre.showFieldFrame(self._values)
-        
+
         
     def abrirInventario(self):
         inventario_window = Toplevel(self._padre)
