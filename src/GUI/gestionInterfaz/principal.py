@@ -15,6 +15,7 @@ class Principal(Toplevel):
         # Se llama al padre (Toplevel)
         super().__init__(padre)
         
+        
         # Titulo
         self.title("Restaurante")
         self.geometry("1280x1080")
