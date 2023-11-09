@@ -44,7 +44,19 @@ class Reseña(ServiciosClientes):
 
     @classmethod
     def PromedioCalificaciones(cls):
-        return cls.sumCalificaciones()/cls.cantidadReseñas()
+        promedio = cls.sumCalificaciones()/cls.cantidadReseñas()
+
+        S = "El promedio de calificaciones es --> " + promedio
+        
+        if promedio >=3 and promedio <4:
+            S += "\nLa satisfacion general de los clientes es regular :/"
+            return S
+        
+        elif promedio <3:
+            S += "\nLa satisfacion general de los clientes es mala :c"
+        
+        else:
+            S += "\nLa satisfacion general  de los clientes es buena :D"
     
 
 
