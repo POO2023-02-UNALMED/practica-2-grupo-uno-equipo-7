@@ -23,8 +23,8 @@ class Queja(ServiciosClientes):
             Queja.QuejasMenu.append(self)
         
         elif tipe == "Empleado":
-            worker = Empleado.existeEmpleado(algo) #Recordatorio: Asegurarse de que exista el metodo en la clase Empleado :D
-            Empleado.nuevaAmonestacion(worker)
+            worker = Empleado.existeEmpleado(algo) #Recordatorio: Asegurarse de que exista el metodo en la clase Empleado :D SE SUPONE QUE SI XD
+            Empleado.nuevaAmonestacion(worker) #CHECK
 
             self._empleado = worker
             Queja.QuejasEmpleados.append(self)

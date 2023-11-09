@@ -4,7 +4,8 @@ class ServiciosClientes:
     count =  0
 
     def __init__ (self, nombre = "Anonimo" , text = None):
-        self._cliente = nombre # Recuerda: debes cambiar esto despues, cuando este la clase de cliente :D
+        cliente = Cliente.buscarClienteXNombre(nombre)
+        self._cliente = cliente # Recuerda: debes cambiar esto despues, cuando este la clase de cliente :D CHECK
         self._razon = text
         self._codigoReferencia += count
         count += 1
