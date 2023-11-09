@@ -2,6 +2,8 @@
 from distutils import command
 from tkinter import *
 from tkinter import messagebox
+from gestionInterfaz.inventario import Inventario
+
 
 class MenuPrincipal(Menu):
     
@@ -23,6 +25,7 @@ class MenuPrincipal(Menu):
         self.add_cascade(label="Archivo", menu=menuArchivos)
         self.add_cascade(label="Procesos y Consultas", menu=menuProcesos)
         self.add_cascade(label="Ayuda", menu=menuAyuda)
+       
         
         self._values = {"tituloCriterios":"Atributos", "tituloValores":"Valores"}
         # Se crean los opciones de cada submenu
@@ -33,7 +36,8 @@ class MenuPrincipal(Menu):
 
         # Para el caso del submenu Procesos y Consultas
         menuProcesos.add_command(label="Gestionar Productos", command= self._gestionarVendedores)
-        menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)
+        menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
+        menuProcesos.add_command(label="Gestion inventario", comnad=)## ya lo relleno- Andrés
         
     def salir(self):
         self._controlador.deiconify()
@@ -61,3 +65,8 @@ class MenuPrincipal(Menu):
         self._values["valores"] = [Vendedor.getId()] + [None]*(len(self._values["criterios"]) - len(self._values['habilitado']))
         self._values["atributos"] = ['id','nombre','email','telefono','usuario','contrasena','nroCuenta','saldo','pin']
         self._padre.showFieldFrame(self._values)
+        
+        
+    def abrirInventario(self):
+        inventario_window = Toplevel(self._padre)
+        inventario = InventarioApp(inventario_window, self._controlador)
