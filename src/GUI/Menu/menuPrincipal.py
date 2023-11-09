@@ -48,7 +48,7 @@ class MenuPrincipal(Menu):
     def quienesSomos(self):
         messagebox.showinfo(
                 title="Autores",
-                message="David \nManuel \n alejandro \n camila\nluan"
+                message="David \nManuel \n Andrés \n camila\nluan"
             )
         
     def _gestionarVendedores(self):
