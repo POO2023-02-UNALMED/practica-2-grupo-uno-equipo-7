@@ -48,15 +48,15 @@ class Queja(ServiciosClientes):
     
     def __str__(self):
         if self.tipo == "Menu":
-            return "Nombre: " + super.cliente.getNombre(self) + "\n" + "Realizo una queja sobre el platillo: " + self._plato.getNombre(self) + "\n" + "'" + super.getRazon(self) + "'"
+            return "Nombre: " + super.cliente.getNombre() + "\n" + "Realizo una queja sobre el platillo: " + self._plato.getNombre() + "\n" + "'" + super.getRazon() + "'"
 
         elif self.tipo == "Empleado":
-            return "Nombre: " + super.cliente.getNombre(self) + "\n" + "Realizo una queja sobre el empleado: " + self._empleado.getNombre(self) + "\n" + "'" + super.getRazon(self) + "'"
+            return "Nombre: " + super.cliente.getNombre() + "\n" + "Realizo una queja sobre el empleado: " + self._empleado.getNombre() + "\n" + "'" + super.getRazon() + "'"
         
         elif self.tipo == "Sede":
-            return "Nombre: " + super.cliente.getNombre(self) + "\n" + "Realizo una queja sobre la " + self.Restaurante.getUbicacion(self) + "\n"  + "'" + super.getRazon(self) + "'"
+            return "Nombre: " + super.cliente.getNombre() + "\n" + "Realizo una queja sobre la " + self.Restaurante.getUbicacion() + "\n"  + "'" + super.getRazon() + "'"
         else:
-            return "Nombre: " + super.cliente.getNombre(self) + "\n"  + "Realizo una queja: " + "'" + super.getRazon(self) + "'"
+            return "Nombre: " + super.cliente.getNombre() + "\n"  + "Realizo una queja: " + "'" + super.getRazon() + "'"
     
     @classmethod
     def getAllQuejas(cls):
@@ -77,28 +77,47 @@ class Queja(ServiciosClientes):
     @classmethod
     def cantidadQuejas(cls):
         countQuejas = len(cls.Quejas)
-        return countQuejas
+
+        if countQuejas == 0:
+            return "No hay quejas que mostrar"
+        else:
+            return "Hay un total de (" + countQuejas + ") quejas."
     
     @classmethod
     def cantidadQuejasMenu(cls):
         countQuejasMenu = len(cls.QuejasMenu)
-        return countQuejasMenu
+
+        if countQuejasMenu == 0:
+            return "No hay quejas que mostrar"
+        else:
+            return "Hay un total de (" + countQuejasMenu + ") quejas del tipo: MENU."
     
     @classmethod
     def cantidadQuejasEmpleados(cls):
         countQuejasEmpleados = len(cls.QuejasEmpleados)
-        return countQuejasEmpleados
+        
+        if countQuejasEmpleados == 0:
+            return "No hay quejas que mostrar"
+        else:
+            return "Hay un total de (" + countQuejasEmpleados + ") quejas del tipo: EMPLEADO."
     
     @classmethod
     def cantidadQuejasSedes(cls):
         countQuejasSedes = len(cls.QuejasSedes)
-        return countQuejasSedes
+
+        if countQuejasSedes == 0:
+            return "No hay quejas que mostrar"
+        else:
+            return "Hay un total de (" + countQuejasSedes + ") quejas del tipo: SEDE."
     
     @classmethod
     def cantidadQuejasOtros(cls):
         countQuejasOtros = len(cls.QuejasOtros)
-        return countQuejasOtros
+        if countQuejasOtros == 0:
+            return "No hay quejas que mostrar"
+        else:
+            return "Hay un total de (" + countQuejasOtros + ") quejas del tipo: OTRO."
     
     @classmethod
     def cantidadAmonestaciones(self, empleado):
-         return "Nombre empleado: " + empleado.getNombre(self) + " tiene (" + empleado.cantidadAmonestaciones(self) + ")" #Revisar metodo en la clase Empleado
+         return "Nombre empleado: " + empleado.getNombre() + " tiene (" + empleado.cantidadAmonestaciones() + ")" #Revisar metodo en la clase Empleado

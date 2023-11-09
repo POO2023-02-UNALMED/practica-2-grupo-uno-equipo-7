@@ -8,15 +8,14 @@ class Reseña(ServiciosClientes):
     def __init__(self, nombre, texto, calificacion):
         super.__init__(nombre,texto)
         self._calificacion = calificacion
-        countReseñas += 1
         countCalificaciones += calificacion
         Reseña.Recopilatorio.append(self)
 
     def __str__(self):
-        if super._cliente.getNombre(self) != "Anonimo":
-            return "Reseña Numero: " + super.getCodigoReferencia(self) + "\n" + "Nombre: " + super._cliente.getNombre(self) + "\n" + "Calificacion: " + self.getCalificacion(self) + "\n" + "'" + self.getReseña(self) + "'"
+        if super._cliente.getNombre() != "Anonimo":
+            return "Reseña Numero: " + super.getCodigoReferencia() + "\n" + "Nombre: " + super._cliente.getNombre() + "\n" + "Calificacion: " + self.getCalificacion() + "\n" + "'" + self.getReseña() + "'"
         else:
-            return "Reseña Numero: " + super.getCodigoReferencia(self) + "\n" + "Anonimo" + "\n" + "Calificacion: " + self.getCalificacion(self) + "\n" + "'" + self.getReseña(self) + "'"
+            return "Reseña Numero: " + super.getCodigoReferencia() + "\n" + "Anonimo" + "\n" + "Calificacion: " + self.getCalificacion() + "\n" + "'" + self.getReseña() + "'"
 
     def setCalificacion(self,cal):
         self._calificacion = cal
@@ -50,13 +49,14 @@ class Reseña(ServiciosClientes):
         
         if promedio >=3 and promedio <4:
             S += "\nLa satisfacion general de los clientes es regular :/"
-            return S
-        
+            
         elif promedio <3:
             S += "\nLa satisfacion general de los clientes es mala :c"
-        
+            
         else:
             S += "\nLa satisfacion general  de los clientes es buena :D"
+
+        return S
     
 
 

@@ -33,7 +33,7 @@ class Sugerencia(ServiciosClientes):
         return self._tipo
     
     def __str__(self):
-        return "N° Referencia: " + super.getCodigoReferencia(self)   + "\nSugerencia tipo: " + self.getTipo(self) + "\n" + "''" + super.getRazon(self) + "''";
+        return "N° Referencia: " + super.getCodigoReferencia()   + "\nSugerencia tipo: " + self.getTipo() + "\n" + "''" + super.getRazon() + "''"
 
     @classmethod
     def getTAllSugerences(cls):
@@ -58,27 +58,47 @@ class Sugerencia(ServiciosClientes):
     @classmethod
     def cantidadSugerencias(cls):
         countSugerencias = len(cls.Sugerencias)
-        return countSugerencias
+
+        if countSugerencias == 0:
+            return "No hay sugerencias que mostrar"
+        else:
+            return "Hay un total de (" + countSugerencias + ") sugerencias."
     
     @classmethod
     def cantidadSugerenciasMenu(cls):
         countSugerenciasMenu = len(cls.SugerenciasMenu)
-        return countSugerenciasMenu
+
+        if countSugerenciasMenu == 0:
+            return "No hay sugerencias que mostrar"
+        else:
+            return "Hay un total de ("+ countSugerenciasMenu + ") sugerencias del tipo: MENU."
     
     @classmethod
     def cantidadSugerenciasEmpleados(cls):
         countSugerenciasEmpleados = len(cls.SugerenciasEmpleados)
-        return countSugerenciasEmpleados
+
+        if countSugerenciasEmpleados == 0:
+            return "No hay sugerencias que mostrar"
+        else:
+            return "Hay un total de (" + countSugerenciasEmpleados + ") sugerencias del tipo: EMPLEADO."
     
     @classmethod
     def cantidadSugerenciasSedes(cls):
         countSugerenciasSedes = len(cls.SugerenciasSedes)
-        return countSugerenciasSedes
+
+        if countSugerenciasSedes == 0:
+            return "No hay sugerencias que mostrar"
+        else:
+            return "Hay un total de (" + countSugerenciasSedes + ") sugerencias del tipo: SEDE."
     
     @classmethod
     def cantidadSugerenciasOtros(cls):
         countSugerenciasOtros = len(cls.SugerenciasOtros)
-        return countSugerenciasOtros
+
+        if countSugerenciasOtros == 0:
+            return "No hay sugerencias que mostrar"
+        else:
+            return "Hay un total de (" + countSugerenciasOtros + ") sugerencias del tipo: OTRO."
 
 
 

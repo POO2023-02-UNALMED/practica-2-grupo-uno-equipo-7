@@ -36,10 +36,10 @@ class Devolucion (ServiciosClientes):
             a = "N° Solicitud: " + self.getCodigoReferencia() + "\n" + "Cliente: " + self._cliente.getNombre() + " - CC. " + self._cliente.getCedula() + " - Email: " + self._cliente.getEmail() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de rechazo: " + self.getMotivo() + "\n" + "La solicitud fue denegada, se enviara un correo al cliente con la decision tomada"
         
         elif self.getEstado() == "Aprobado":
-            a = "N° Solicitud: " + self.getCodigoReferencia() + "\n" + "Cliente: " + self._cliente.getNombre() + " - CC. " + self._cliente.getId() + " - Email: " + self._cliente.getEmail() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "La solicitud fue aprobada, se enviara un correo al cliente con la decision tomada y los pasos a seguir para hacer efectiva su solicitud"
+            a = "N° Solicitud: " + self.getCodigoReferencia() + "\n" + "Cliente: " + self._cliente.getNombre() + " - CC. " + self._cliente.getCedula() + " - Email: " + self._cliente.getEmail() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "La solicitud fue aprobada, se enviara un correo al cliente con la decision tomada y los pasos a seguir para hacer efectiva su solicitud"
         
         else: 
-            a = "N° Solicitud: " + self.getCodigoReferencia() + "\n" + "Cliente: " + self._cliente.getNombre() + " - CC. " + self._cliente.getId() + " - Email: " + self._cliente.getEmail() + "\n" + "Codigo de Factura: " + self._factura.getCodigo() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de la solicitud: " + self.getTexto()
+            a = "N° Solicitud: " + self.getCodigoReferencia() + "\n" + "Cliente: " + self._cliente.getNombre() + " - CC. " + self._cliente.getCedula() + " - Email: " + self._cliente.getEmail() + "\n" + "Codigo de Factura: " + self._factura.getCodigo() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de la solicitud: " + self.getTexto()
         
     @classmethod
     def DenegarDevolucion(cls, codigo):
