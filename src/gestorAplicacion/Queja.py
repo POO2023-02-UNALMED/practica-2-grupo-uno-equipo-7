@@ -3,13 +3,14 @@ from gestorAplicacion import Plato
 from gestorAplicacion import Empleado
 from gestorAplicacion import Restaurante
 
-Quejas = []
-QuejasMenu = []
-QuejasEmpleados = []
-QuejasSedes = []
-QuejasOtros = []
-
 class Queja(ServiciosClientes):
+
+    Quejas = []
+    QuejasMenu = []
+    QuejasEmpleados = []
+    QuejasSedes = []
+    QuejasOtros = []
+
 
     def __init__(self, name, tipe, algo, text):
         super._nombre = name
