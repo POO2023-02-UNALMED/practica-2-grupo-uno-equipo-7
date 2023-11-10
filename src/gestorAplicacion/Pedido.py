@@ -18,12 +18,12 @@ class Pedido:
             print("Ha continuación, por favor, digitar su dirección de residensia")
             self.direccion
             print("¿Desea confirmar su dirección de residencia?")
-
+            
         else:
             print("Ha seleccionado la opción de recoger en sede, por favor, digite a continuación su nombre y apellido")
             self.tomarNombre
             print("Ha continuación, por favor, digitar la sede donde desea recoger su pedido")
-            
+
     def tomarNombre(self, nombre, apellido):
         self._nombre = nombre
         self._apellido = apellido

@@ -89,10 +89,44 @@ def main():
             pass
     elif opcion == 4:
         print("Pedidos")
-        print("1. Salir")
+        print("1. Pedido de envio")
+        print("2. Pedido para recoger")
+        print("3. Acceso de administrador")
+        print("4. Salir")
         opcion7 = int(input("Elija una opción: "))
         if opcion7 == 1:
-            pass
+            print("Ha seleccionado la opción 1")
+            print("Por favor, ingrese sus datos personales")
+            nombre = input("Dijite su nombre: ")
+            apellido = input("Dijite su apellido: ")
+            print(f"Usted a ingresado estos datos: nombre: {nombre}, apellido: {apellido}" )
+            print("¿Desea confirmar sus datos personales?")
+            confir1 = str(input())
+            if confir1 == "Y":
+                print("Datos confirmados")
+
+                print("Por favor, escriba su dirección de residencia")
+                direccion = str(input())
+                direccion = Pedido.Direccion(direccion)
+                print(f"Ha ingresado la dirección: {direccion}.")
+                print("¿Desea confirmar su dirección?")
+                confir = str(input())
+                if confir == "Y":
+                 print("Dirección confirmada")
+                elif confir == "N":
+                    print("Direccion no confirmada, ahora puede editar la dirección")
+                else:
+                    print("Error, opción invalida, vuelva a intentarlo")  
+            elif confir1 == "N":
+                print("Datos no confirmados, ahora puede editar los datos ingresados")  
+            else:
+                print("Opción invalida, por favor intentarlo nuevamente")          
+        elif opcion7 == 2:
+            print("Ha seleccionado la opción 2")
+        elif opcion7 == 3:
+            print("Ha seleccionado la opción 3")
+        else:
+            pass           
     elif opcion == 5:
         print("Reservaciones")
         print("1. Salir")
