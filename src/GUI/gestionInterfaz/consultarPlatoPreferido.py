@@ -1,5 +1,6 @@
 from tkinter import *
 from GUI.estilos.style import *
+from gestorAplicacion.Cliente import Cliente
 
 class ConsultarPlatoPreferido(Frame):
     
@@ -19,18 +20,26 @@ class ConsultarPlatoPreferido(Frame):
         labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         
     def _inicializarEntrada(self):
+        # Se inicializa el frame para contener la etiqueta y la entrada
+        frameEntrada = Frame(self, bg=BACKGROUND_CONTENEDOR)
+        frameEntrada.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        # Se inicializa la etiqueta para el id del cliente
+        labelId = Label(frameEntrada, text="Id del cliente", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        labelId.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
         # Se inicializa la entrada para el id del cliente
-        self._entradaId = Entry(self, font=FONT2)
-        self._entradaId.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        self._entradaId = Entry(frameEntrada, font=FONT2)
+        self._entradaId.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
         
     def _inicializarBoton(self):
         # Se inicializa el botón para mostrar el nombre y plato preferido del cliente
-        botonMostrar = Button(self, text="Mostrar", command=self._mostrarNombreYPlatoPreferido, font=FONT2, fg=FG)
+        botonMostrar = Button(self, text="Mostrar", command=self._mostrarNombreYPlatoPreferido, font=FONT2, fg="green")
         botonMostrar.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         
     def _inicializarEtiquetaResultado(self):
         # Se inicializa la etiqueta para mostrar el resultado
-        self._etiquetaResultado = Label(self, bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        self._etiquetaResultado = Label(self, bg=BACKGROUND_CONTENEDOR, font=FONT2, fg="black")
         self._etiquetaResultado.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         
     def _mostrarNombreYPlatoPreferido(self):
@@ -38,8 +47,11 @@ class ConsultarPlatoPreferido(Frame):
         idCliente = self._entradaId.get()
         
         # Se obtiene el nombre y plato preferido del cliente a partir del id
-        nombreCliente = self._controlador.obtenerNombreCliente(idCliente)
-        platoPreferido = self._controlador.obtenerPlatoPreferidoCliente(idCliente)
+        print(Cliente.buscarCliente(int(idCliente)))
+        nombreCliente = Cliente.buscarCliente(int(idCliente)).getNombre()
+        print(Cliente.buscarPlatoPreferido(int(idCliente)))
+        platoPreferido = Cliente.buscarPlatoPreferido(int(idCliente))
+        
         
         # Se muestra el resultado en la etiqueta correspondiente
         self._etiquetaResultado.configure(text=f"Nombre: {nombreCliente}\nPlato preferido: {platoPreferido}")

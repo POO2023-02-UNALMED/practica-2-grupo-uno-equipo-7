@@ -14,6 +14,8 @@ class Plato:
         self.platos[self] = ingredientes
         Plato.listadoplatos.append(self)
         Plato.pl.append(self)
+    
+    
 
     @property
     def nombre(self):
@@ -69,7 +71,7 @@ class Plato:
     @classmethod
     def buscarPlato(cls, nombre):
         for plato in cls.platos.keys():
-            if plato.getNombre() == nombre:
+            if plato.nombre() == nombre:
                 return plato
         return None
 
@@ -82,7 +84,7 @@ class Plato:
 
     @staticmethod
     def getNombrePlato(plato):
-        return plato.getNombre()
+        return plato.nombre()
 
     @staticmethod
     def getIngredientesSimilares(plato1, plato2):

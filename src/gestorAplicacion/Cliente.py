@@ -9,6 +9,8 @@ from .Plato import Plato
 class Cliente(Persona):
     clientes = []
     contadorClientes = 0
+    # create 3 clients
+    
 
     def __init__(self, nombre: str, id: int, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
         super().__init__(nombre, id)
@@ -19,6 +21,8 @@ class Cliente(Persona):
         self.codigoCliente = Cliente.contadorClientes + 1
         Cliente.contadorClientes += 1
         Cliente.clientes.append(self)
+
+        
 
     @staticmethod
     def buscarCliente(codigoCliente: int) -> 'Cliente':
@@ -38,15 +42,17 @@ class Cliente(Persona):
     def buscarPlatoPreferido(codigoCliente: int) -> List[Plato]:
         platoPreferido = []
         facturas = Factura.buscarFacturasPorCliente(codigoCliente)
+        print(facturas)
         if len(facturas) < 2:
+            print("No hay suficientes facturas para determinar el plato preferido")
             return None
         platos = {}
         for factura in facturas:
-            for plato in factura.platos:
+            for plato in factura.getPlatos():
                 if plato in platos:
-                    platos[plato] += 1
+                    platos[plato.nombre] += 1
                 else:
-                    platos[plato] = 1
+                    platos[plato.nombre] = 1
         mayorValor = 0
         for clave in platos:
             valor = platos[clave]
