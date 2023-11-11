@@ -1,15 +1,15 @@
 from collections import defaultdict
 
 
-class Inventario:
+class Inventarioaply:
     cantidad_total=0
     Inventarios=[]
 
     def __init__(self):
         self.diccionario_items = defaultdict(int)
         self.listado_items = []
-        Inventario.cantidad_total +=1
-        Inventario.inventarios.append(self)
+        Inventarioaply.cantidad_total +=1
+        Inventarioaply.inventarios.append(self)
         
 
     def añadir_items(self, item, cantidad):
@@ -64,7 +64,7 @@ class Inventario:
 
     @staticmethod
     def obtener_inventarios():
-        return Inventario.inventarios
+        return Inventarioaply.inventarios
 
     @property
     def diccionario_items(self):
