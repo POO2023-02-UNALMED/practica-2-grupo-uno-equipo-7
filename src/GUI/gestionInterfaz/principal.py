@@ -6,6 +6,7 @@ from GUI.Menu.menuPrincipal import MenuPrincipal
 from GUI.estilos.style import *
 from GUI.gestionInterfaz.filedFrame import FieldFrame
 from GUI.gestionInterfaz.Instrucciones import Instrucciones
+from GUI.gestionInterfaz.consultarPlatoPreferido import ConsultarPlatoPreferido
 
 
 class Principal(Toplevel):
@@ -32,7 +33,7 @@ class Principal(Toplevel):
         
         self.frameFuncionalidad = {}
 
-        for F in (Instrucciones,Reporte,Compra):
+        for F in (Instrucciones,Reporte,Compra,ConsultarPlatoPreferido):
             self._frame =F(self._contenedor, self)
             self.frameFuncionalidad[F] = self._frame
             self._frame.grid(row=0, column=0, sticky=NSEW)

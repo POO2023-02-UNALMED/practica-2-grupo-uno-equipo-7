@@ -3,6 +3,7 @@ from distutils import command
 from tkinter import *
 from tkinter import messagebox
 #from gestionInterfaz.inventario import Inventario
+from GUI.gestionInterfaz.consultarPlatoPreferido import ConsultarPlatoPreferido
 
 
 class MenuPrincipal(Menu):
@@ -35,7 +36,7 @@ class MenuPrincipal(Menu):
         menuArchivos.add_command(label="Salir", command=self.salir)
 
         # Para el caso del submenu Procesos y Consultas
-        menuProcesos.add_command(label="Gestionar Productos", command= self._gestionarVendedores)
+        menuProcesos.add_command(label="Gestionar Productos", command= self.platoPreferido)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
         #menuProcesos.add_command(label="Gestion inventario", comnad= )## ya lo relleno- Andrés
         
@@ -57,7 +58,7 @@ class MenuPrincipal(Menu):
         
     def _gestionarVendedores(self):
         self._values["criterios"] = ["ID","Nombre","Email","Fecha Registro", "Direccion"]
-        self._values["habilitado"] = ["ID"]
+        self._values["habilitado"] = ["Nombre","Email","Fecha Registro", "Direccion"]
         self._values["nombreProceso"] = "Plato mas vendido"
         self._values["descripcionProceso"] = "Muestra el plato preferido para el cliente basado en sus compras"
         from gestorAplicacion.Cliente import Cliente
@@ -74,3 +75,8 @@ class MenuPrincipal(Menu):
     def abrirInventario(self):
         inventario_window = Toplevel(self._padre)
         inventario = InventarioApp(inventario_window, self._controlador)
+
+    def platoPreferido(self):
+        self._padre.mostrarFuncionalidades(ConsultarPlatoPreferido)
+
+
