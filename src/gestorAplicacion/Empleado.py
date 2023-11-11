@@ -1,12 +1,14 @@
-from gestorAplicacion import Persona
+from gestorAplicacion import Empleado as PersonaEmpleado
 
-class Empleado(Persona):
+
+class Empleado(PersonaEmpleado):
 
     Empleados = []
     contadorEmpleados = 0
 
     def __init__(self, nombre, cargo, sueldo, codigoSede):
-        super._nombre = nombre
+        super().__init__(nombre="jairo")
+       
         self._cargo = cargo
         self._sueldo = sueldo
         self._codigoSede = codigoSede

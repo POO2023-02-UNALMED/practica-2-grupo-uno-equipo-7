@@ -38,6 +38,7 @@ class MenuPrincipal(Menu):
         menuProcesos.add_command(label="Gestionar Productos", command= self._gestionarVendedores)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
         #menuProcesos.add_command(label="Gestion inventario", comnad= )## ya lo relleno- Andrés
+        menuProcesos.add_command(label="gestion inventario", command= self.abrirInventario)
         
     def salir(self):
         self._controlador.deiconify()
@@ -72,5 +73,20 @@ class MenuPrincipal(Menu):
 
         
     def abrirInventario(self):
-        inventario_window = Toplevel(self._padre)
-        inventario = InventarioApp(inventario_window, self._controlador)
+        valores2=[]
+        self._values["criterios"]=["Sedes"]
+
+        from gestorAplicacion.Inventario import Inventario
+        from gestorAplicacion.Restaurante import Restaurante 
+        for i in range (4):
+            valores2.append(Restaurante.sedes(i))
+        
+        
+        
+        self._values["objeto"]=Inventario
+        self._padre.showFieldFrame(self._values)
+        self._values["valores"]=valores2
+
+        
+        
+    

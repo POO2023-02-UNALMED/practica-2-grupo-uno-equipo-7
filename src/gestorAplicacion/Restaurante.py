@@ -8,7 +8,7 @@ class Restaurante:
         30: 0.072
     }
     facturas = {}
-    sedes = []
+    sedes = ["envigado", "sandiego","belen","La America"]
 
     def __init__(self, ubicacion, direccion, inventario, caja, telefono, horario, menu, mesas):
         self.nombre = "La Casa de Toño"

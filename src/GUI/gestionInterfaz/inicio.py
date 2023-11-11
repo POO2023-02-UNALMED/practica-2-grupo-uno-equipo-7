@@ -4,7 +4,7 @@ import pathlib
 path = os.path.join(pathlib.Path(__file__).parent.absolute())
 path = os.path.dirname(path)
 from GUI.estilos import style
-from PIL import Image, Image, ImageTk
+from PIL import Image, Image, ImageTk,ImageFilter
 from GUI.gestionInterfaz.principal import Principal
 
 class Inicio(Frame, Tk):
@@ -41,15 +41,15 @@ class Inicio(Frame, Tk):
 
         # Condiciones para mostrar cada una de las imagenes del sistema
         if self._numeroImagenesSistema == 0:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
         elif self._numeroImagenesSistema == 1:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
         elif self._numeroImagenesSistema == 2:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
         elif self._numeroImagenesSistema == 3:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
         else :
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
 
         # cambiar la imagen en el label
         self.imagenesSistema.image = imagen_sistema
@@ -73,87 +73,87 @@ class Inicio(Frame, Tk):
 
         # Condicionales para configurar las 4 imagenes de cada desarrollador
         if self._numeroInicio == 0 :
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
 
         elif self._numeroInicio == 1:
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225)))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225)))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225)))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/maestro.jpeg').resize((300,225)))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
 
         elif self._numeroInicio == 2:
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
             
         elif self._numeroInicio == 3:
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
             
         elif self._numeroInicio == 4:
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
         
@@ -206,7 +206,7 @@ class Inicio(Frame, Tk):
     def inicializarWidgetsVentana2(self):
         """Funcion par inicializar los widgets con imagenes del sistema y el boton para ingresar al sistema"""
 
-        imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+        imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
         
         self.imagenesSistema = Label(self._p4, pady=20)
         self.imagenesSistema.image = imagen_sistema
@@ -269,28 +269,28 @@ class Inicio(Frame, Tk):
         labelgeneralImagenes = Label(self._p5, justify=CENTER)
         labelgeneralImagenes.pack(side = TOP, fill = BOTH, expand = True, padx = 10, pady = 30)
         
-        python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+        python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
 
         self.imagen1 = Label(labelgeneralImagenes)
         self.imagen1.image = python_imagen1
         self.imagen1.configure(image = python_imagen1)
         self.imagen1.grid(row = 0, column=0, sticky=NSEW)
 
-        python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+        python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
 
         self.imagen2 = Label(labelgeneralImagenes)
         self.imagen2.image = python_imagen2
         self.imagen2.configure(image = python_imagen2)
         self.imagen2.grid(row = 0, column=1, sticky=NSEW)
 
-        python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+        python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
 
         self.imagen3 = Label(labelgeneralImagenes)
         self.imagen3.image = python_imagen3
         self.imagen3.configure(image = python_imagen3)
         self.imagen3.grid(row = 1, column=0, sticky=NSEW)
 
-        python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+        python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225)))
 
         self.imagen4 = Label(labelgeneralImagenes)
         self.imagen4.image = python_imagen4
