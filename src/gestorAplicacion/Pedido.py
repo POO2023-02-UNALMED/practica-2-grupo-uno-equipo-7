@@ -28,7 +28,7 @@ class Pedido:
         self._nombre = nombre
         self._apellido = apellido
 
-    def direccion(self, calle: str, casa: str, piso: int):
+    def Direccion(self, calle: str, casa: str, piso: int):
         self._casa = casa
         self._calle = calle
         self._piso = piso

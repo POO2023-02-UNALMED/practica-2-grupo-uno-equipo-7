@@ -87,6 +87,7 @@ def main():
         opcion6 = int(input("Elija una opción: "))
         if opcion6 == 1:
             pass
+
     elif opcion == 4:
         print("Pedidos")
         print("1. Pedido de envio")
