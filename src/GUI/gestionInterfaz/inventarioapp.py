@@ -16,9 +16,13 @@ class inventarioapp(Frame):
         # Crea un nuevo estilo personalizado (My.TCombobox) y ajusta la altura (padding)
         combo_style.configure('My.TCombobox', padding=[20, 5, 90, 5])
         combo=ttk.Combobox(self, values=["envigado","sandiego","La Amercia", "belen"], textvariable=valor_defecto,style='My.TCombobox')
-        combo.grid(row=1, column=1, padx=10, pady=10, sticky="w")
+        combo.grid(row=1, column=1, padx=2, pady=10, sticky="w")
         otro_label = tk.Label(self, text="seleccionar sede ", font=("Arial", 20),bg="white")
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
+        boton = tk.Button(self ,text="Select")
+        boton.grid(row=1,column=2, padx=2, sticky="w")
+        
+        
         
         
         
