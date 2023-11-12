@@ -6,7 +6,8 @@ class Empleado(Persona):
     contadorEmpleados = 0
 
     def __init__(self, nombre, cargo, sueldo, codigoSede):
-        super._nombre = nombre
+        
+        super().__init__( nombre)
         self._cargo = cargo
         self._sueldo = sueldo
         self._codigoSede = codigoSede
@@ -78,5 +79,4 @@ class Empleado(Persona):
                 return empleado
             else:
                 return None
-
 

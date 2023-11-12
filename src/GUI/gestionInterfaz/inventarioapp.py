@@ -1,40 +1,47 @@
 import tkinter as tk
-from tkinter import messagebox
-from tkinter import Frame
 from tkinter import ttk
-from gestorAplicacion.inventarioaply import Inventarioaply
-from gestorAplicacion.Item import Item
-from gestorAplicacion.Restaurante import Restaurante
 
+class Inventarioaply:  # Simulando la implementación de Inventarioaply
+    pass
 
-class inventarioapp(Frame):
-    def __init__(self, padre,  controlador):
+class Item:  # Simulando la implementación de Item
+    pass
+
+class Restaurante:  # Simulando la implementación de Restaurante
+    pass
+
+class inventarioapp(tk.Frame):
+    def __init__(self, padre, controlador):
         super().__init__(padre)
-        self.controlador=controlador
+        self.controlador = controlador
         self.configure(background="white")
-        label1=tk.Label(self, text="Inventario", font=("Arial",40),fg="pink")
+
+        label1 = tk.Label(self, text="Inventario", font=("Arial", 40), fg="pink")
         label1.grid(row=0, column=2, columnspan=2, pady=10)
-        valor_defecto=tk.StringVar(value="Sedes")
+
+        valor_defecto = tk.StringVar(value="Sedes")
         combo_style = ttk.Style()
-        
+
         # Crea un nuevo estilo personalizado (My.TCombobox) y ajusta la altura (padding)
         combo_style.configure('My.TCombobox', padding=[20, 5, 90, 5])
-        combo=ttk.Combobox(self, values=["envigado","sandiego","La Amercia", "belen"], textvariable=valor_defecto,style='My.TCombobox')
+        combo = ttk.Combobox(self, values=["envigado", "sandiego", "La Amercia", "belen"], textvariable=valor_defecto,
+                             style='My.TCombobox')
         combo.grid(row=1, column=1, padx=2, pady=10, sticky="w")
-        otro_label = tk.Label(self, text="seleccionar sede ", font=("Arial", 20),bg="white")
+
+        otro_label = tk.Label(self, text="Seleccionar sede ", font=("Arial", 20), bg="white")
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
-        boton = tk.Button(self ,text="Select", height=1)
-        boton.grid(row=1,column=2, padx=2, sticky="w")
-        
-        
-        
-        
-    def inventario2(self, padre, Inventario):
-        super().__init__( padre)
-        texto=""
-        label3=tk.Label(self, text=texto)
-        if Restaurante.
-        Inventario.mostrar_items_vencidos()
+
+        boton = tk.Button(self, text="Select", height=1, command=lambda: self.inventario2(combo.get()))
+        boton.grid(row=1, column=2, padx=2, sticky="w")
+
+    def inventario2(self, nombre_sede):
+        # Crea un nuevo Frame para mostrar el nombre de la sede seleccionada
+        nuevo_frame = tk.Frame(self)
+        nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
+
+        # Agrega una etiqueta con el nombre de la sede
+        label_sede = tk.Label(nuevo_frame, text=f"Nombre de la sede: {nombre_sede}", font=("Arial", 20), bg="white")
+        label_sede.grid(row=0, column=0, padx=10, pady=10, sticky="w")
         
         
        

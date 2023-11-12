@@ -5,12 +5,9 @@ from datetime import datetime
 class Item:
     listado_items=[]
     total_items=0
-    cebolla = Item("cebolla", 10, 1.5)
-    tomate = Item("tomate", 20, 2.0)
-    pollo = Item("pollo", 5, 10.0)
-    carne = Item("carne", 3, 15.0)
+  
 
-    def __init__(self, nombre, cantidad, precio, fecha_vencimiento=None, inventario=None):
+    def __init__(self, nombre, cantidad, precio, fecha_vencimiento, inventario):
         self.nombre = nombre
         self.cantidad = cantidad
         self.precio = precio
@@ -76,6 +73,7 @@ class Item:
     def set_listado_items(nuevo_listado_items):
         Item.listado_items = nuevo_listado_items
         
+
         
     
 
