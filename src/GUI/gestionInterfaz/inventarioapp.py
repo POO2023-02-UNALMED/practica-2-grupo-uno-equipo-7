@@ -2,6 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import Frame
 from tkinter import ttk
+from gestorAplicacion.inventarioaply import Inventarioaply
+from gestorAplicacion.Item import Item
+from gestorAplicacion.Restaurante import Restaurante
+
 
 class inventarioapp(Frame):
     def __init__(self, padre,  controlador):
@@ -21,6 +25,35 @@ class inventarioapp(Frame):
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
         boton = tk.Button(self ,text="Select", height=1)
         boton.grid(row=1,column=2, padx=2, sticky="w")
+        
+        
+        
+        
+    def inventario2(self, padre, Inventario):
+        super().__init__( padre)
+        texto=""
+        label3=tk.Label(self, text=texto)
+        if Restaurante.
+        Inventario.mostrar_items_vencidos()
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
         
         
         

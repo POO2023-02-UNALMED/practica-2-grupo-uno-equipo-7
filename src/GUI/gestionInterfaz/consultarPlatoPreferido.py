@@ -55,3 +55,4 @@ class ConsultarPlatoPreferido(Frame):
         
         # Se muestra el resultado en la etiqueta correspondiente
         self._etiquetaResultado.configure(text=f"Nombre: {nombreCliente}\nPlato preferido: {platoPreferido}")
+        

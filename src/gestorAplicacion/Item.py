@@ -75,4 +75,11 @@ class Item:
     @staticmethod
     def set_listado_items(nuevo_listado_items):
         Item.listado_items = nuevo_listado_items
+        
+        
+    
+
+
+
+
 

@@ -7,6 +7,7 @@ from GUI.gestionInterfaz.consultarPlatoPreferido import ConsultarPlatoPreferido
 from GUI.gestionInterfaz.inventarioapp import inventarioapp
 
 
+
 class MenuPrincipal(Menu):
     
     #Se crea el método constructor
