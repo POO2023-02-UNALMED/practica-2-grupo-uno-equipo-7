@@ -19,7 +19,7 @@ class inventarioapp(Frame):
         combo.grid(row=1, column=1, padx=2, pady=10, sticky="w")
         otro_label = tk.Label(self, text="seleccionar sede ", font=("Arial", 20),bg="white")
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
-        boton = tk.Button(self ,text="Select")
+        boton = tk.Button(self ,text="Select", height=1)
         boton.grid(row=1,column=2, padx=2, sticky="w")
         
         
