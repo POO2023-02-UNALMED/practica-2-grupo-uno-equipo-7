@@ -33,15 +33,34 @@ class inventarioapp(tk.Frame):
 
         boton = tk.Button(self, text="Select", height=1, command=lambda: self.inventario2(combo.get()))
         boton.grid(row=1, column=2, padx=2, sticky="w")
-
-    def inventario2(self, nombre_sede):
-        # Crea un nuevo Frame para mostrar el nombre de la sede seleccionada
         nuevo_frame = tk.Frame(self)
         nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
 
         # Agrega una etiqueta con el nombre de la sede
-        label_sede = tk.Label(nuevo_frame, text=f"Nombre de la sede: {nombre_sede}", font=("Arial", 20), bg="white")
-        label_sede.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+        self.label_sede = tk.Label(nuevo_frame, text=f"", font=("Arial", 20), bg="white")
+        self.label_sede.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+        
+        # Crea un nuevo Frame para mostrar el nombre de la sede seleccionada
+        
+        
+       
+        
+        
+
+    def inventario2(self, nombre_sede):
+        self.label_sede.config(text=f"Sede seleccionada: {nombre_sede}")
+        
+        
+        # Crea un nuevo Frame para mostrar el nombre de la sede seleccionada
+        
+        
+    
+        
+        
+        
+        
+        
+        
         
         
        
