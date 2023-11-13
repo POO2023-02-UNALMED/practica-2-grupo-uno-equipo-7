@@ -8,6 +8,7 @@ from GUI.gestionInterfaz.filedFrame import FieldFrame
 from GUI.gestionInterfaz.Instrucciones import Instrucciones
 from GUI.gestionInterfaz.consultarPlatoPreferido import ConsultarPlatoPreferido
 from GUI.gestionInterfaz.inventarioapp import inventarioapp
+from GUI.gestionInterfaz.ConsultarPlatoRecomendado import ConsultarPlatoRecomendado
 
 
 class Principal(Toplevel):
@@ -34,7 +35,7 @@ class Principal(Toplevel):
         
         self.frameFuncionalidad = {}
 
-        for F in (Instrucciones,Reporte,Compra,ConsultarPlatoPreferido, inventarioapp):
+        for F in (Instrucciones,Reporte,Compra,ConsultarPlatoPreferido, inventarioapp, ConsultarPlatoRecomendado ):
             self._frame =F(self._contenedor, self)
             self.frameFuncionalidad[F] = self._frame
             self._frame.grid(row=0, column=0, sticky=NSEW)

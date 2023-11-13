@@ -73,7 +73,7 @@ class Cliente(Persona):
         ingredientesSimilares = []
         for plato in Plato.platos:
             for preferido in platoPreferido:
-                ingredientesSimilares = Plato.getIngredientesSimilares(plato, preferido)
+                ingredientesSimilares = Plato.getIngredientesSimilares(plato, Plato.buscarPlato(preferido))
                 if ingredientesSimilares[0] >= 3 and plato not in platoPreferido and plato not in platosRecomendados:
                     platosRecomendados.append(plato)
                     for ingrediente in plato.ingredientes:

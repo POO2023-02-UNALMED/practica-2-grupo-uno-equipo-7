@@ -10,7 +10,7 @@ class Inventarioaply:
         self.diccionario_items = defaultdict(int)
         self.listado_items = []
         Inventarioaply.cantidad_total +=1
-        Inventarioaply.inventarios.append(self)
+        Inventarioaply.Inventarios.append(self)
         
 
     def añadir_items(self, item, cantidad):

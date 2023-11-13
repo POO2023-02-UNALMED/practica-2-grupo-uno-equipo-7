@@ -1,5 +1,6 @@
 from typing import List
 import pickle
+from .Item import Item
 
 class Plato:
     pl = []
@@ -42,14 +43,7 @@ class Plato:
         self._precio = precio
 
     def getIngredientes(self):
-        if not self.ingredientes:
-            return None
-        ingredientes = []
-        for ingrediente in self.ingredientes:
-            if not ingrediente:
-                continue
-            ingredientes.append(ingrediente.getNombre())
-        return ingredientes
+        return self.ingredientes
 
     def mostrarInformacionDetallada(self):
         print("Nombre del Plato: ", self.nombre)
@@ -71,7 +65,7 @@ class Plato:
     @classmethod
     def buscarPlato(cls, nombre):
         for plato in cls.platos.keys():
-            if plato.nombre() == nombre:
+            if plato.nombre == nombre:
                 return plato
         return None
 
@@ -93,7 +87,7 @@ class Plato:
         for ingrediente1 in plato1.getIngredientes():
             for ingrediente2 in plato2.getIngredientes():
                 if ingrediente1 == ingrediente2 and ingrediente1 not in ingredientes:
-                    ingredientes.append(ingrediente1)
+                    ingredientes.append(ingrediente1.get_nombre())
                     ingredientesSimilares += 1
         return [ingredientesSimilares, ingredientes]
 
@@ -120,20 +114,4 @@ class Plato:
     def __str__(self):
         return f"Plato [nombre={self.nombre}, ingredientes={self.ingredientes}, precio={self.precio}, disponibilidad={self.disponibilidad}]"
 
-class Item:
-    def __init__(self, nombre, precio, inventario):
-        self.nombre = nombre
-        self.precio = precio
-        self.inventario = inventario
 
-    def getNombre(self):
-        return self.nombre
-
-    def getPrecio(self):
-        return self.precio
-
-    def getInventario(self):
-        return self.inventario
-
-    def __str__(self):
-        return f"Item [nombre={self.nombre}, precio={self.precio}, inventario={self.inventario}]"
