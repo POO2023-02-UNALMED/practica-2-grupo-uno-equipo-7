@@ -1,15 +1,10 @@
 import pickle
 
-if __name__ == "__main__":
+def main():
     # Lectura del archivo serializado
-    picklefile = open("src/baseDatos/Prueba.pkl", "rb")
-
-    #Deserializacion del archivo
-    s = pickle.load(picklefile)
-
-    #Cierre del archivo serializado
-    picklefile.close()
+   
+    with open("src/baseDatos/Prueba.pkl","rb") as picklefile:
+        s = pickle.load(picklefile)
 
     #Ejecucion metodos para comporbar deserializacion
-    print(type(s))
-    s[1].details()
+    print(s[1].getTipo())

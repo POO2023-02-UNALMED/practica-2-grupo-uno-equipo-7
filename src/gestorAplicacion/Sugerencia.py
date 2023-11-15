@@ -1,4 +1,4 @@
-from gestorAplicacion import ServiciosClientes
+from gestorAplicacion.ServiciosClientes import ServiciosClientes
 
 class Sugerencia(ServiciosClientes):
 
@@ -9,7 +9,7 @@ class Sugerencia(ServiciosClientes):
     SugerenciasOtros = []
 
     def __init__(self,tipe = "Otro",text = None):
-        super._razon = text
+        super().__init__("Anonimo",text)
         self._tipo = tipe
 
         if tipe == "Menu":
@@ -33,7 +33,7 @@ class Sugerencia(ServiciosClientes):
         return self._tipo
     
     def __str__(self):
-        return "N° Referencia: " + super.getCodigoReferencia()   + "\nSugerencia tipo: " + self.getTipo() + "\n" + "''" + super.getRazon() + "''"
+        return "N° Referencia: " + super().getCodigoReferencia()   + "\nSugerencia tipo: " + self.getTipo() + "\n" + "''" + super().getRazon() + "''"
 
     @classmethod
     def getTAllSugerences(cls):
