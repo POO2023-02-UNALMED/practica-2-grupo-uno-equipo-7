@@ -1,16 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
+from gestorAplicacion.inventarioaply import Inventarioaply
+from gestorAplicacion.Restaurante import Restaurante
+dic= {"envigado":0, "sandiego":1, "La America": 2, "Belen":3}
 
-class Inventarioaply:  # Simulando la implementación de Inventarioaply
-    pass
 
-class Item:  # Simulando la implementación de Item
-    pass
 
-class Restaurante:  # Simulando la implementación de Restaurante
-    pass
 
 class inventarioapp(tk.Frame):
+    text=""
     def __init__(self, padre, controlador):
         super().__init__(padre)
         self.controlador = controlador
@@ -24,21 +23,21 @@ class inventarioapp(tk.Frame):
 
         # Crea un nuevo estilo personalizado (My.TCombobox) y ajusta la altura (padding)
         combo_style.configure('My.TCombobox', padding=[20, 5, 90, 5])
-        combo = ttk.Combobox(self, values=["envigado", "sandiego", "La Amercia", "belen"], textvariable=valor_defecto,
+        combo = ttk.Combobox(self, values=["envigado", "sandiego", "La America", "belen"], textvariable=valor_defecto,
                              style='My.TCombobox')
         combo.grid(row=1, column=1, padx=2, pady=10, sticky="w")
 
         otro_label = tk.Label(self, text="Seleccionar sede ", font=("Arial", 20), bg="white")
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
 
-        boton = tk.Button(self, text="Select", height=1, command=lambda: self.inventario2(combo.get()))
+        boton = tk.Button(self, text="Select", height=1, command=lambda: (self.inventario2(dic[combo.get()]), self.show(combo.get())))
         boton.grid(row=1, column=2, padx=2, sticky="w")
         nuevo_frame = tk.Frame(self)
         nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
+        
 
         # Agrega una etiqueta con el nombre de la sede
-        self.label_sede = tk.Label(nuevo_frame, text=f"", font=("Arial", 20), bg="white")
-        self.label_sede.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+        
         
         # Crea un nuevo Frame para mostrar el nombre de la sede seleccionada
         
@@ -47,8 +46,26 @@ class inventarioapp(tk.Frame):
         
         
 
-    def inventario2(self, nombre_sede):
-        self.label_sede.config(text=f"Sede seleccionada: {nombre_sede}")
+    def inventario2(self,  number):
+        var1=Restaurante.get_sedes()[number].inventario.obtener_items_sin_stock()
+
+        if len(Restaurante.get_sedes()[number].inventario.obtener_items_sin_stock()) == 0:
+            message = "no hay items vencidos"
+        else:
+            message = ""
+            for i in var1:
+                message += var1.nombre
+                
+                
+        inventarioapp.text = message
+        
+    
+                
+                
+            
+    def show(self, nombre_sede2):   
+         messagebox.showinfo("Sede items", f"Sede seleccionada: {nombre_sede2} - {inventarioapp.text}")
+       
         
         
         # Crea un nuevo Frame para mostrar el nombre de la sede seleccionada

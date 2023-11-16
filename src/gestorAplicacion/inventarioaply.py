@@ -65,7 +65,7 @@ class Inventarioaply:
 
     @staticmethod
     def obtener_inventarios():
-        return Inventarioaply.inventarios
+        return Inventarioaply.Inventarios
 
     @property
     def diccionario_items(self):
