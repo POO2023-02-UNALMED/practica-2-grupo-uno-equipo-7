@@ -1,6 +1,15 @@
 from datetime import date
 from enum import Enum
 
+from gestorAplicacion.Cliente import Cliente
+from gestorAplicacion.Empleado import Empleado
+from gestorAplicacion.Restaurante import Restaurante
+
+from gestorAplicacion.Sugerencia import Sugerencia
+from gestorAplicacion.Queja import Queja
+from gestorAplicacion.Reseña import Reseña
+from gestorAplicacion.Devolucion import Devolucion
+
 
 def main():
     print("1. Inventario")
@@ -75,9 +84,258 @@ def main():
                     print(f"Valor total del inventario: ${valor_total:.2f}")
                 elif opcion4 == 7:
                     break
+
     elif opcion == 2:
         print("Atención al cliente")
+        
+        print("Bienvenid@ al sistema de atención al cliente.\n¿Que desea realizar?")
+
         print("1. Salir")
+        print("2. Sugerencia")
+        print("3. Queja")
+        print("4. Reseña")
+        print("5. Devolucion")
+
+        opcionAC = int(input("Elija una opcion: "))
+
+        if opcionAC == 2: #Sugerencia
+            print("------------Sugerencias------------")
+            print("Ha seleccionado la opcion 1, Sugerencia,\n¿Que desea realizar?")
+
+            print("1. Realizar una nueva sugerencia")
+            print("2. Reporte de sugerencias")
+            print("3. Volver") #¿Salir?
+
+            opcionSugerencia = int(input("Elija una opcion: "))
+
+            if opcionSugerencia == 1:
+                print("¿Sobre que desea realizar su sugerecia?")
+                print("1. Sobre el menu")
+                print("2. Sobre un empleado")
+                print("3. Sobre una de nuestras sedes")
+                print("4. Algun otro")
+                print("5. Volver") #¿Salir?
+
+                opcionSType = int(input("Elija una opcion: "))
+                STipo = "Otro"
+
+                if opcionSType == 1:
+                    STipo = "Menu"
+                
+                elif opcionSType == 2:
+                    STipo = "Empleado"
+
+                elif opcionSType == 3:
+                    STipo = "Sede"
+                
+                elif opcionSType == 4:
+                    STipo = "Otro"
+                
+                elif opcionSType > 5 or opcionSType < 1:
+                    print("Opción invalida")
+                
+                #else:
+                    #print("Saliendo") #¿Salir?
+                
+                if opcionSType >= 1 or opcionSType <= 5:
+
+                    STexto = str(input("Por favor, a continuacion escriba su sugerencia"))
+
+                    print("Todo listo")
+                    print("1. Editar Sugerencia")
+                    print("2. Enviar Sugerencia")
+
+                    opcionES = int(input("Elija una opcion: "))
+
+                    if opcionES == 1:
+                        editado = str(input("Ahora puede editar su sugerencia: "))
+                        STexto = editado
+                        print("Todo listo, enviando sugerencia ...")
+                    
+                    else:
+                        print("Enviando sugerencia ...")
+
+                    sugerencia = Sugerencia(STipo, STexto)
+                    
+                    print("Su sugerencia se ha enviado con exito")
+
+                    print("\n")
+                    print(sugerencia)
+                    print("\n")
+
+                    #print("Saliendo") #¿salir?
+            elif opcionSugerencia == 2: #Reportes de sugerencias
+                print("Para poder continuar debe ingresar su codigo de empleado. ¿Cuenta con un codigo de empelado?")
+
+                print("1. Si")
+                print("2. No")
+
+                opcionSEmpleado = int(input("Elija una opcion: "))
+
+                if opcionSEmpleado == 1:
+                    codigoES = int(input("Ingrese su codigo de empleado: "))
+
+                    verificandoEmpleado = Empleado.buscarEmpleadoXCodigo(codigoES)
+
+                    if verificandoEmpleado == None:
+                        print("El codigo es invalido")
+                        #print("Saliendo") #¿Saliendo?
+                    
+                    else:
+                        print("Bienvenid@ " + verificandoEmpleado.getNombre() + "\n¿Que reporte desea que le muestre?")
+
+                        print("1. Reporte de todas las sugerencias")
+                        print("2. Reporte de sugerencias del menu")
+                        print("3. Reporte de sugerencias sobre empleados")
+                        print("4. Reporte de sugerencias de sede")
+                        print("5. Volver")  #¿Salir?
+
+                        Sugerencias = Sugerencia.getTAllSugerences()
+                        SugerenciasM = Sugerencia.getSugerenciasMenu()
+                        SugerenciasE = Sugerencia.getSugerenciasEmpleados()
+                        SugerenciasS = Sugerencia.getSugerenciasSedes()
+                        SugerenciasO = Sugerencia.getSugerenciasOtros()
+
+                        opcionReportesSugerencias = int(input("Elija una opcion: "))
+
+                        if opcionReportesSugerencias == 1: #Reporte de todas las sugerencias
+                            
+                            countS = len(Sugerencias)
+                            print("Hay un total de (" + countS + ") sugerencias.")
+
+                            if countS != 0:
+
+                                print("¿Desea ver c/u de las sugerencias mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteAllS = int(input("Elija una opcion: "))
+
+                                if reporteAllS == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for sug in Sugerencias:
+                                        print("\n")
+                                        print(sug)
+                                        print("\n")
+
+                        elif opcionReportesSugerencias == 2: #Reportes sugerencias Menu
+                            
+                            countSM = len(SugerenciasM)
+                            print("Hay un total de (" + countSM + ") sugerencias del tipo menu.")
+                            
+                            if countSM != 0:
+
+                                print("¿Desea ver c/u de las sugerencias mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteSM = int(input("Elija una opcion: "))
+
+                                if reporteSM == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for sug in SugerenciasM:
+                                        print("\n")
+                                        print(sug)
+                                        print("\n")
+                        
+                        elif opcionReportesSugerencias == 3: #Reportes sugerencias Empleados
+                            
+                            countSE = len(SugerenciasE)
+                            print("Hay un total de (" + countSE + ") sugerencias del tipo empleado.")
+                            
+                            if countSE != 0:
+
+                                print("¿Desea ver c/u de las sugerencias mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteSE = int(input("Elija una opcion: "))
+
+                                if reporteSE == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for sug in SugerenciasE:
+                                        print("\n")
+                                        print(sug)
+                                        print("\n")
+                        
+                        elif opcionReportesSugerencias == 4: #Reportes sugerencias Sede
+                            
+                            countSS = len(SugerenciasS)
+                            print("Hay un total de (" + countSS + ") sugerencias del tipo sede.")
+                            
+                            if countSS != 0:
+
+                                print("¿Desea ver c/u de las sugerencias mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteSS = int(input("Elija una opcion: "))
+
+                                if reporteSS == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for sug in SugerenciasS:
+                                        print("\n")
+                                        print(sug)
+                                        print("\n")
+                        
+                        elif opcionReportesSugerencias == 5: #Reportes sugerencias Otros
+                            
+                            countSO = len(SugerenciasO)
+                            print("Hay un total de (" + countSO + ") sugerencias del tipo otro.")
+                            
+                            if countSO != 0:
+
+                                print("¿Desea ver c/u de las sugerencias mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteSO = int(input("Elija una opcion: "))
+
+                                if reporteSO == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for sug in SugerenciasO:
+                                        print("\n")
+                                        print(sug)
+                                        print("\n")
+                        
+                        #else:
+                            #print("Saliendo ...") #¿Salir?
+            
+            #else: #fin de sugerencias
+                #print("Saliendo ...") #¿Salir?
+
+        #elif opcionAC == 3: #Queja
+
+        #elif opcionAC == 3: #Reseña
+
+        #elif opcionAC == 4: #Devolucion
+
+
         opcion5 = int(input("Elija una opción: "))
         if opcion5 == 1:
             pass

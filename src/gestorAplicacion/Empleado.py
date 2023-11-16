@@ -71,7 +71,8 @@ class Empleado(Persona):
                 return empleado
             else:
                 return None
-    
+            
+    @classmethod
     def buscarEmpleadoXCodigo(cls, codigo):
         empleados = cls.Empleados
         for empleado in empleados:
