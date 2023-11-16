@@ -200,10 +200,10 @@ def main():
 
                         if opcionReportesSugerencias == 1: #Reporte de todas las sugerencias
                             
-                            countS = len(Sugerencias)
-                            print("Hay un total de (" + countS + ") sugerencias.")
+                            countS = Sugerencia.cantidadSugerencias()
+                            print(countS)
 
-                            if countS != 0:
+                            if countS != "No hay sugerencias que mostrar":
 
                                 print("¿Desea ver c/u de las sugerencias mencionadas?")
 
@@ -225,10 +225,10 @@ def main():
 
                         elif opcionReportesSugerencias == 2: #Reportes sugerencias Menu
                             
-                            countSM = len(SugerenciasM)
-                            print("Hay un total de (" + countSM + ") sugerencias del tipo menu.")
+                            countSM = Sugerencia.cantidadSugerenciasMenu()
+                            print(countSM)
                             
-                            if countSM != 0:
+                            if countSM != "No hay sugerencias que mostrar":
 
                                 print("¿Desea ver c/u de las sugerencias mencionadas?")
 
@@ -250,10 +250,10 @@ def main():
                         
                         elif opcionReportesSugerencias == 3: #Reportes sugerencias Empleados
                             
-                            countSE = len(SugerenciasE)
-                            print("Hay un total de (" + countSE + ") sugerencias del tipo empleado.")
+                            countSE = Sugerencia.cantidadSugerenciasEmpleados()
+                            print(countSE)
                             
-                            if countSE != 0:
+                            if countSE != "No hay sugerencias que mostrar":
 
                                 print("¿Desea ver c/u de las sugerencias mencionadas?")
 
@@ -275,10 +275,10 @@ def main():
                         
                         elif opcionReportesSugerencias == 4: #Reportes sugerencias Sede
                             
-                            countSS = len(SugerenciasS)
-                            print("Hay un total de (" + countSS + ") sugerencias del tipo sede.")
+                            countSS = Sugerencia.cantidadSugerenciasSedes()
+                            print(countSS)
                             
-                            if countSS != 0:
+                            if countSS != "No hay sugerencias que mostrar":
 
                                 print("¿Desea ver c/u de las sugerencias mencionadas?")
 
@@ -300,10 +300,10 @@ def main():
                         
                         elif opcionReportesSugerencias == 5: #Reportes sugerencias Otros
                             
-                            countSO = len(SugerenciasO)
-                            print("Hay un total de (" + countSO + ") sugerencias del tipo otro.")
+                            countSO = Sugerencia.cantidadSugerenciasOtros()
+                            print(countSO)
                             
-                            if countSO != 0:
+                            if countSO != "No hay sugerencias que mostrar":
 
                                 print("¿Desea ver c/u de las sugerencias mencionadas?")
 
