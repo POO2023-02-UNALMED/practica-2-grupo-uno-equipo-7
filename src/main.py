@@ -172,7 +172,12 @@ def main():
 
                 opcionSEmpleado = int(input("Elija una opcion: "))
 
-                if opcionSEmpleado == 1:
+                if opcionSEmpleado == 2:
+
+                    print("Lo siento, tiene que tener un codigo de empleado para poder ingresar")
+                    #print("saliendo ...") #¿Salir?
+                
+                else:
                     codigoES = int(input("Ingrese su codigo de empleado: "))
 
                     verificandoEmpleado = Empleado.buscarEmpleadoXCodigo(codigoES)
@@ -329,16 +334,37 @@ def main():
             #else: #fin de sugerencias
                 #print("Saliendo ...") #¿Salir?
 
-        #elif opcionAC == 3: #Queja
+        elif opcionAC == 3: #Queja
+            print("------------Quejas------------")
+            print("Ha seleccionado la opcion 2, Quejas\n¿Que desea realizar?")
+			
+            print("1. Realizar una nueva queja")
+            print("2. Reporte de quejas")
+            print("3. Salir")
+			
 
-        #elif opcionAC == 3: #Reseña
+        elif opcionAC == 3: #Reseña
+            print("------------Reseñas------------")
+            print("Ha seleccionado la opcion 3, Reseña.\n¿Que desea realizar?")
+			
+            print("1. Ver repositorio de reseñas")
+            print("2. Realizar una nueva reseña")
+            print("3. Reporte de calificaiones")
+            print("4. Salir")
 
-        #elif opcionAC == 4: #Devolucion
-
+        elif opcionAC == 4: #Devolucion
+            print("------------Devoluciones------------")
+            print("Ha seleccionado la opcion 4, Devoluciones.\n¿Que desea realizar?")
+			
+            print("1. Ver las solicitudes de Devoluciones")
+            print("2. Realizar una nueva solicitud")
+            print("3. Revisar el estado de mi solicitud")
+            print("4. Salir")
 
         opcion5 = int(input("Elija una opción: "))
         if opcion5 == 1:
             pass
+        
     elif opcion == 3:
         print("Reportes")
         print("1. Salir")
