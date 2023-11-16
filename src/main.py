@@ -4,6 +4,7 @@ from enum import Enum
 from gestorAplicacion.Cliente import Cliente
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Restaurante import Restaurante
+from gestorAplicacion.Plato import Plato
 
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
@@ -341,6 +342,297 @@ def main():
             print("1. Realizar una nueva queja")
             print("2. Reporte de quejas")
             print("3. Salir")
+
+            opcionQuejas = int(input("Elija una opcion: "))
+
+            if opcionQuejas == 2: #Nueva Queja
+
+                Qnombre = str(input("Por favor, a continuacion ingrese su nombre completo: "))
+                print("¿Sobre que desea realizar su queja?")
+				
+                print("1. Sobre el menu")
+                print("2. Sobre un empleado")
+                print("3. Sobre una de nuestras sedes")
+                print("4. Algun otro")
+                print("5. Salir")
+
+                opcionQType = int(input("Elija una opcion: "))
+                QTipo = "Otro"
+                QOtro = None
+
+                if opcionQType == 1:
+                    QTipo = "Menu"
+
+                    print("Para poder continuar debe ingresar el nombre del plato del cual desea quejarse. ¿Cuenta con el nombre del plato?")
+                    print("1. Si")
+                    print("2. No")
+
+                    opcionQP = int(input("Elija una opcion: "))
+
+                    if opcionQP == 1: #Si tiene el nombre del plato
+
+                        nombreP= str(input("Ingrese el nombre del plato: "))
+
+                        verificandoPlatoQ = Plato.buscarPlato()
+
+                        if verificandoPlatoQ == None:
+                            print("Este plato no existe")
+                        
+                        else:
+                            QOtro = nombreP
+                    else: #No trae eñ nombre del plato
+                        print("Sin el nombre del plato no es posible realizar una queja especifica, le recomendamos escribir su queja en ''Algun Otro''")
+                        #print("Saliendo ...") #¿Salir?
+
+                elif opcionQType == 2:
+                    QTipo = "Empleado"
+
+                    print("Para poder continuar debe ingresar el nombre del empleado del cual desea quejarse. ¿Cuenta con el nombre del empleado?")
+                    print("1. Si")
+                    print("2. No")
+
+                    opcionQE = int(input("Elija una opcion: "))
+
+                    if opcionQE == 1: #Si tiene el nombre del empleado
+
+                        nombreEQ= str(input("Ingrese el nombre del plato: "))
+
+                        verificandoEmpleadoQ = Empleado.buscarEmpleadoXNombre()
+
+                        if verificandoEmpleadoQ == None:
+                            print("Este empleado no existe")
+                        
+                        else:
+                            QOtro = nombreEQ
+                    else: #No trae eñ nombre del Empleado
+                        print("Sin el nombre del empleado no es posible realizar una queja especifica, le recomendamos escribir su queja en ''Algun Otro''")
+                        #print("Saliendo ...") #¿Salir?
+
+                elif opcionQType == 3:
+                    QTipo = "Sede"
+
+                    print("Por favor, para continuar indique la sede de la cual quiere hacer su queja")
+					
+                    print("1. Sede La America")
+                    print("2. Sede Sandiego")
+                    print("3. Sede Envigado")
+                    print("4. Sede Belen")
+
+                    SedeQ = int(input("Elija una opcion: "))
+
+                    if SedeQ == 1:
+                        QOtro = "Sede: La America"
+                    elif SedeQ == 2:
+                        QOtro = "Sede: Sandiego"
+                    elif SedeQ == 3:
+                        QOtro = "Sede: Envigado"
+                    elif SedeQ == 4:
+                        QOtro = "Sede: Belen"
+                    else:
+                        print("Esta sede no existe")
+    
+                elif opcionQType == 4:
+                    QTipo = "Otro"
+                    QOtro = None
+                
+                elif opcionQType > 5 or opcionQType < 1:
+                    print("Opción invalida")
+                
+                #else:
+                    #print("Saliendo") #¿Salir?
+                if opcionQType >= 1 or opcionQType <= 5:
+                    QTexto = str(input("Por favor, a continuacion escriba su queja: "))
+
+                    print("Todo listo")
+                    print("1. Editar Queja")
+                    print("2. Enviar Queja")
+
+                    opcionEQ = int(input("Elija una opcion: "))
+
+                    if opcionEQ == 1:
+                        editadoQ = str(input("Ahora puede editar su queja: "))
+                        QTexto = editadoQ
+                        print("Todo listo, enviando queja ...")
+                    
+                    else:
+                        print("Enviando queja ...")
+
+                    queja = Queja(Qnombre,QTipo, QOtro, QTexto)
+                    
+                    print("Su queja se ha enviado con exito")
+
+                    print("\n")
+                    print(queja)
+                    print("\n")
+
+                
+            elif opcionQuejas == 3: #Reporte Quejas
+                print("Para poder continuar debe ingresar su codigo de empleado. ¿Cuenta con un codigo de empelado?")
+
+                print("1. Si")
+                print("2. No")
+
+                opcionSEmpleado = int(input("Elija una opcion: "))
+
+                if opcionSEmpleado == 2:
+
+                    print("Lo siento, tiene que tener un codigo de empleado para poder ingresar")
+                    #print("saliendo ...") #¿Salir?
+                
+                else:
+                    codigoES = int(input("Ingrese su codigo de empleado: "))
+
+                    verificandoEmpleado = Empleado.buscarEmpleadoXCodigo(codigoES)
+
+                    if verificandoEmpleado == None:
+                        print("El codigo es invalido")
+                        #print("Saliendo") #¿Saliendo?
+                    
+                    else:
+                        print("Bienvenid@ " + verificandoEmpleado.getNombre() + "\n¿Que reporte desea que le muestre?")
+
+                        print("1. Reporte de todas las quejas")
+                        print("2. Reporte de quejas del menu")
+                        print("3. Reporte de quejas sobre empleados")
+                        print("4. Reporte de quejas de sede")
+                        print("5. Reporte de quejas otros")
+                        print("6. Volver")  #¿Salir?
+
+                        Quejas = Queja.getTAllQuejas()
+                        QuejasM = Queja.getQuejasMenu()
+                        QuejasE = Queja.getQuejasEmpleados()
+                        QuejasS = Queja.getQuejasSedes()
+                        QuejasO = Queja.getQuejasOtros()
+
+                        opcionReportesQuejas = int(input("Elija una opcion: "))
+
+                        if opcionReportesQuejas == 1: #Reporte de todas las quejas
+                            
+                            countQ = Quejas.cantidadQuejas()
+                            print(countQ)
+
+                            if countQ != "No hay quejas que mostrar":
+
+                                print("¿Desea ver c/u de las quejas mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteAllQ = int(input("Elija una opcion: "))
+
+                                if reporteAllQ == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for que in Quejas:
+                                        print("\n")
+                                        print(que)
+                                        print("\n")
+
+                        elif opcionReportesQuejas == 2: #Reportes quejas Menu
+                            
+                            countQM = Queja.cantidadQuejasMenu()
+                            print(countQM)
+                            
+                            if countQM != "No hay quejas que mostrar":
+
+                                print("¿Desea ver c/u de las quejas mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteQM = int(input("Elija una opcion: "))
+
+                                if reporteQM == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for que in  QuejasM:
+                                        print("\n")
+                                        print(que)
+                                        print("\n")
+                        
+                        elif opcionReportesQuejas == 3: #Reportes quejas Empleados
+                            
+                            countQE = Queja.cantidadQuejasEmpleados()
+                            print(countQE)
+                            
+                            if countQE != "No hay quejas que mostrar":
+
+                                print("¿Desea ver c/u de las quejas mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteQE = int(input("Elija una opcion: "))
+
+                                if reporteQE == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for que in QuejasE:
+                                        print("\n")
+                                        print(que)
+                                        print("\n")
+                        
+                        elif opcionReportesQuejas == 4: #Reportes quejas Sede
+                            
+                            countQS = Queja.cantidadQuejasSedes()
+                            print(countQS)
+                            
+                            if countQS != "No hay quejas que mostrar":
+
+                                print("¿Desea ver c/u de las quejas mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteQS = int(input("Elija una opcion: "))
+
+                                if reporteQS == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for que in QuejasS:
+                                        print("\n")
+                                        print(que)
+                                        print("\n")
+                        
+                        elif opcionReportesQuejas == 5: #Reportes quejas Otros
+                            
+                            countQO = Queja.cantidadQuejasOtros()
+                            print(countQO)
+                            
+                            if countQO != "No hay quejas que mostrar":
+
+                                print("¿Desea ver c/u de las quejas mencionadas?")
+
+                                print("1. Si")
+                                print("2. No")
+
+                                reporteQO = int(input("Elija una opcion: "))
+
+                                if reporteQO == 2:
+                                    print("Ok")
+                                    #print("Saliendo ...") #Salir?
+                                
+                                else:
+
+                                    for que in QuejasO:
+                                        print("\n")
+                                        print(que)
+                                        print("\n")
+
+            #else:
+                #print("Saliendo ...") #¿Salir?
 			
 
         elif opcionAC == 3: #Reseña

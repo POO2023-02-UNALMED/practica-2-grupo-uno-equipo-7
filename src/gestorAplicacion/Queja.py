@@ -12,7 +12,7 @@ class Queja(ServiciosClientes):
     QuejasOtros = []
 
 
-    def __init__(self, name, tipe, algo, text):
+    def __init__(self, name, tipe, algo = None, text = ""):
         super().__init__(name, text)
         self._tipo = tipe
         
