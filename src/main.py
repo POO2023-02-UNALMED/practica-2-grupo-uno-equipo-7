@@ -165,6 +165,7 @@ def main():
                     print("\n")
 
                     #print("Saliendo") #¿salir?
+
             elif opcionSugerencia == 2: #Reportes de sugerencias
                 print("Para poder continuar debe ingresar su codigo de empleado. ¿Cuenta con un codigo de empelado?")
 
@@ -220,6 +221,7 @@ def main():
 
                                 if reporteAllS == 2:
                                     print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -329,7 +331,8 @@ def main():
                                         print(sug)
                                         print("\n")
                         
-                        #else:
+                        else:
+                            pass
                             #print("Saliendo ...") #¿Salir?
             
             #else: #fin de sugerencias
@@ -440,6 +443,7 @@ def main():
                 
                 #else:
                     #print("Saliendo") #¿Salir?
+
                 if opcionQType >= 1 or opcionQType <= 5:
                     QTexto = str(input("Por favor, a continuacion escriba su queja: "))
 
@@ -631,7 +635,8 @@ def main():
                                         print(que)
                                         print("\n")
 
-            #else:
+            else:
+                pass
                 #print("Saliendo ...") #¿Salir?
 			
 
