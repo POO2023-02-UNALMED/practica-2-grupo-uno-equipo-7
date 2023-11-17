@@ -107,19 +107,19 @@ class Inicio(Frame, Tk):
             self.imagen4.configure(image = python_imagen4)
 
         elif self._numeroInicio == 2: #Camila
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c1.jpg').resize((300,225), Image.ANTIALIAS))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c2.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c2.jpg').resize((300,225), Image.ANTIALIAS))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c3.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c3.jpg').resize((300,225), Image.ANTIALIAS))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c4.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c4.jpg').resize((300,225), Image.ANTIALIAS))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
             
