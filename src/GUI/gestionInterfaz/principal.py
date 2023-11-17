@@ -21,7 +21,7 @@ class Principal(Toplevel):
         
         # Titulo
         self.title("Restaurante")
-        self.geometry("1280x1080")
+        self.geometry("1280x1100")
         # Se agrega el menu
         menuPrincipal = MenuPrincipal(self, padre)
         self['menu'] = menuPrincipal

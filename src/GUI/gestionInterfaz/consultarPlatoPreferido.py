@@ -1,6 +1,7 @@
 from tkinter import *
 from GUI.estilos.style import *
 from gestorAplicacion.Cliente import Cliente
+from tkinter import messagebox
 
 
 class ConsultarPlatoPreferido(Frame):
@@ -50,8 +51,12 @@ class ConsultarPlatoPreferido(Frame):
         idCliente = self._entradaId.get()
         
         # Se obtiene el nombre y plato preferido del cliente a partir del id
-        nombreCliente = Cliente.buscarCliente(int(idCliente)).getNombre()
-        platoPreferido = Cliente.buscarPlatoPreferido(int(idCliente))
+        try:
+            nombreCliente = Cliente.buscarCliente(int(idCliente)).getNombre()
+            platoPreferido = Cliente.buscarPlatoPreferido(int(idCliente))
+        except:
+            messagebox.showerror("Error", "El id ingresado no es válido o no hay suficientes facturas para calcular el plato preferido")
+            return
         
         
         # Se muestra el resultado en la etiqueta correspondiente

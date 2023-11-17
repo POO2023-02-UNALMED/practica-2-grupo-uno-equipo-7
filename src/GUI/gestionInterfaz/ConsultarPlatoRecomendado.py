@@ -3,6 +3,7 @@ from GUI.estilos.style import *
 from gestorAplicacion.Cliente import Cliente
 from .consultarPlatoPreferido import ConsultarPlatoPreferido
 from tkinter.ttk import Combobox
+from tkinter import messagebox
 
 class ConsultarPlatoRecomendado(Frame):
     
@@ -81,20 +82,26 @@ class ConsultarPlatoRecomendado(Frame):
 
         
         
+
     def _mostrarPlatosRecomendados(self):
         # Se obtiene el id del cliente ingresado en la entrada
         idCliente = self._entradaId.get()
-        
+
         # Se obtienen los platos recomendados para el cliente a partir del id
-        platosRecomendados = Cliente.buscarPlatoRecomendado(int(idCliente))[0]
-        nombreCliente = Cliente.buscarCliente(int(idCliente)).getNombre()
-        platoPreferido = Cliente.buscarPlatoPreferido(int(idCliente))
-        ingredientes = Cliente.buscarPlatoRecomendado(int(idCliente))[1]
+        try:
+            platosRecomendados = Cliente.buscarPlatoRecomendado(int(idCliente))[0]
+            nombreCliente = Cliente.buscarCliente(int(idCliente)).getNombre()
+            platoPreferido = Cliente.buscarPlatoPreferido(int(idCliente))
+            ingredientes = Cliente.buscarPlatoRecomendado(int(idCliente))[1]
+        except:
+            messagebox.showerror("Error", "No hay clientes con ese id o no hay suficientes facturas para calcular el plato preferido")
+            return
+
         lista = []
         for ing in ingredientes:
             lista.append(ing.nombre)
 
-        # Se muestra el resultado en la etiqueta correspondiente
+        # Se muestra el resultado en una ventana emergente
         resultado = "Platos recomendados:\n"
         for i, plato in enumerate(platosRecomendados):
             resultado += f"{i+1}. {plato.nombre}\n"
