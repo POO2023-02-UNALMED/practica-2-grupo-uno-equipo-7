@@ -3,13 +3,13 @@ class Pedido:
     listado_pedidos = []
 
     def __init__(self, numeroOrden: int, estadoPedido: str, direccionPedido: str, tipoPedido: str, cantidadPlatos: int, direccionPedido2: str):
-        self.numeroOrden = numeroOrden
-        self.estadoPedido = estadoPedido 
-        self.direccionPedido  = direccionPedido 
-        self.tipoPedido = tipoPedido
-        self.cantidadPlatos =  cantidadPlatos
-        self.direccionPedido2 =  direccionPedido2
-        Pedido.listado_pedidos.append(self)
+        self._numeroOrden = numeroOrden
+        self._estadoPedido = estadoPedido 
+        self._direccionPedido  = direccionPedido 
+        self._tipoPedido = tipoPedido
+        self._cantidadPlatos =  cantidadPlatos
+        self._direccionPedido2 =  direccionPedido2
+        Pedido._listado_pedidos.append(self)
 
     def GenerarPedido(self):
         if self.tipoPedido == "De envio":

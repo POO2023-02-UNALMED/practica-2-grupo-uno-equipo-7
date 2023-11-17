@@ -916,13 +916,20 @@ def main():
                         #metodo para agregar algo mas al pedido
                         pass
                         
-                    elif confir3 == "N":
+                    else: 
                         print("Productos seleccionados")
                         print("El total de su compra es: ")
                         #metodo para mostrar el total de la compra mas un adicional por el domicilio 
+                        print("Confirmción final")
+                        print("¿Desea confirmar su pedido?")
+                        confirfinal = str(input())
+                        if confirfinal == "N":
+                            print("Pedido no confirmado, ¿desea volver al menu principal?")
 
-                    else:
-                        pass
+                        else:
+                            print("Pedido confirmado, Gracias por su compra, el total a pagar será cobrado al momento de recibir su pedido (Pago contra entrega)")
+                            print("Vuelva pronto")
+                    
 
                 elif confir == "N":
                     print("Direccion no confirmada, ahora puede editar la dirección")
