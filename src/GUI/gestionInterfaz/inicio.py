@@ -16,7 +16,7 @@ class Inicio(Frame, Tk):
         {"name": "David Alejandro Silva Uribe", "description":"Amante del fútbol y el arte", "email":"dsilvau@unal.edu.co"},
         {"name": "Andrés Felipe Guido Montoya", "description":"Apasionado por el fútbol y el anime", "email":"aguido@unal.edu.co" },
         {"name":"Maria Camila Rios Mejia", "description":"Apasionada por el baile, los comics y los videojuegos", "email":"mriosm@unal.edu.co"},
-        {"name": "", "description":"Amante de la comida", "email":"jualopezra@unal.edu.co" },
+        {"name": "Manuel Fernando Menza Perdomo", "description":"Amante de la Formula 1 y el automivilismo", "email":"mmenza@unal.edu.co" },
         {"name":"", "description":"Apasionado por la lectura", "email":"jtobonz@unal.edu.co"}
     ]
 
