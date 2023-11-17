@@ -7,8 +7,8 @@ class Devolucion (ServiciosClientes):
 
     def __init__(self, nombre, cedula, correo, numerofactura, texto):
         super().__init__(nombre,texto)
-        self._cedula.setCedula(cedula) #Pendiente revisar ID
-        self._correo.setEmail(correo)#Pendiente revisar Correo
+        super().getCliente().setCedula(cedula) #Pendiente revisar ID
+        super().getCliente().setEmail(correo)#Pendiente revisar Correo
         self._estado = "Pendiente"
         self._motivo = None
 
@@ -49,9 +49,10 @@ class Devolucion (ServiciosClientes):
             a = "N° Solicitud: " + super().getCodigoReferencia() + "\n" + "Cliente: " + super().getCliente().getNombre() + " - CC. " + super().getCliente().getCedula() + " - Email: " + super().getCliente().getEmail() + "\n" + "Codigo de Factura: " + self.getFactura().getCodigo() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de la solicitud: " + self.getTexto()
         
     @classmethod
-    def DenegarDevolucion(cls, codigo):
+    def DenegarDevolucion(cls, codigo, motivo):
         a = cls.buscarDevolucion(codigo)
         a.setEstado("Denegado")
+        a.setMotivo(motivo)
 
     @classmethod
     def AprobarDevolucion(cls, codigo):
@@ -79,9 +80,13 @@ class Devolucion (ServiciosClientes):
     
     @classmethod
     def buscarDevolucion(cls, codigo):
-        b = cls.getDevoluciones()
-        for devolucion in b:
-            if devolucion.getCodigoReferencia() == codigo:
-                return devolucion
+        c = cls.existeDevolucion(codigo)
+        if c == True:
+            b = cls.getDevoluciones()
+            for devolucion in b:
+                if devolucion.getCodigoReferencia() == codigo:
+                    return devolucion
+        else:
+            return None
         
     

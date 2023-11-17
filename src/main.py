@@ -5,6 +5,7 @@ from gestorAplicacion.Cliente import Cliente
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Restaurante import Restaurante
 from gestorAplicacion.Plato import Plato
+from gestorAplicacion.Factura import Factura
 
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
@@ -220,7 +221,6 @@ def main():
                                 reporteAllS = int(input("Elija una opcion: "))
 
                                 if reporteAllS == 2:
-                                    print("Ok")
                                     pass
                                     #print("Saliendo ...") #Salir?
                                 
@@ -246,7 +246,7 @@ def main():
                                 reporteSM = int(input("Elija una opcion: "))
 
                                 if reporteSM == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -271,7 +271,7 @@ def main():
                                 reporteSE = int(input("Elija una opcion: "))
 
                                 if reporteSE == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -296,7 +296,7 @@ def main():
                                 reporteSS = int(input("Elija una opcion: "))
 
                                 if reporteSS == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -321,7 +321,7 @@ def main():
                                 reporteSO = int(input("Elija una opcion: "))
 
                                 if reporteSO == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -335,8 +335,9 @@ def main():
                             pass
                             #print("Saliendo ...") #¿Salir?
             
-            #else: #fin de sugerencias
+            else: #fin de sugerencias
                 #print("Saliendo ...") #¿Salir?
+                pass
 
         elif opcionAC == 3: #Queja
             print("------------Quejas------------")
@@ -386,6 +387,7 @@ def main():
                     else: #No trae eñ nombre del plato
                         print("Sin el nombre del plato no es posible realizar una queja especifica, le recomendamos escribir su queja en ''Algun Otro''")
                         #print("Saliendo ...") #¿Salir?
+                        pass
 
                 elif opcionQType == 2:
                     QTipo = "Empleado"
@@ -410,6 +412,7 @@ def main():
                     else: #No trae eñ nombre del Empleado
                         print("Sin el nombre del empleado no es posible realizar una queja especifica, le recomendamos escribir su queja en ''Algun Otro''")
                         #print("Saliendo ...") #¿Salir?
+                        pass
 
                 elif opcionQType == 3:
                     QTipo = "Sede"
@@ -441,7 +444,8 @@ def main():
                 elif opcionQType > 5 or opcionQType < 1:
                     print("Opción invalida")
                 
-                #else:
+                else:
+                    pass
                     #print("Saliendo") #¿Salir?
 
                 if opcionQType >= 1 or opcionQType <= 5:
@@ -476,24 +480,25 @@ def main():
                 print("1. Si")
                 print("2. No")
 
-                opcionSEmpleado = int(input("Elija una opcion: "))
+                opcionQEmpleado = int(input("Elija una opcion: "))
 
-                if opcionSEmpleado == 2:
+                if opcionQEmpleado == 2:
 
                     print("Lo siento, tiene que tener un codigo de empleado para poder ingresar")
                     #print("saliendo ...") #¿Salir?
+                    pass
                 
                 else:
-                    codigoES = int(input("Ingrese su codigo de empleado: "))
+                    codigoEQ = int(input("Ingrese su codigo de empleado: "))
 
-                    verificandoEmpleado = Empleado.buscarEmpleadoXCodigo(codigoES)
+                    verificandoEmpleadoQI = Empleado.buscarEmpleadoXCodigo(codigoEQ)
 
-                    if verificandoEmpleado == None:
+                    if verificandoEmpleadoQI == None:
                         print("El codigo es invalido")
                         #print("Saliendo") #¿Saliendo?
                     
                     else:
-                        print("Bienvenid@ " + verificandoEmpleado.getNombre() + "\n¿Que reporte desea que le muestre?")
+                        print("Bienvenid@ " + verificandoEmpleadoQI.getNombre() + "\n¿Que reporte desea que le muestre?")
 
                         print("1. Reporte de todas las quejas")
                         print("2. Reporte de quejas del menu")
@@ -525,7 +530,7 @@ def main():
                                 reporteAllQ = int(input("Elija una opcion: "))
 
                                 if reporteAllQ == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -550,8 +555,8 @@ def main():
                                 reporteQM = int(input("Elija una opcion: "))
 
                                 if reporteQM == 2:
-                                    print("Ok")
                                     #print("Saliendo ...") #Salir?
+                                    pass
                                 
                                 else:
 
@@ -575,7 +580,7 @@ def main():
                                 reporteQE = int(input("Elija una opcion: "))
 
                                 if reporteQE == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -600,7 +605,7 @@ def main():
                                 reporteQS = int(input("Elija una opcion: "))
 
                                 if reporteQS == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -625,7 +630,7 @@ def main():
                                 reporteQO = int(input("Elija una opcion: "))
 
                                 if reporteQO == 2:
-                                    print("Ok")
+                                    pass
                                     #print("Saliendo ...") #Salir?
                                 
                                 else:
@@ -713,7 +718,7 @@ def main():
                 print("\n")
                 print(reseña)
                 print("\n")
-                
+
                 print("1. Salir")
                 print("2. Ver repositorio de reseñas")
 
@@ -732,6 +737,7 @@ def main():
                 print(Queja.PromedioCalificaciones())
                 print("\n")
                 #print("Saliendo ...") #¿Salir?
+                pass
 
             else: pass
 
@@ -743,6 +749,121 @@ def main():
             print("2. Realizar una nueva solicitud")
             print("3. Revisar el estado de mi solicitud")
             print("4. Salir")
+
+            opcionDevolucion = int(input("Elija una opcion: "))
+            Devoluciones = Devolucion.getDevoluciones()
+
+            if opcionDevolucion == 1: #Ver las solicitudes
+                print("Para poder continuar debe ingresar su codigo de empleado. ¿Cuenta con un codigo de empelado?")
+
+                print("1. Si")
+                print("2. No")
+
+                opcionDEmpleado = int(input("Elija una opcion: "))
+
+                if opcionDEmpleado == 2:
+
+                    print("Lo siento, tiene que tener un codigo de empleado para poder ingresar")
+                    pass
+                    #print("saliendo ...") #¿Salir?
+                
+                else:
+                    codigoED = int(input("Ingrese su codigo de empleado: "))
+
+                    verificandoEmpleadoD = Empleado.buscarEmpleadoXCodigo(codigoED)
+
+                    if verificandoEmpleadoD == None:
+                        print("El codigo es invalido")
+                        #print("Saliendo") #¿Saliendo?
+                        pass
+                    
+                    else:
+                        print("Bienvenid@ " + verificandoEmpleadoD.getNombre() + "\nA continucion se mostraran todas las solicitudes pendientes")
+
+                        for devolucion in Devoluciones:
+                            print(devolucion)
+                            print("\n")
+
+                        print("¿Desea revisar y cambiar el estado de una solucitud?")
+						
+                        print("1. Si")
+                        print("2. No/Salir")
+
+                        revisarEstado = int(input("Elija una opcion: "))
+
+                        if revisarEstado == 2:
+                            pass
+                        
+                        else: 
+                            codigoSolicitud = int(input("Por favor ingrese el numero de la solicitud que desea revisar: "))
+
+                            solicitud = Devolucion.buscarDevolucion(codigoSolicitud)
+                            
+                            print("¿Desea aprobar o denegar la solicitud?")
+							
+                            print("1. Aprobar")
+                            print("2. Denegar")
+
+                            cambiarEstado = int(input("Elija una opcion: "))
+
+                            if cambiarEstado == 1:
+                                Devolucion.AprobarDevolucion(codigoSolicitud)
+                                print("Todo listo, la solicitud fue aprobada con exito\n")
+
+                            else:
+                                razon = str(input("Para poder denegar la solicitud por favor indique la razon: "))
+                                Devolucion.DenegarDevolucio(codigoSolicitud, razon)
+
+                                print("Todo listo, la solicitud fue denegada con exito\n")
+
+                            print(solicitud)
+                            print("\nSaliendo")
+                            pass
+                    
+            elif opcionDevolucion == 2: #Nueva solicitud
+                print("Para realizar una nueva solicitud por favor ingrese los siguientes datos")
+
+                nombreD = str(input("Ingresar Nombre completo: "))
+                cedulaD = str(input("Ingresar Cedula: "))
+                correoD = str(input("Ingresar Correo: "))
+                facturaD = str(input("Ingresar el codigo de su factura: "))
+
+                print("Por favor espere unos segundos mientras verificamos los datos")
+
+                verificarFactura =  Factura.existeFactura(facturaD)
+
+                if verificarFactura == False:
+
+                    print("El numero de factura que ingreso no existe por lo tanto no es valido")
+                
+                else:
+                    textoD = str(input("Sus datos son validos, por favor ingrese el motivo de su devolucion para continuar: "))
+
+                    dlv = Devolucion(nombreD, cedulaD, correoD, facturaD, textoD)
+
+                    print("Todo listo, su solicitud ha sido creada y enviada con exito,\nNos estaremos comunicando con usted proximamente con la debida respuesta a su solicitud")
+
+                    print("\n")
+                    print(dlv)
+                pass
+
+            elif opcionDevolucion == 3: #Revisar estado
+
+                codigosol = int(input("Por favor ingrese el n° de la solicitud: "))
+                devl = Devolucion.buscarDevolucion(codigosol)
+
+                if devl == None:
+                    print("Esta solicitud no existe")
+                    #print("Saliendo ...")
+                    pass
+
+                else: 
+                    print("Todo listo, mostando solicitud ... ")
+                    print("\n")
+                    print(devl)
+                pass
+
+            else: pass
 
         opcion5 = int(input("Elija una opción: "))
         if opcion5 == 1:
