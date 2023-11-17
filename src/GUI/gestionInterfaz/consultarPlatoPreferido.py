@@ -42,18 +42,20 @@ class ConsultarPlatoPreferido(Frame):
         # Se inicializa la etiqueta para mostrar el resultado
         self._etiquetaResultado = Label(self, bg=BACKGROUND_CONTENEDOR, font=FONT2, fg="black")
         self._etiquetaResultado.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+    
+    
         
     def _mostrarNombreYPlatoPreferido(self):
         # Se obtiene el id del cliente ingresado en la entrada
         idCliente = self._entradaId.get()
         
         # Se obtiene el nombre y plato preferido del cliente a partir del id
-        print(Cliente.buscarCliente(int(idCliente)))
         nombreCliente = Cliente.buscarCliente(int(idCliente)).getNombre()
-        print(Cliente.buscarPlatoPreferido(int(idCliente)))
         platoPreferido = Cliente.buscarPlatoPreferido(int(idCliente))
         
         
         # Se muestra el resultado en la etiqueta correspondiente
         self._etiquetaResultado.configure(text=f"Nombre: {nombreCliente}\nPlato preferido: {platoPreferido}")
+
+        
         

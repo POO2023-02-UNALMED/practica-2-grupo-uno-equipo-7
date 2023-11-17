@@ -5,6 +5,7 @@ from .Persona import Persona
 from .Mesa import Mesa
 from .Factura import Factura
 from .Plato import Plato
+from .Item import Item
 
 class Cliente(Persona):
     clientes = []
@@ -49,10 +50,11 @@ class Cliente(Persona):
         platos = {}
         for factura in facturas:
             for plato in factura.getPlatos():
-                if plato in platos:
-                    platos[plato.nombre] += 1
+                if plato.nombre in platos:
+                    platos[plato.nombre] = platos[plato.nombre] + 1
                 else:
                     platos[plato.nombre] = 1
+        print(platos)
         mayorValor = 0
         for clave in platos:
             valor = platos[clave]
@@ -74,23 +76,23 @@ class Cliente(Persona):
         for plato in Plato.platos:
             for preferido in platoPreferido:
                 ingredientesSimilares = Plato.getIngredientesSimilares(plato, Plato.buscarPlato(preferido))
-                if ingredientesSimilares[0] >= 3 and plato not in platoPreferido and plato not in platosRecomendados:
+                if ingredientesSimilares[0] >= 3 and (plato.nombre not in platoPreferido) and (plato not in platosRecomendados):
                     platosRecomendados.append(plato)
                     for ingrediente in plato.ingredientes:
                         if ingrediente not in ingredientes:
                             ingredientes.append(ingrediente)
-        return platosRecomendados
+        return [platosRecomendados, ingredientes]
 
     @staticmethod
-    def buscarPlatoRecomendadoPorIngredientes(ingredientes: List[str], item: str, itemAgregar: str = None) -> List[Plato]:
+    def buscarPlatoRecomendadoPorIngredientes(ingredientes: List[str], eliminar) -> List[Plato]:
         platosRecomendados = []
         for plato in Plato.platos:
             ingredientesSimilares = 0
             for ingrediente in ingredientes:
-                if ingrediente in plato.ingredientes and plato not in platosRecomendados:
+                if Item.buscar_item(ingrediente) in plato.ingredientes and plato not in platosRecomendados and ingrediente != eliminar:
                     ingredientesSimilares += 1
-                    if ingredientesSimilares > 2 and item not in plato.ingredientes and (itemAgregar is None or itemAgregar in plato.ingredientes):
-                        platosRecomendados.append(plato)
+            if ingredientesSimilares >= 3 and Item.buscar_item(eliminar) not in plato.ingredientes:
+                platosRecomendados.append(plato)
         return platosRecomendados
 
     @staticmethod

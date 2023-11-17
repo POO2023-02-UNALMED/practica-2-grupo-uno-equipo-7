@@ -60,11 +60,10 @@ class Item:
 
     
     @staticmethod
-    def buscar_item(nombre, lista_items):
-      for item in lista_items:
-        if item.get_nombre() == nombre:
-            return item
-        return None
+    def buscar_item(nombre):
+      for ing in Item.listado_items:
+        if ing.nombre == nombre:
+          return ing
 
     @staticmethod
     def get_listado_items():

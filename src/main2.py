@@ -29,7 +29,7 @@ if __name__ == "__main__":
     ingredientes2 = [item6, item2, item3, item4, item5]
     ingredientes3 = [item7, item2, item3, item4, item5]
     ingredientes4 = [item1, item2, item3, item4, item5]
-    ingredientes5 = [item1, item8]
+    ingredientes5 = [item6, item3, item2]
     
     plato1 = Plato("Taco", ingredientes1, 1000)
     plato2 = Plato("Tostada", ingredientes2, 2000)
