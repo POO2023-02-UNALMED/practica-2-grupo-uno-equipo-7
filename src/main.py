@@ -641,7 +641,7 @@ def main():
 
                             for empleado in Empleados:
                                 print("\n")
-                                print(Queja.cantidadAmonestaciones())
+                                print(Queja.cantidadAmonestaciones(empleado))
                             #Salir
                             pass    
             else:
@@ -657,6 +657,83 @@ def main():
             print("2. Realizar una nueva reseña")
             print("3. Reporte de calificaiones")
             print("4. Salir")
+
+            opcionReseña = int(input("Elija una opcion"))
+            Reseñas = Reseña.getRecopilatorio()
+
+            if opcionReseña == 1: #Ver repositorio
+               
+                print("Mostrando recopilatorio de reseñas ...")
+
+                for rsñ in Reseñas:
+                    print(rsñ)
+                    print("\n")
+
+            elif opcionReseña == 2: #Realizar nueva reseña
+                RNombre = "Anonimo"
+                print("¿Desea que la reseña sea anonima?")
+                print("1. Si")
+                print("2. No")
+
+                nombreR = int(input("Elija una opción"))
+
+                if nombreR == 2:
+                    name = str(input("Por favor, ingrese su nombre completo: "))
+
+                    RNombre = name
+                
+                else:
+                    RNombre = "Anonimo"
+                
+                RTexto = str(input("Por favor, escriba su reseña: "))
+                RCalificacion = str(input("Por favor, indique del 1-5 que calificación le daria a su experiencia en el restaurante, donde 1 es mul mal y 5 muy bien: "))
+
+                print("¿Desea editar su reseña?")
+                print("1. Si")
+                print("2. No")
+
+                editarReseña = int(input("Elija una opcion: "))
+
+                if editarReseña == 1:
+                    editando = str(input("Ahora puede editar su reseña"))
+                    RTexto = editando
+                    print("¿Desea editar tambien su calificacion?")
+                    print("1. Si")
+                    print("2. No")
+
+                    editarCalificacion = int(input("Elija una opcion: "))
+                    if editarCalificacion == 1:
+                        editandoC = int(input("Ahora puede editar su calificacion: "))
+                        RCalificacion = editandoC
+
+                reseña = Reseña(RNombre, RTexto, RCalificacion)
+                print("Todo listo, su reseña se esta enviando ...")
+                print("Su reseña se ha enviado con exito")
+
+                print("\n")
+                print(reseña)
+                print("\n")
+                
+                print("1. Salir")
+                print("2. Ver repositorio de reseñas")
+
+                finNuevaReseña = int(input("Elija una opcion: "))
+
+                if finNuevaReseña == 2:
+                    print("Mostrando recopilatorio de reseñas ...")
+
+                for rsña in Reseñas:
+                    print(rsña)
+                    print("\n")
+                
+                else: pass
+
+            elif opcionReseña == 3: #Reporte calificaciones
+                print(Queja.PromedioCalificaciones())
+                print("\n")
+                #print("Saliendo ...") #¿Salir?
+
+            else: pass
 
         elif opcionAC == 4: #Devolucion
             print("------------Devoluciones------------")
