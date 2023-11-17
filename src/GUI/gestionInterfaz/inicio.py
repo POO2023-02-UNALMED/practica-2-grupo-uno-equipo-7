@@ -15,7 +15,7 @@ class Inicio(Frame, Tk):
     VALUES  = [
         {"name": "David Alejandro Silva Uribe", "description":"Amante del fútbol y el arte", "email":"dsilvau@unal.edu.co"},
         {"name": "Andrés Felipe Guido Montoya", "description":"Apasionado por el fútbol y el anime", "email":"aguido@unal.edu.co" },
-        {"name":"", "description":"Apasionada por el baile", "email":"anospina@unal.edu.co"},
+        {"name":"Maria Camila Rios Mejia", "description":"Apasionada por el baile, los comics y los videojuegos", "email":"mriosm@unal.edu.co"},
         {"name": "", "description":"Amante de la comida", "email":"jualopezra@unal.edu.co" },
         {"name":"", "description":"Apasionado por la lectura", "email":"jtobonz@unal.edu.co"}
     ]
@@ -106,20 +106,20 @@ class Inicio(Frame, Tk):
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
 
-        elif self._numeroInicio == 2:
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+        elif self._numeroInicio == 2: #Camila
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c1.jpeg').resize((300,225), Image.ANTIALIAS))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c2.jpeg').resize((300,225), Image.ANTIALIAS))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c3.jpeg').resize((300,225), Image.ANTIALIAS))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.ANTIALIAS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/c4.jpeg').resize((300,225), Image.ANTIALIAS))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
             
