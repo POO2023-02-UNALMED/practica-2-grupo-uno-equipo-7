@@ -5,16 +5,17 @@ from gestorAplicacion.inventarioaply import Inventarioaply
 from gestorAplicacion.Restaurante import Restaurante
 dic= {"envigado":0, "sandiego":1, "La America": 2, "Belen":3}
 
-
-
-
 class inventarioapp(tk.Frame):
-    text=""
+    
+    Text=""
     def __init__(self, padre, controlador):
         super().__init__(padre)
         self.controlador = controlador
         self.configure(background="white")
+        
+        
 
+        # Agrega una etiqueta con el nombre de la sede
         label1 = tk.Label(self, text="Inventario", font=("Arial", 40), fg="pink")
         label1.grid(row=0, column=2, columnspan=2, pady=10)
 
@@ -35,36 +36,49 @@ class inventarioapp(tk.Frame):
         nuevo_frame = tk.Frame(self)
         nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
         
-
         # Agrega una etiqueta con el nombre de la sede
         
         
         # Crea un nuevo Frame para mostrar el nombre de la sede seleccionada
         
         
-       
-        
         
 
-    def inventario2(self,  number):
-        var1=Restaurante.get_sedes()[number].inventario.obtener_items_sin_stock()
-
-        if len(Restaurante.get_sedes()[number].inventario.obtener_items_sin_stock()) == 0:
+    def inventario2(self, number):
+        var1=Restaurante.get_sedes()[number].inventario.mostrar_items_vencidos()
+        if len(var1)==0: # cambiado a condición de lista vacía
             message = "no hay items vencidos"
         else:
             message = ""
             for i in var1:
-                message += var1.nombre
+                message += i.nombre +":" + str(i.cantidad) + ", "
                 
-                
+            message += "¡ITEMS ELIMINADOS!"
+
         inventarioapp.text = message
-        
     
                 
                 
             
-    def show(self, nombre_sede2):   
-         messagebox.showinfo("Sede items", f"Sede seleccionada: {nombre_sede2} - {inventarioapp.text}")
+    def show(self, nombre_sede2): 
+        for i in self.winfo_children():
+            i.destroy()
+            
+            # Crea un nuevo Frame y agrega los elementos que deseas mostrar
+        
+        messagebox.showinfo("Items vencidos", f"Sede seleccionada: {nombre_sede2} - {inventarioapp.text} ")
+        Restaurante.get_sedes()[number].inventario.eliminar_vencidos()
+        
+        
+    
+         
+         
+         
+         
+         
+
+
+
        
         
         
