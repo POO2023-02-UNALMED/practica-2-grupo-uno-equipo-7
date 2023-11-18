@@ -46,3 +46,106 @@ class ConsultarPlatoPreferido(Frame):
         
         # Se muestra el resultado en la etiqueta correspondiente
         self._etiquetaResultado.configure(text=f"Nombre: {nombreCliente}\nPlato preferido: {platoPreferido}")
+        print("Pedidos")
+        print("1. Pedido de envio")
+        print("2. Pedido para recoger")
+        print("3. Acceso de administrador")
+        print("4. Salir")
+        opcion7 = int(input("Elija una opción: "))
+
+
+        #inicia la funcionalidad
+        #Opciones para el pedido de envio
+        if opcion7 == 1:
+            print("Ha seleccionado la opción 1")
+            print("Por favor, ingrese sus datos personales")
+            nombre = input("Dijite su nombre: ")
+            apellido = input("Dijite su apellido: ")
+            print(f"Usted a ingresado estos datos: nombre: {nombre}, apellido: {apellido}" )
+            print("¿Desea confirmar sus datos personales?")
+            confir1 = str(input())
+
+            if confir1 == "Y":
+                print("Datos confirmados")
+                print("Por favor, escriba su dirección de residencia")
+                direccion = str(input())
+                #ubicacion = Pedido.Direccion(direccion)
+                print(f"Ha ingresado la dirección: {direccion}.")
+                print("¿Desea confirmar su dirección?")
+                confir = str(input())
+
+                if confir == "Y":
+                    print("Dirección confirmada")
+                    print("¿Que desea ordenar?")
+                    #metodo para mostrar el muenu del restaurante
+                    print("Productos seleccionados ¿desea agragar algo más?")
+                    confir3 = str(input())
+                    if confir3 == "Y":
+                        #metodo para agregar algo mas al pedido
+                        pass
+                        
+                    else: 
+                        print("Productos seleccionados")
+                        print("El total de su compra es: ")
+                        #metodo para mostrar el total de la compra mas un adicional por el domicilio 
+                        print("Confirmción final")
+                        print("¿Desea confirmar su pedido?")
+                        confirfinal = str(input())
+                        if confirfinal == "N":
+                            print("Pedido no confirmado, ¿desea volver al menu principal?")
+
+                        else:
+                            print("Pedido confirmado, Gracias por su compra, el total a pagar será cobrado al momento de recibir su pedido (Pago contra entrega)")
+                            print("Vuelva pronto")
+                    
+
+                elif confir == "N":
+                    print("Direccion no confirmada, ahora puede editar la dirección")
+                    #metodo para cambiar la dirección
+                    print("¿Desea confirmar los nuevos datos ingresados?")
+                    confir2 = str(input())
+                    if confir2 == "Y":
+                        #se sigue con el curso de la funcionalidad
+                        pass
+                    elif confir2 == "N":
+                        #METODO PARA CAMBIAR LOS DATOS INGRESADOS
+                        pass
+                    else:
+                        print("Opción invalida, vuelva a intentarlo")
+                else:
+                    print("Error, opción invalida, vuelva a intentarlo") 
+
+            elif confir1 == "N":
+                print("Datos no confirmados, ahora puede editar los datos ingresados")  
+                 #metodo para cambiar la dirección
+
+            else:
+                print("Opción invalida, por favor intentarlo nuevamente")  
+
+        #opciones para el pedido para recoger  
+        elif opcion7 == 2:
+            print("Ha seleccionado la opción 2")
+            print("Por favor, ingrese sus datos personales")
+            nombre = input("Dijite su nombre: ")
+            apellido = input("Dijite su apellido: ")
+            print(f"Usted a ingresado estos datos: nombre: {nombre}, apellido: {apellido}" )
+            print("¿Desea confirmar sus datos personales?")
+            confir1 = str(input())
+
+            if confir1 == "Y":
+                print("Datos confirmados")
+
+            elif confir1 == "N":
+                print("Datos no confirmados, ahora puede editar los datos ingresados")  
+                 #metodo para cambiar la dirección
+
+            else:
+                pass
+
+        #Opciones para entrada como administrador            
+        elif opcion7 == 3:
+            print("Ha seleccionado la opción 3")
+
+        #opciones de salida
+        else:
+            pass           

@@ -901,8 +901,8 @@ def main():
                 print("Datos confirmados")
                 print("Por favor, escriba su dirección de residencia")
                 direccion = str(input())
-                ubicacion = Pedido.Direccion(direccion)
-                print(f"Ha ingresado la dirección: {ubicacion}.")
+                #ubicacion = Pedido.Direccion(direccion)
+                print(f"Ha ingresado la dirección: {direccion}.")
                 print("¿Desea confirmar su dirección?")
                 confir = str(input())
 
