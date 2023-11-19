@@ -123,19 +123,19 @@ class Inicio(Frame, Tk):
             self.imagen4.configure(image = python_imagen4)
             
         elif self._numeroInicio == 3:
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel1.JPG').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel2.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel2.jpg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel3.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel3.jpg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel4.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel4.jpg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
             
