@@ -62,3 +62,6 @@ class Fechasreserv(tk.Frame):
             for mesa in mesasEncontradas:
                 if (mesa.getUbicacion() == restaurante.get_ubicacion()):
                     sedesEncontradas.append(restaurante)
+        
+        if(len(sedesEncontradas) == 0):
+            messagebox.showerror("Error", "No se encontraron sedes disponibles según su requerimiento")
