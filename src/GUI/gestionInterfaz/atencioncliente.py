@@ -15,7 +15,7 @@ class AtencionCliente(Frame):
 
     def _mostrarTitulo(self):
         label1 = Label(self, text="Bienvenido al centro de Atencion al cliente\n¿Que desea realizar?", bg="#a19f9f", font=("Roboto", 20), fg="#0a0a0a")
-        label1.pack(side=TOP, fill=BOTH, expand=True, pady=10)
+        label1.pack(side=TOP, fill=BOTH, pady=10)
 
     def _botonSugerencia(self):
         botonSugerencia = Button(self, text="Sugerencia", command=self.mostrar, font=("Roboto", 12), fg="#0a0a0a")
