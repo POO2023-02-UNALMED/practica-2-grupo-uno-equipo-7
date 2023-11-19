@@ -2,20 +2,26 @@ from gestorAplicacion.ServiciosClientes import ServiciosClientes
 
 class Reseña(ServiciosClientes):
     
+    count = 1
     countCalificaciones = 0
     Recopilatorio = []
 
-    def __init__(self, nombre, texto, calificacion):
+    def __init__(self, nombre, texto, cal):
         super().__init__(nombre,texto)
-        self._calificacion = calificacion
-        countCalificaciones += calificacion
+        self._codigoReferencia = Reseña.count
+        Reseña.count += 1
+        self._calificacion = cal
+        countCalificaciones += cal
         Reseña.Recopilatorio.append(self)
 
     def __str__(self):
         if super().getCliente().getNombre() != "Anonimo":
-            return "Reseña Numero: " + super().getCodigoReferencia() + "\n" + "Nombre: " + super().getCliente().getNombre() + "\n" + "Calificacion: " + self.getCalificacion() + "\n" + "'" + self.getReseña() + "'"
+            return "Reseña Numero: " + str(self.getCodigoReferencia()) + "\n" + "Nombre: " + super().getCliente().getNombre() + "\n" + "Calificacion: " + self.getCalificacion() + "\n" + "'" + self.getReseña() + "'"
         else:
-            return "Reseña Numero: " + super().getCodigoReferencia() + "\n" + "Anonimo" + "\n" + "Calificacion: " + self.getCalificacion() + "\n" + "'" + self.getReseña() + "'"
+            return "Reseña Numero: " + str(self.getCodigoReferencia()) + "\n" + "Anonimo" + "\n" + "Calificacion: " + self.getCalificacion() + "\n" + "'" + self.getReseña() + "'"
+
+    def getCodigoReferencia(self):
+        return self._codigoReferencia
 
     def setCalificacion(self,cal):
         self._calificacion = cal

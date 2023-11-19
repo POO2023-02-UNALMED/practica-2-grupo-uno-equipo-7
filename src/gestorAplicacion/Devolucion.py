@@ -3,18 +3,24 @@ from gestorAplicacion.Factura import Factura
 
 class Devolucion (ServiciosClientes):
 
+    count = 1
     Devoluciones = []
 
     def __init__(self, nombre, cedula, correo, numerofactura, texto):
         super().__init__(nombre,texto)
         super().getCliente().setCedula(cedula) #Pendiente revisar ID
         super().getCliente().setEmail(correo)#Pendiente revisar Correo
+        self._codigoReferencia = Devolucion.count
+        Devolucion.count += 1
         self._estado = "Pendiente"
         self._motivo = None
 
         factura = Factura.buscarFactura(numerofactura)
         self._factura = factura
         Devolucion.Devoluciones.append(self)
+
+    def getCodigoReferencia(self):
+        return self._codigoReferencia    
 
     def setEstado(self, nuevoEstado):
         self._estado = nuevoEstado
@@ -40,14 +46,16 @@ class Devolucion (ServiciosClientes):
         a = None
 
         if self.getEstado() == "Denegado": 
-            a = "N° Solicitud: " + super().getCodigoReferencia() + "\n" + "Cliente: " + super().getCliente().getNombre() + " - CC. " + super().getCliente().getCedula() + " - Email: " + super().getCliente().getEmail() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de rechazo: " + self.getMotivo() + "\n" + "La solicitud fue denegada, se enviara un correo al cliente con la decision tomada"
+            a = "N° Solicitud: " + str(self.getCodigoReferencia()) + "\n" + "Cliente: " + super().getCliente().getNombre() + " - CC. " + super().getCliente().getCedula() + " - Email: " + super().getCliente().getEmail() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de rechazo: " + self.getMotivo() + "\n" + "La solicitud fue denegada, se enviara un correo al cliente con la decision tomada"
         
         elif self.getEstado() == "Aprobado":
-            a = "N° Solicitud: " + super().getCodigoReferencia() + "\n" + "Cliente: " + super().getCliente().getNombre() + " - CC. " + super().getCliente().getCedula() + " - Email: " + super().getCliente().getEmail() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "La solicitud fue aprobada, se enviara un correo al cliente con la decision tomada y los pasos a seguir para hacer efectiva su solicitud"
+            a = "N° Solicitud: " + str(self.getCodigoReferencia()) + "\n" + "Cliente: " + super().getCliente().getNombre() + " - CC. " + super().getCliente().getCedula() + " - Email: " + super().getCliente().getEmail() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "La solicitud fue aprobada, se enviara un correo al cliente con la decision tomada y los pasos a seguir para hacer efectiva su solicitud"
         
         else: 
-            a = "N° Solicitud: " + super().getCodigoReferencia() + "\n" + "Cliente: " + super().getCliente().getNombre() + " - CC. " + super().getCliente().getCedula() + " - Email: " + super().getCliente().getEmail() + "\n" + "Codigo de Factura: " + self.getFactura().getCodigo() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de la solicitud: " + self.getTexto()
-        
+            a = "N° Solicitud: " + str(self.getCodigoReferencia()) + "\n" + "Cliente: " + super().getCliente().getNombre() + " - CC. " + super().getCliente().getCedula() + " - Email: " + super().getCliente().getEmail() + "\n" + "Codigo de Factura: " + self.getFactura().getCodigo() + "\n" + "Estado de la solicitud:  " + self.getEstado()+ "\n" + "Motivo de la solicitud: " + self.getTexto()
+        return a
+
+
     @classmethod
     def DenegarDevolucion(cls, codigo, motivo):
         a = cls.buscarDevolucion(codigo)

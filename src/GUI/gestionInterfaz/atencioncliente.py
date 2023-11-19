@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 from gestorAplicacion.Sugerencia import Sugerencia
 
+#Inicio Sugerencias
+
 class NuevaSugerencia(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
@@ -43,12 +45,13 @@ class NuevaSugerencia(Toplevel):
             sug = Sugerencia(tipo, sugerencia)
             print("Sugerencia guardada:", sug)
             # Cerrar la ventana después de guardar la sugerencia
+            self.destroy()
 
         else:
             print("La sugerencia no fue guardada")
+            self.destroy()
           
         
-
 class VentanaSugerencia(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
@@ -66,7 +69,11 @@ class VentanaSugerencia(Toplevel):
 
     def mostrar_reportes(self):
         print("Mostrar reportes")
+#Fin de sugerencias
 
+    
+
+#Lo que va a importar el main
 class AtencionCliente(Frame):
 
     def __init__(self, padre, controlador):
