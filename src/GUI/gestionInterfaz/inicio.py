@@ -122,7 +122,7 @@ class Inicio(Frame, Tk):
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
             
-        elif self._numeroInicio == 3: # Manuel
+        elif self._numeroInicio == 3:
             python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/Manuel1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
