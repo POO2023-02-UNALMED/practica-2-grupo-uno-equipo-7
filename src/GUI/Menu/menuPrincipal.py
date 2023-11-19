@@ -8,6 +8,7 @@ from GUI.gestionInterfaz.inventarioapp import inventarioapp
 from GUI.gestionInterfaz.ConsultarPlatoRecomendado import ConsultarPlatoRecomendado
 from GUI.gestionInterfaz.atencioncliente import Atencion_Cliente
 from GUI.gestionInterfaz.Reservaciones import Reservaciones
+from GUI.gestionInterfaz.Fechasreserv import Fechasreserv
 
 
 
@@ -96,6 +97,6 @@ class MenuPrincipal(Menu):
         self._padre.mostrarFuncionalidades(ConsultarPlatoRecomendado)
         
     def GenerarReservaciones(self):
-        self._padre.mostrarFuncionalidades(Reservaciones)
+        self._padre.mostrarFuncionalidades(Fechasreserv)
 
 
