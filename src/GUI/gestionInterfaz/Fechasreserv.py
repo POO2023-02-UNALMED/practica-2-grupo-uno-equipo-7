@@ -72,6 +72,8 @@ class Fechasreserv(tk.Frame):
     
     
     def mostrarSedes(self, sedesEncontradas):
+
+        
         sede_nombres = [restaurante.get_ubicacion() for restaurante in sedesEncontradas]
         valor_defecto_sedes = tk.StringVar(value="Sedes")
         combo_style2 = ttk.Style()
