@@ -56,32 +56,33 @@ class k:
 
     def precio_articulo_inventario(self):
         self.lbl_descripcion.config(text="Busqueda de precio de articulo especifico")
-       # crear etiquetas 
+   # crear etiquetas 
         etiqueta_criterio = ttk.Label(self.frame_inf, text="Criterio")
         etiqueta_valor = ttk.Label(self.frame_inf, text="Valor")
         etiqueta_numero = ttk.Label(self.frame_inf, text="Código")
         etiqueta_nombre = ttk.Label(self.frame_inf, text="Nombre")
 
 # Crear barras de texto
-        codigo_entry = ttk.Entry(self.frame_inf)
-        nombre_entry = ttk.Entry(self.frame_inf)
+        codigo_entry = ttk.Entry(self.frame_inf, width=100)
+        nombre_entry = ttk.Entry(self.frame_inf, width=100)
+        codigo_entry.place(x=10, y=40, width=200, height=100)
+
 
 # Crear botones
         boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar")
         boton_borrar = ttk.Button(self.frame_inf, text="Borrar")
-        
+    
 
 # Organizar widgets usando grid
-        etiqueta_criterio.grid(row=0, column=2, pady=5)
-        etiqueta_valor.grid(row=0, column=3, pady=5)
-        codigo_entry.grid(row=1, column=3, padx=5, pady=5)
-        nombre_entry.grid(row=2, column=3, padx=5, pady=5)
-        boton_aceptar.grid(row=5, column=2, columnspan=2, pady=10)
-        boton_borrar.grid(row=5, column=4, columnspan=2, pady=5)
-        etiqueta_numero.grid(row=1, column=2, pady=5)
-        etiqueta_nombre.grid(row=2, column=2, pady=5)
-        self.lbl_informacion.config(text="Precio del artículo en el inventario")
-        
+        etiqueta_criterio.grid(row=0, column=2, pady=5, sticky="w")
+        etiqueta_valor.grid(row=0, column=3, pady=5, sticky="w")
+        codigo_entry.grid(row=1, column=3, padx=5, pady=5, sticky="ew")
+        nombre_entry.grid(row=2, column=3, padx=5, pady=5, sticky="ew")
+        boton_aceptar.grid(row=5, column=2, columnspan=1, pady=10, sticky="ew")
+        boton_borrar.grid(row=5, column=3, columnspan=1, pady=5, sticky="ew")
+        etiqueta_numero.grid(row=1, column=2, pady=5, sticky="w")
+        etiqueta_nombre.grid(row=2, column=2, pady=5, sticky="w")
+        self.lbl_informacion.config(text="Precio del artículo en el inventario")  
 
     def revisar_niveles_de_stock(self):
         self.lbl_informacion.config(text="Niveles de stock del inventario")
