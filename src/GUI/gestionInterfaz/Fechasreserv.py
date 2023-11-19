@@ -29,6 +29,10 @@ class Fechasreserv(tk.Frame):
 
         otro_label = tk.Label(self, text="Seleccionar Fecha ", font=("Arial", 20), bg="white")
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
+        
+        nuevo_frame = tk.Frame(self)
+        nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
+        
 
 
         
