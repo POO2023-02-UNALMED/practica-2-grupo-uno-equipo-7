@@ -7,6 +7,7 @@ from gestorAplicacion.Mesa import *
 from gestorAplicacion.Reserva import *
 from GUI.estilos.style import *
 from tkinter import *
+from gestorAplicacion.Cliente import *
 
 dic= {"2023-10-25 14:00 PM":0, "2023-10-25 18:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
 tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
@@ -74,11 +75,11 @@ class Fechasreserv(tk.Frame):
         if(len(sedesEncontradas) == 0):
             messagebox.showerror("Error", "No se encontraron sedes disponibles según su requerimiento")
         else:
-            self.mostrarSedes(sedesEncontradas, fecha)
+            self.mostrarSedes(sedesEncontradas, fecha, mesa)
 
     
     
-    def mostrarSedes(self, sedesEncontradas, fecha):
+    def mostrarSedes(self, sedesEncontradas, fecha, mesa):
 
         
         sede_nombres = [restaurante.get_ubicacion() for restaurante in sedesEncontradas]
@@ -96,52 +97,44 @@ class Fechasreserv(tk.Frame):
 
         combo3.grid(row=3, column=1, padx=2, pady=10, sticky="w")
         
-        boton = tk.Button(self, text="Aceptar", height=1, command=lambda: self.reservacionPro(fecha, combo3.get()))
+        boton = tk.Button(self, text="Aceptar", height=1, command=lambda: self.reservacionPro(fecha, combo3.get(), mesa))
         boton.grid(row=3, column=2, padx=2, sticky="w")
         
-    def reservacionPro(self, fecha, sedeElegida):
+    def reservacionPro(self, fecha, sedeElegida, mesa):
         
         for reserva in Reserva.listaReservas:
             if reserva.getFecha() == fecha  and reserva.getMiSede() == sedeElegida:
                 messagebox.showinfo( "Advertencia","Ya está reservado")
-                break
+                break 
             
-        self.registadoCliente()
+        self.registadoCliente(fecha, sedeElegida, mesa)
     
-    def registadoCliente(self):
-        self.entry
-        string= entry.get()
-        label.configure(text=string)
+    def registadoCliente(self, fecha, sedeElegida, mesa):
+        registro = tk.Toplevel(self)
+        registro.title("Registro de Cliente")
 
-        #Initialize a Label to display the User Input
-        label=Label(self, text="Digite su ID", font=("Arial", 15))
-        label.pack()
+        label_id = tk.Label(registro, text="Digite su ID", font=("Arial", 15))
+        label_id.pack(pady=10)
 
-        #Create an Entry widget to accept User Input
-        entry= Entry(self, width= 40)
-        entry.focus_set()
-        entry.pack()
+        entry_id = tk.Entry(registro, width=40)
+        entry_id.focus_set()
+        entry_id.pack()
         
-        # # Se inicializa el frame para contener la etiqueta y la entrada
-        # entradaid = Frame(self, bg=BACKGROUND_CONTENEDOR)
-        # entradaid.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        label_nombre = tk.Label(registro, text="Digite su nombre", font=("Arial", 15))
+        label_nombre.pack(pady=10)
 
-        # # Se inicializa la etiqueta para el id del cliente
-        # labelId = Label(entradaid, text="Digite su ID", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        # labelId.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+        entry_nm = tk.Entry(registro, width=40)
+        entry_nm.focus_set()
+        entry_nm.pack()
 
-        # # Se inicializa la entrada para el id del cliente
-        # self._entradaid = Entry(entradaid, font=FONT2)
-        # self._entradaid.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
+        boton_guardar = tk.Button(registro, text="Aceptar", height=1, command=lambda: self.mostrarMensaje(entry_id.get(), entry_nm.get(), sedeElegida, mesa, fecha))
+        boton_guardar.pack(pady=20)
         
-        # # Se inicializa el frame para contener la etiqueta y la entrada
-        # entradaid = tk.Frame(self, bg=BACKGROUND_CONTENEDOR)
-        # entradaid.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-
-        # # Se inicializa la etiqueta para el id del cliente
-        # labelId = tk.Label(entradaid, text="Digite su nombre", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        # labelId.grid(row=0, column=0, padx=10, pady=10, sticky="w")
-
-        # # Se inicializa la entrada para el id del cliente
-        # self._entradaId = tk.Entry(entradaid, font=FONT2)
-        # self._entradaId.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
+        
+    def mostrarMensaje(self, id,nombre, sedeElegida, mesa, fecha):
+        
+        miCliente = Cliente(id,nombre)
+        miReserva = Reserva(miCliente, sedeElegida, mesa, fecha)
+        messagebox.showinfo("Información", miReserva.__str__())
+       
+        

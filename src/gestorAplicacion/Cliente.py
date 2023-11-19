@@ -129,3 +129,4 @@ class Cliente(Persona):
     @staticmethod
     def fromJSON(json):
         return Cliente(json["nombre"], json["id"], json["direccion"], json["telefono"], json["email"], json["fechaRegistro"])
+    

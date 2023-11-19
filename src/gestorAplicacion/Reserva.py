@@ -34,4 +34,4 @@ class Reserva:
         self.fecha = fecha
 
     def __str__(self):
-        return f"El cliente {self.getCliente().getId()} tiene su reservación para la fecha {self.getFecha()} en la {self.getMiSede().getUbicacion()} y, escogió la mesa {self.getMiMesa()}"
+        return f"El cliente {self.getCliente().getId()} tiene su reservación para la fecha {self.getFecha()} en la {self.getMiSede()} y, escogió la mesa {self.getMiMesa().getTipoMesa()}"
