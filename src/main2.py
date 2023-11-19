@@ -19,10 +19,10 @@ if __name__ == "__main__":
     inventario3 = Inventarioaply()
     inventario4 = Inventarioaply()
 
-    item1 = Item("Tortilla",10, 1000,"2022-12-31", inventario1)
+    item1 = Item("Tortilla",10, 1000,"2024-12-31", inventario1)
     item2 = Item("Carne",15, 2000,"2022-12-31", inventario1)
     item3 = Item("Queso",10, 3000,"2022-12-31", inventario1)
-    item4 = Item("Lechuga",10, 4000,"2022-12-31", inventario1)
+    item4 = Item("Lechuga",10, 4000,"2024-12-31", inventario1)
     item5 = Item("Tomate",5, 5000,"2022-12-31", inventario1)
     item6 = Item("Tortilla",10, 1000,"2022-12-31", inventario2)
     item7 = Item("Carne",10, 2000,"2022-12-31", inventario2)

@@ -5,6 +5,8 @@ from tkinter import messagebox
 from gestorAplicacion.Restaurante import Restaurante
 from GUI.gestionInterfaz import p
 dic= {"envigado":0, "sandiego":1, "La America": 2, "belen":3}
+sedeSElected=0
+
 
 class inventarioapp(tk.Frame):
     
@@ -36,7 +38,7 @@ class inventarioapp(tk.Frame):
         otro_label = tk.Label(self, text="Seleccionar sede ", font=("Arial", 20), bg="white")
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
 
-        boton = tk.Button(self, text="Select", height=1, command=lambda: (self.inventario2(dic[combo.get()]), self.show(combo.get())))
+        boton = tk.Button(self, text="Select", height=1, command=lambda: (self.inventario2(dic[combo.get()]), self.show(combo.get(),dic[combo.get()])))
         boton.grid(row=1, column=2, padx=2, sticky="w")
         nuevo_frame = tk.Frame(self)
         nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
@@ -70,17 +72,15 @@ class inventarioapp(tk.Frame):
                 
                 
             
-    def show(self, nombre_sede2): 
+    def show(self,nombre_sede2, sede): 
         for i in self.winfo_children():
             i.destroy()
             
        # Configuración de la ventana principal
-        ventana = tk.Tk()
-        ventana.title("Inventario")
-        ventana.geometry("800x600")
+        
 
 # Configuración de la barra de herramientas
-        app =p.k(self)
+        app =p.k(self,sede)
         
         
         

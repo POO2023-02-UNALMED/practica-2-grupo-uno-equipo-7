@@ -1,10 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
-
+from gestorAplicacion.Restaurante import Restaurante
 
 class k:
-    def __init__(self, ventana):
+    def __init__(self, ventana, num):
+        
         self.ventana = ventana
+        self.num=num
         
 
         self.tool_bar = ttk.Frame(self.ventana, padding="10")
@@ -30,15 +32,56 @@ class k:
 
         self.btn_7 = ttk.Button(self.tool_bar, text="7. Salir", command=self.salir)
         self.btn_7.pack(side="left")
+        self.lbl_descripcion=ttk.Label(self.ventana, text="Descripcion", padding="10",font=("Arial", 28, "bold") )
+        self.lbl_descripcion.pack(side="top",  fill="x", pady=20, padx=200)
 
         self.lbl_informacion = ttk.Label(self.ventana, text="Información del inventario", padding="10")
         self.lbl_informacion.pack(side="top", fill="x")
+        ## new frame
+        self.frame_inf=ttk.Frame(self.ventana,padding="10")
+        self.frame_inf.pack(side="top", fill="x", pady="0", anchor="n")
+        
+        
 
     def mostrar_inventario(self):
-        self.lbl_informacion.config(text="Información del inventario")
+        self.lbl_descripcion.config(text="Acá se muestra el inventario actualizado y listo")
+        listaRepetidos=[]
+        text1=Restaurante.get_sedes()[self.num].ubicacion
+        for i in Restaurante.get_sedes()[self.num].inventario.listado_items:
+            listaRepetidos.append(i)
+            text1+="\n"+ i.nombre +" "+ " "+str(i.cantidad)+" " + " " + str(i.fecha_vencimiento)
+            
+        self.lbl_informacion.config(text=text1)
+        
 
     def precio_articulo_inventario(self):
+        self.lbl_descripcion.config(text="Busqueda de precio de articulo especifico")
+       # crear etiquetas 
+        etiqueta_criterio = ttk.Label(self.frame_inf, text="Criterio")
+        etiqueta_valor = ttk.Label(self.frame_inf, text="Valor")
+        etiqueta_numero = ttk.Label(self.frame_inf, text="Código")
+        etiqueta_nombre = ttk.Label(self.frame_inf, text="Nombre")
+
+# Crear barras de texto
+        codigo_entry = ttk.Entry(self.frame_inf)
+        nombre_entry = ttk.Entry(self.frame_inf)
+
+# Crear botones
+        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar")
+        boton_borrar = ttk.Button(self.frame_inf, text="Borrar")
+        
+
+# Organizar widgets usando grid
+        etiqueta_criterio.grid(row=0, column=2, pady=5)
+        etiqueta_valor.grid(row=0, column=3, pady=5)
+        codigo_entry.grid(row=1, column=3, padx=5, pady=5)
+        nombre_entry.grid(row=2, column=3, padx=5, pady=5)
+        boton_aceptar.grid(row=5, column=2, columnspan=2, pady=10)
+        boton_borrar.grid(row=5, column=4, columnspan=2, pady=5)
+        etiqueta_numero.grid(row=1, column=2, pady=5)
+        etiqueta_nombre.grid(row=2, column=2, pady=5)
         self.lbl_informacion.config(text="Precio del artículo en el inventario")
+        
 
     def revisar_niveles_de_stock(self):
         self.lbl_informacion.config(text="Niveles de stock del inventario")
