@@ -3,7 +3,7 @@ import pickle
 def main():
     # Lectura del archivo serializado
    
-    with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
+    with open("src/baseDatos/Prueba.pkl","rb") as picklefile:
         s = pickle.load(picklefile)
 
     #Ejecucion metodos para comporbar deserializacion

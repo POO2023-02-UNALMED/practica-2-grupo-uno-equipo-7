@@ -1,11 +1,14 @@
 from gestorAplicacion.Cliente import Cliente
 
 class ServiciosClientes:
+    count =  0
 
     def __init__ (self, nombre = "Anonimo" , text = None):
         cliente = Cliente.buscarClienteXNombre(nombre)
         self._cliente = cliente 
         self._razon = text
+        self._codigoReferencia += count
+        count += 1
 
     def setCliente(self, cliente):
         self._cliente = cliente
@@ -18,6 +21,9 @@ class ServiciosClientes:
     
     def getRazon(self):
         return self._razon
-
+    
+    def getCodigoRerencia(self):
+        return self._codigoReferencia
+    
 
     
