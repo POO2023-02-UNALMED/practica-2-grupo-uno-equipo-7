@@ -53,7 +53,6 @@ class Fechasreserv(tk.Frame):
         boton.grid(row=1, column=2, padx=2, sticky="w")
         
     def aceptarOP(self, fecha, mesa):
-        print(fecha, mesa)
         
         mesasEncontradas = Mesa.mesasDisponibles(mesa)
         horariosEncontrados = Restaurante.horarios_disponibles(fecha)
@@ -61,7 +60,5 @@ class Fechasreserv(tk.Frame):
         
         for restaurante in horariosEncontrados:
             for mesa in mesasEncontradas:
-                if (mesa.getUbicacion() == restaurante.getUbicacion()):
+                if (mesa.getUbicacion() == restaurante.get_ubicacion()):
                     sedesEncontradas.append(restaurante)
-                    
-                    print(sedesEncontradas)
