@@ -14,7 +14,7 @@ tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
 
 
 
-class Fechasreserv(tk.Frame): 
+class CancelarReserv(tk.Frame): 
     
     def __init__(self, padre, controlador):
         super().__init__(padre)
