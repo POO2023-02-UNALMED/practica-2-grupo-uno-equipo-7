@@ -45,7 +45,7 @@ class MenuPrincipal(Menu):
         menuProcesos.add_command(label="Consultar Plato Recomendado", command= self.platoRecomendado)
         menuProcesos.add_command(label="gestion inventario",command=self.abrirInventario)
         menuProcesos.add_command(label="Generar Reservaciones", command= self.GenerarReservaciones)
-        menuProcesos.add_command(label="Atencion al cliente",command=self.abrirInventario)
+        menuProcesos.add_command(label="Atencion al cliente",command=self.abrirAtencionCliente)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
         #menuProcesos.add_command(label="Gestion inventario", comnad= )## ya lo relleno- Andrés
         
