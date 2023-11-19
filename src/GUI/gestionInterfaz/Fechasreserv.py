@@ -11,6 +11,8 @@ tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
 
 class Fechasreserv(tk.Frame):
     
+    sedesEncontradas = []   
+    
     def __init__(self, padre, controlador):
         super().__init__(padre)
         self.controlador = controlador
@@ -56,12 +58,23 @@ class Fechasreserv(tk.Frame):
         
         mesasEncontradas = Mesa.mesasDisponibles(mesa)
         horariosEncontrados = Restaurante.horarios_disponibles(fecha)
-        sedesEncontradas = []
         
         for restaurante in horariosEncontrados:
             for mesa in mesasEncontradas:
                 if (mesa.getUbicacion() == restaurante.get_ubicacion()):
-                    sedesEncontradas.append(restaurante)
+                    self.sedesEncontradas.append(restaurante)
         
-        if(len(sedesEncontradas) == 0):
+        if(len(self.sedesEncontradas) == 0):
             messagebox.showerror("Error", "No se encontraron sedes disponibles según su requerimiento")
+        else:
+            self.mostrarSedes(self.sedesEncontradas)
+
+    
+    
+    def mostrarSedes(self, sedesEncontradas):
+        valor_defecto = tk.StringVar(value="Sedes")
+        combo_style2 = ttk.Style()
+        combo_style2.configure('My.TCombobox', padding=[20, 5, 90, 5])
+        combo3 = ttk.Combobox(self, values=sedesEncontradas, textvariable=valor_defecto,style='My.TCombobox')
+        combo3.grid(row=1, column=1, padx=2, pady=10, sticky="w")
+        
