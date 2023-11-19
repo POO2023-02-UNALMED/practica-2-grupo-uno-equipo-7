@@ -68,7 +68,13 @@ if __name__ == "__main__":
     Restaurante.sedes.append(Restaurante("Sede: La America", "Calle 4", inventario4,
                                  Caja(10000000,1237), 1234567, date.today(), Plato.getListadoplatos(), []))
 
-    
+    #(self, nombre, cargo, sueldo, codigoSede):
+    Empleado("David Silva", "Gerente Administrativo", "1", 3000, 1)
+    Empleado("Andres Guido", "Gerente Administrativo", "2", 3000, 1)
+    Empleado("Manuel Menza", "Gerente Administrativo", "3", 3000, 2)
+    Empleado("Maria Jose Restrepo", "Gerente Administrativa", "4", 3000, 2)
+    Empleado("Maria Camila Rios", "Gerente Administrativa", "5", 3000, 3)
+
     Mesa("Mesa uno", "Dos personas", "Sede: Las Americas")
     Mesa("Mesa dos", "Tres personas", "Sede: Envigado")
     Mesa("Mesa tres", "Cuatro o más personas", "Sede: Belen")

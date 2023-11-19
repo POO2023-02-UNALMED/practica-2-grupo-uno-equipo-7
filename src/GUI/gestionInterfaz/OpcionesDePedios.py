@@ -80,11 +80,14 @@ class OpcionesDePedidos(Frame):
 
     def _Boton2(self):
         # Se inicializa el botón para mostrar el nombre y plato preferido del cliente
-        botonMostrar = Button(self, text="Opciones de administrador", command=print("prueba"), font=FONT2, fg="green")
+        botonMostrar = Button(self, text="Opciones de administrador",  font=FONT2, fg="green")
         botonMostrar.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def nPedido(self):
         ventana = NuevoPedido(self)
+    
+    def mostrar(self):
+        ventana = OpcionesDeAdmin(self)
     
 
 #terminado de momento..... faltan los comands

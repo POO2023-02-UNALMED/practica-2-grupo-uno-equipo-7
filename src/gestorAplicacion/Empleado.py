@@ -3,17 +3,16 @@ from gestorAplicacion.Persona import Persona
 class Empleado(Persona):
 
     Empleados = []
-    contadorEmpleados = 0
+    
 
-    def __init__(self, nombre, cargo, sueldo, codigoSede):
+    def __init__(self, nombre, cargo, cod, sueldo, codigoSede):
         
         super().__init__( nombre)
         self._cargo = cargo
         self._sueldo = sueldo
         self._codigoSede = codigoSede
-        self._codigo = Empleado.contadorEmpleados + 1
+        self._codigo = cod
         self._amonestaciones = 0
-        Empleado.contadorEmpleados += 1
         Empleado.Empleados.append(self)
 
     def setCargo(self, cargo):

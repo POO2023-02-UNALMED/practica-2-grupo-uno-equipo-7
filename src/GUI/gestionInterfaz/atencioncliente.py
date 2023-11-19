@@ -1,8 +1,38 @@
 from tkinter import *
 from tkinter import messagebox
 from gestorAplicacion.Sugerencia import Sugerencia
+from gestorAplicacion.Empleado import Empleado
 
 #Inicio Sugerencias
+
+class VentanaVerificacion(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Acesso Empleados")
+        
+        # Etiqueta de instrucción
+        Label(self, text="Necesita un código de empleado para acceder a esta funcion").pack()
+
+        # Entry para ingresar el código
+        label_sugerencia = Label(self, text="Codigo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_sugerencia.pack(side=TOP, pady=5)
+        self.entry_codigo = Entry(self)
+        self.entry_codigo.pack()
+
+        # Botón para verificar el código
+        Button(self, text="Verificar", command=self.verificar_codigo).pack()
+
+    def verificar_codigo(self):
+        codigo_empleado = self.entry_codigo.get()
+
+        ver = Empleado.buscarEmpleadoXCodigo(codigo_empleado)
+        # Verificar aquí si el código de empleado es válido
+        if ver != None:  
+            #self.abrir_ventana_botones()
+            print("Si funciona")
+        else:
+            # Muestra un mensaje de error o realiza alguna acción según tu lógica
+            print("Código de empleado no válido")
 
 class NuevaSugerencia(Toplevel):
     def __init__(self, master=None):
@@ -68,7 +98,7 @@ class VentanaSugerencia(Toplevel):
         ventana_nueva_sugerencia = NuevaSugerencia(self)
 
     def mostrar_reportes(self):
-        print("Mostrar reportes")
+        ventana = VentanaVerificacion(self)
 #Fin de sugerencias
 
     
