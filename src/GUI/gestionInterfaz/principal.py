@@ -12,6 +12,7 @@ from GUI.gestionInterfaz.ConsultarPlatoRecomendado import ConsultarPlatoRecomend
 from GUI.gestionInterfaz.Fechasreserv import Fechasreserv
 from GUI.gestionInterfaz.atencioncliente import AtencionCliente
 from GUI.gestionInterfaz.OpcionesDePedios import OpcionesDePedidos
+from GUI.gestionInterfaz.CancelarReserv import CancelarReserv   
 
 
 class Principal(Toplevel):
@@ -38,7 +39,7 @@ class Principal(Toplevel):
         
         self.frameFuncionalidad = {}
 
-        for F in (Instrucciones,Reporte,Compra,ConsultarPlatoPreferido, inventarioapp, ConsultarPlatoRecomendado, Fechasreserv, AtencionCliente, OpcionesDePedidos ):
+        for F in (Instrucciones,Reporte,Compra,ConsultarPlatoPreferido, inventarioapp, ConsultarPlatoRecomendado, Fechasreserv, CancelarReserv, AtencionCliente, OpcionesDePedidos ):
             self._frame =F(self._contenedor, self)
             self.frameFuncionalidad[F] = self._frame
             self._frame.grid(row=0, column=0, sticky=NSEW)
