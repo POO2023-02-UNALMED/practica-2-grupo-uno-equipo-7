@@ -1,11 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
 
-class InventarioApp2:
+
+class k:
     def __init__(self, ventana):
         self.ventana = ventana
-        self.ventana.title("Inventario")
-        self.ventana.geometry("800x600")
+        
 
         self.tool_bar = ttk.Frame(self.ventana, padding="10")
         self.tool_bar.pack(side="top", fill="x")
@@ -56,6 +56,5 @@ class InventarioApp2:
         self.ventana.destroy()
 
 # Iniciar la aplicación
-ventana = tk.Tk()
-app = InventarioApp2(ventana)
-ventana.mainloop()
+
+

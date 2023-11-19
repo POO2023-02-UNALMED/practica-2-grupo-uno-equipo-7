@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
-from gestorAplicacion.inventarioaply import Inventarioaply
+
 from gestorAplicacion.Restaurante import Restaurante
-dic= {"envigado":0, "sandiego":1, "La America": 2, "Belen":3}
+from GUI.gestionInterfaz import p
+dic= {"envigado":0, "sandiego":1, "La America": 2, "belen":3}
 
 class inventarioapp(tk.Frame):
     
@@ -12,6 +13,10 @@ class inventarioapp(tk.Frame):
         super().__init__(padre)
         self.controlador = controlador
         self.configure(background="white")
+        
+        
+    
+        
         
         
 
@@ -36,6 +41,10 @@ class inventarioapp(tk.Frame):
         nuevo_frame = tk.Frame(self)
         nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
         
+        
+        
+        
+        
         # Agrega una etiqueta con el nombre de la sede
         
         
@@ -56,6 +65,7 @@ class inventarioapp(tk.Frame):
             message += "¡ITEMS ELIMINADOS!"
 
         inventarioapp.text = message
+        Restaurante.get_sedes()[number].inventario.eliminar_vencidos()
     
                 
                 
@@ -64,12 +74,28 @@ class inventarioapp(tk.Frame):
         for i in self.winfo_children():
             i.destroy()
             
-            # Crea un nuevo Frame y agrega los elementos que deseas mostrar
+       # Configuración de la ventana principal
+        ventana = tk.Tk()
+        ventana.title("Inventario")
+        ventana.geometry("800x600")
+
+# Configuración de la barra de herramientas
+        app =p.k(self)
+        
+        
+        
+       
+
         
         messagebox.showinfo("Items vencidos", f"Sede seleccionada: {nombre_sede2} - {inventarioapp.text} ")
-        Restaurante.get_sedes()[number].inventario.eliminar_vencidos()
         
         
+        
+        
+        
+        
+  
+
     
          
          
