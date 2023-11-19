@@ -4,7 +4,7 @@ from tkinter import messagebox
 from gestorAplicacion.inventarioaply import Inventarioaply
 from gestorAplicacion.Restaurante import Restaurante
 dic= {"2023-10-25 14:00 PM":0, "2023-10-25 14:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
-
+tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
 
 
 
@@ -32,6 +32,22 @@ class Fechasreserv(tk.Frame):
         
         nuevo_frame = tk.Frame(self)
         nuevo_frame.grid(row=2, column=0, columnspan=4, pady=10)
+        
+        valor_defecto = tk.StringVar(value="Mesas")
+        combo_style = ttk.Style()
+
+        # Crea un nuevo estilo personalizado (My.TCombobox) y ajusta la altura (padding)
+        combo_style.configure('My.TCombobox', padding=[20, 5, 90, 5])
+        combo = ttk.Combobox(self, values=["Dos personas", "Tres personas", "Cuatro o más personas"], textvariable=valor_defecto,
+                             style='My.TCombobox')
+        combo.grid(row=2, column=1, padx=2, pady=10, sticky="w")
+
+        otro_label2 = tk.Label(self, text="Seleccionar Mesa ", font=("Arial", 20), bg="white")
+        otro_label2.grid(row=2, column=0, padx=10, pady=10, sticky="e")
+        
+        nuevo_frame1 = tk.Frame(self)
+        nuevo_frame1.grid(row=2, column=0, columnspan=4, pady=10)
+        
         
 
 
