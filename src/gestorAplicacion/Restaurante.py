@@ -1,4 +1,5 @@
-#from gestorAplicacion import Empleado
+from gestorAplicacion.Empleado import *
+from gestorAplicacion.Mesa import *
 class Restaurante:
     incentivos = {
         10: 0.05,
