@@ -1,99 +1,60 @@
 from tkinter import *
 from GUI.estilos.style import *
-from gestorAplicacion.Cliente import Cliente
+from gestorAplicacion.Pedido import Pedido
 from tkinter import messagebox
-class ConsultarPlatoPreferido(Frame):
+
+class NuevoPedido(Toplevel):
     
-    def __init__(self, padre, controlador):
-        super().__init__(padre)
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Nuevo Pedido")
         self.configure(background=BACKGROUND_CONTENEDOR)
-        self._controlador = controlador
         
-        self._inicializarTitulo()
-        self._inicializarBoton()
-        self._inicializarBoton()
-        self._inicializarEtiquetaResultado()
-        
-    def _inicializarTitulo(self):    
-        # Se inicializa el título  que va a estar en la parte superior de la ventana
-        labelInicial = Label(self, justify=CENTER, text="Bienvenido al apartado de Pedido Fisico", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
-        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+                             
+        # Etiqueta y entrada para la sugerencia
+        label_Nombre = Label(self, text="Nombre: ", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        label_Nombre.pack(side=TOP, pady=5)
 
+        self.entry_Nombre = Entry(self, width=30)
+        self.entry_Nombre.pack(side=TOP, pady=5)
 
-        
-    def _EntradaNombre(self):
-        # Se inicializa el frame para contener la etiqueta y la entrada
-        frameEntrada = Frame(self, bg=BACKGROUND_CONTENEDOR)
-        frameEntrada.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        label_Iden = Label(self, text="Identificación:", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        label_Iden.pack(side=TOP, pady=5)
 
-        # Se inicializa la etiqueta para el id del cliente
-        labelNombre = Label(frameEntrada, text="Nombre", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        labelNombre.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+        self.entry_Iden = Entry(self, width=30)
+        self.entry_Iden.pack(side=TOP, pady=5)
 
-        # Se inicializa la entrada para el id del cliente
-        self._entradaNombre = Entry(frameEntrada, font=FONT2)
-        self._entradaNombre.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
+        label_Direccion = Label(self, text="Direccion:", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        label_Direccion.pack(side=TOP, pady=5)
 
-    def _EntradaIden(self):
-        # Se inicializa el frame para contener la etiqueta y la entrada
-        frameEntrada = Frame(self, bg=BACKGROUND_CONTENEDOR)
-        frameEntrada.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        self.entry_Direccion = Entry(self, width=30)
+        self.entry_Direccion.pack(side=TOP, pady=5)
 
-        # Se inicializa la etiqueta para el id del cliente
-        labelIden = Label(frameEntrada, text="Identificación", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        labelIden.grid(row=0, column=0, padx=10, pady=10, sticky="w")
-
-        # Se inicializa la entrada para el id del cliente
-        self._entradaIden = Entry(frameEntrada, font=FONT2)
-        self._entradaIden.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
-
-    def _EntradaDireccion(self):
-        # Se inicializa el frame para contener la etiqueta y la entrada
-        frameEntrada = Frame(self, bg=BACKGROUND_CONTENEDOR)
-        frameEntrada.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-
-        # Se inicializa la etiqueta para el id del cliente
-        labelDirection = Label(frameEntrada, text="Dirección", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        labelDirection.grid(row=0, column=0, padx=10, pady=10, sticky="w")
-
-        # Se inicializa la entrada para el id del cliente
-        self._entradaDirection = Entry(frameEntrada, font=FONT2)
-        self._entradaDirection.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
-        
-    def _BotonContinuar(self):
-        # Se inicializa el botón para mostrar el nombre y plato preferido del cliente
-        botonContinuar = Button(self, text="Continuar", command=self._confirPedidoEnvio, font=FONT2, fg="green")
-        botonContinuar.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        
-    def _confirPedidoEnvio(self):
-        LabelConfir = Label(self, justify=CENTER, text=f"Los datos ingresados son nombre: {self._EntradaNombre}, Identificación: {self._EntradaIden} y Dirección: {self._entradaDirection}. Desea confirmar estos datos? ", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
-        LabelConfir.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-
-        botonConfirN = Button(self, text="No confirmar", command=self._BotonContinuar, font=FONT2, fg="green")
-        botonConfirN.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-
-        botonConfirS = Button(self, text="Confirmar", command=self._mostrarNombreYPlatoPreferido, font=FONT2, fg="green")
-        botonConfirS.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        
-    def _inicializarEtiquetaResultado(self):
-        # Se inicializa la etiqueta para mostrar el resultado
-        self._etiquetaResultado = Label(self, bg=BACKGROUND_CONTENEDOR, font=FONT2, fg="black")
-        self._etiquetaResultado.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-    
+        opciones_tipo = ["De envio", "Para recoger"]
+        self.var_tipo = StringVar(self)
+        self.var_tipo.set(opciones_tipo[1])  # Establecer el valor predeterminado
+        menu_tipo = OptionMenu(self, self.var_tipo, *opciones_tipo)
+        menu_tipo.pack(side=TOP, pady=5)
     
         
-    def _mostrarNombreYPlatoPreferido(self):
-        # Se obtiene el id del cliente ingresado en la entrada
-        idCliente = self._entradaId.get()
-        
-        # Se obtiene el nombre y plato preferido del cliente a partir del id
-        try:
-            nombreCliente = Cliente.buscarCliente(int(idCliente)).getNombre()
-            platoPreferido = Cliente.buscarPlatoPreferido(int(idCliente))
-        except:
-            messagebox.showerror("Error", "El id ingresado no es válido o no hay suficientes facturas para calcular el plato preferido")
-            return
-        
-        
-        # Se muestra el resultado en la etiqueta correspondiente
-        self._etiquetaResultado.configure(text=f"Nombre: {nombreCliente}\nPlato preferido: {platoPreferido}")
+
+        # Botón para guardar la sugerencia
+        boton_guardar = Button(self, text="Guardar", command=self.confirmar_guardar_sugerencia,bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        boton_guardar.pack(side=TOP, pady=10)
+
+    
+    
+    def confirmar_guardar_sugerencia(self):
+        nombre = self.entry_Nombre.get()
+        Idenificacion = self.entry_Iden.get()
+        direccion = self.entry_Direccion.get()
+        tipo = self.var_tipo.get()
+        # Aquí puedes realizar acciones con el tipo y la sugerencia, como guardar en una base de datos, etc.
+        pedido = Pedido(nombre, int(Idenificacion), direccion, tipo)
+        print(pedido)
+
+
+
+
+
+    

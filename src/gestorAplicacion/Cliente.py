@@ -13,7 +13,7 @@ class Cliente(Persona):
     # create 3 clients
     
 
-    def __init__(self, nombre: str, id: int, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
+    def __init__(self, nombre: str, id: str, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
         super().__init__(nombre, id)
         self.direccion = direccion
         self.telefono = telefono

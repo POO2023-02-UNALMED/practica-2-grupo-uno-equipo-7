@@ -1,26 +1,49 @@
 from .Factura import Factura
 from .Plato import Plato
 from .Item import Item
+from .Cliente import Cliente
 class Pedido:
     listado_pedidos = []
-
-    def __init__(self, numeroOrden: int, estadoPedido: str, direccionPedido: str, tipoPedido: str, cantidadPlatos: int, direccionPedido2: str):
-        self._numeroOrden = numeroOrden
-        self._estadoPedido = estadoPedido 
+    count = 1
+    def __init__(self, nombre: str, identificacion:int, direccionPedido: str, tipoPedido: str ):
+        self._cliente = Cliente(nombre, identificacion, direccionPedido)
+        self._nombre = nombre
+        self._identificacion = identificacion
+        self._estadoPedido = "En espera" 
         self._direccionPedido  = direccionPedido 
         self._tipoPedido = tipoPedido
-        self._cantidadPlatos =  cantidadPlatos
-        self._direccionPedido2 =  direccionPedido2
-        Pedido._listado_pedidos.append(self)
+        self._cantidadPlatos = 1
+        self._numeroOrden = Pedido.count
+        Pedido.count += 1
+        Pedido.listado_pedidos.append(self)
 
-    def MostrarNumOrden(self):
-        return self._numeroOrden
-    def mostrarEstPedido(self):
+    def getEstatoPedido(self):
         return self._estadoPedido
-    def mostrarDirPedido(self):
-        return self._direccionPedido
-    def mostrarCantPlatos(self):
+    def setEstadoPedido(self,estadopedido):
+        self._estadoPedido = estadopedido
+    def getTipoPedido(self):
+        return self._tipoPedido
+    def setTipoPedido(self, tipopedido):
+        self._tipoPedido = tipopedido
+    def getCantidadPlatos(self):
         return self._cantidadPlatos
+    def setCantidadPlatos(self, cantidadPlatos):
+        self._cantidadPlatos = cantidadPlatos
+    def getNombre(self):
+        return self._nombre
+    def setNombre(self, nombre):
+        self._nombre = nombre
+    def setDireccion(self, direccion):
+        self._direccionPedido = direccion
+    def getNumOrden(self):
+        return self._numeroOrden
+    def getIdentificacion(self):
+        return self._identificacion
+    def setIdentificacion(self, identificacion):
+        self._identificacion = identificacion
+    def getDirPedido(self):
+        return self._direccionPedido
+    
     def mostrarListPedidos(self):
         return 
         #aquí se podria mostrar los pedidos anteriores, el estado, su dirección, el codigo del pedido, el monto total, etc.
@@ -54,8 +77,6 @@ class Pedido:
         #    precioTotal = plato.getprecio()
         return precioTotal
     
-    def MostrarRegistroPedidos(self):
-        print("Numero del pedido: ", self.numeroOrden)
-        print("Estado del pedido: ", self.estadoPedido)
-        print("direccion del pedido: ", self.direccionPedido)
-        print("tipo de pedido: ", self.tipoPedido)
+    def __str__(self):
+        return "Numero del pedido: "+ str(self.getNumOrden()) + "\n" + "Estado del pedido: "+ self.getEstatoPedido() +"\n" + "direccion del pedido: "+ self.getDirPedido() + "\n" +"tipo de pedido: "+ self.getTipoPedido()
+

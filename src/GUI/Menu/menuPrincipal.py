@@ -7,6 +7,7 @@ from GUI.gestionInterfaz.consultarPlatoPreferido import ConsultarPlatoPreferido
 from GUI.gestionInterfaz.inventarioapp import inventarioapp
 from GUI.gestionInterfaz.ConsultarPlatoRecomendado import ConsultarPlatoRecomendado
 from GUI.gestionInterfaz.atencioncliente import AtencionCliente
+from GUI.gestionInterfaz.OpcionesDePedios import OpcionesDePedidos
 from GUI.gestionInterfaz.Reservaciones import Reservaciones
 from GUI.gestionInterfaz.Fechasreserv import Fechasreserv
 
@@ -45,6 +46,7 @@ class MenuPrincipal(Menu):
         menuProcesos.add_command(label="Consultar Plato Preferido", command= self.platoPreferido)
         menuProcesos.add_command(label="Consultar Plato Recomendado", command= self.platoRecomendado)
         menuProcesos.add_command(label="gestion inventario",command=self.abrirInventario)
+        menuProcesos.add_command(label="Pedidos",command=self.abrirOpcionesPedidos)
         menuProcesos.add_command(label="Generar Reservaciones", command= self.GenerarReservaciones)
         menuProcesos.add_command(label="Atencion al cliente",command=self.abrirAtencionCliente)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
@@ -88,7 +90,9 @@ class MenuPrincipal(Menu):
         
     def abrirAtencionCliente(self):
         self._padre.mostrarFuncionalidades(AtencionCliente)
-        
+    
+    def abrirOpcionesPedidos(self):
+        self._padre.mostrarFuncionalidades(OpcionesDePedidos)
 
     def platoPreferido(self):
         self._padre.mostrarFuncionalidades(ConsultarPlatoPreferido)
