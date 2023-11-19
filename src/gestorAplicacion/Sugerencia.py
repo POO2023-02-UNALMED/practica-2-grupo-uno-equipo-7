@@ -2,6 +2,7 @@ from gestorAplicacion.ServiciosClientes import ServiciosClientes
 
 class Sugerencia(ServiciosClientes):
 
+    count = 1
     Sugerencias = []
     SugerenciasMenu = []
     SugerenciasEmpleados = []
@@ -9,22 +10,24 @@ class Sugerencia(ServiciosClientes):
     SugerenciasOtros = []
 
     def __init__(self,tipe = "Otro",text = None):
-        super().__init__("Anonimo",text)
+        super().__init__("Anonimo", text)
         self._tipo = tipe
+        self._codigoReferencia = Sugerencia.count
+        Sugerencia.count += 1
 
         if tipe == "Menu":
             Sugerencia.SugerenciasMenu.append(self)
-        
         elif tipe == "Empleado":
             Sugerencia.SugerenciasEmpleados.append(self)
-
         elif tipe == "Sede":
             Sugerencia.SugerenciasSedes.append(self)
-
         else:
             Sugerencia.SugerenciasOtros.append(self)
-        
+
         Sugerencia.Sugerencias.append(self)
+
+    def getCodigoReferencia(self):
+        return self._codigoReferencia
 
     def setTipo(self, tipe):
         self._tipo = tipe
@@ -33,7 +36,7 @@ class Sugerencia(ServiciosClientes):
         return self._tipo
     
     def __str__(self):
-        return "N° Referencia: " + super().getCodigoReferencia()   + "\nSugerencia tipo: " + self.getTipo() + "\n" + "''" + super().getRazon() + "''"
+        return "N. Referencia: " + str(self.getCodigoReferencia())   + "\nSugerencia tipo: " + self.getTipo() + "\n" + "''" + super().getRazon() + "''"
 
     @classmethod
     def getTAllSugerences(cls):
