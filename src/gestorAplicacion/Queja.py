@@ -5,6 +5,8 @@ from gestorAplicacion.Restaurante import Restaurante
 
 class Queja(ServiciosClientes):
 
+    count = 1
+
     Quejas = []
     QuejasMenu = []
     QuejasEmpleados = []
@@ -15,6 +17,8 @@ class Queja(ServiciosClientes):
     def __init__(self, name, tipe, algo = None, text = ""):
         super().__init__(name, text)
         self._tipo = tipe
+        self._codigoReferencia = Queja.count
+        Queja.count += 1
         
         if tipe == "Menu":
             plate = Plato.buscarPlato(algo) #Recordatorio: Asegurarse de que exista el metodo en la clase Plato :D
@@ -39,7 +43,10 @@ class Queja(ServiciosClientes):
             Queja.QuejasOtros.append(self)
         
         Queja.Quejas.append(self)
-    
+
+    def getCodigoReferencia(self):
+        return self._codigoReferencia
+
     def setTipo(self, tipe):
         self._tipo = tipe
     
@@ -57,15 +64,15 @@ class Queja(ServiciosClientes):
     
     def __str__(self):
         if self.tipo == "Menu":
-            return "Nombre: " + super().getCliente().getNombre() + "\n" + "Realizo una queja sobre el platillo: " + self.getPlato().getNombre() + "\n" + "'" + super().getRazon() + "'"
+            return  "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre() + "\n" + "Realizo una queja sobre el platillo: " + self.getPlato().getNombre() + "\n" + "'" + super().getRazon() + "'"
 
         elif self.tipo == "Empleado":
-            return "Nombre: " + super().getCliente().getNombre() + "\n" + "Realizo una queja sobre el empleado: " + self.getEmpleado().getNombre() + "\n" + "'" + super().getRazon() + "'"
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre() + "\n" + "Realizo una queja sobre el empleado: " + self.getEmpleado().getNombre() + "\n" + "'" + super().getRazon() + "'"
         
         elif self.tipo == "Sede":
-            return "Nombre: " + super().getCliente().getNombre()  + "\n" + "Realizo una queja sobre la " + self.getSede().getUbicacion() + "\n"  + "'" + super().getRazon() + "'"
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre()  + "\n" + "Realizo una queja sobre la " + self.getSede().getUbicacion() + "\n"  + "'" + super().getRazon() + "'"
         else:
-            return "Nombre: " + super().getCliente().getNombre()  + "\n"  + "Realizo una queja: " + "'" + super().getRazon() + "'"
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre()  + "\n"  + "Realizo una queja: " + "'" + super().getRazon() + "'"
     
     @classmethod
     def getAllQuejas(cls):
