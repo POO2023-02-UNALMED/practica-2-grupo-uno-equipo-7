@@ -5,7 +5,27 @@ from gestorAplicacion.Empleado import Empleado
 
 #Inicio Sugerencias
 
-class VentanaVerificacion(Toplevel):
+class ReportesSugerencia(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Reporte de Sugerencias")
+
+        botonSugerencias = Button(self, text="Reporte de todas las sugerencias", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerencias.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonSugerenciaM = Button(self, text="Reporte de sugerencias del menu", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaM.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonSugerenciaE = Button(self, text="Reporte de sugerencias sobre empleados", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaE.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonSugerenciaS = Button(self, text="Reporte de sugerencias de sede", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaS.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonSugerenciaO = Button(self, text="Reporte de sugerencias otros", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaO.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+class VentanaVerificacionSugerencia(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
         self.title("Acesso Empleados")
@@ -28,11 +48,14 @@ class VentanaVerificacion(Toplevel):
         ver = Empleado.buscarEmpleadoXCodigo(codigo_empleado)
         # Verificar aquí si el código de empleado es válido
         if ver != None:  
-            #self.abrir_ventana_botones()
+            self.abrir_ReportesSugerencia()
+
             print("Si funciona")
         else:
             # Muestra un mensaje de error o realiza alguna acción según tu lógica
             print("Código de empleado no válido")
+    def abrir_ReportesSugerencia(self):
+        ventana = ReportesSugerencia(self)
 
 class NuevaSugerencia(Toplevel):
     def __init__(self, master=None):
@@ -98,7 +121,7 @@ class VentanaSugerencia(Toplevel):
         ventana_nueva_sugerencia = NuevaSugerencia(self)
 
     def mostrar_reportes(self):
-        ventana = VentanaVerificacion(self)
+        ventana = VentanaVerificacionSugerencia(self)
 #Fin de sugerencias
 
     
