@@ -9,3 +9,4 @@ def main():
     #Ejecucion metodos para comporbar deserializacion
     for a in s:
         print(a)
+        print("\n")
