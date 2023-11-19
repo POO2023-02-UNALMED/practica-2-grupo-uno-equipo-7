@@ -72,9 +72,18 @@ class Fechasreserv(tk.Frame):
     
     
     def mostrarSedes(self, sedesEncontradas):
-        valor_defecto = tk.StringVar(value="Sedes")
+        sede_nombres = [restaurante.get_ubicacion() for restaurante in sedesEncontradas]
+        valor_defecto_sedes = tk.StringVar(value="Sedes")
         combo_style2 = ttk.Style()
         combo_style2.configure('My.TCombobox', padding=[20, 5, 90, 5])
-        combo3 = ttk.Combobox(self, values=sedesEncontradas, textvariable=valor_defecto,style='My.TCombobox')
+        combo3 = ttk.Combobox(self, values=sede_nombres, textvariable=valor_defecto_sedes, style='My.TCombobox')
         combo3.grid(row=1, column=1, padx=2, pady=10, sticky="w")
+
+        otro_label3 = tk.Label(self, text="Seleccionar Sede ", font=("Arial", 20), bg="white")
+        otro_label3.grid(row=3, column=0, padx=10, pady=10, sticky="e")
+
+        nuevo_frame1 = tk.Frame(self)
+        nuevo_frame1.grid(row=3, column=0, columnspan=4, pady=10)
+
+        combo3.grid(row=3, column=1, padx=2, pady=10, sticky="w")
         
