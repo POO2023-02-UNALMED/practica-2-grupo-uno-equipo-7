@@ -5,5 +5,5 @@ from gestorAplicacion.Sugerencia import Sugerencia
 
 if __name__ == "__main__":
     # sug = Sugerencia("Otro", "Este es el mensaje")}
-    Serializador.main()
-    # Deserializador.main()
+    #Serializador.main()
+    Deserializador.main()
