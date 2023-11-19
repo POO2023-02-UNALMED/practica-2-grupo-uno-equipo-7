@@ -5,18 +5,19 @@ from gestorAplicacion.inventarioaply import Inventarioaply
 from gestorAplicacion.Restaurante import Restaurante
 from gestorAplicacion.Mesa import *
 from gestorAplicacion.Reserva import *
+from GUI.estilos.style import *
+from tkinter import *
 
 dic= {"2023-10-25 14:00 PM":0, "2023-10-25 18:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
 tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
 
 
 
-class Fechasreserv(tk.Frame):
-    
-    # sedesEncontradas = []   
+class Fechasreserv(tk.Frame): 
     
     def __init__(self, padre, controlador):
         super().__init__(padre)
+        
         self.controlador = controlador
         self.configure(background="white")
         
@@ -73,11 +74,11 @@ class Fechasreserv(tk.Frame):
         if(len(sedesEncontradas) == 0):
             messagebox.showerror("Error", "No se encontraron sedes disponibles según su requerimiento")
         else:
-            self.mostrarSedes(sedesEncontradas)
+            self.mostrarSedes(sedesEncontradas, fecha)
 
     
     
-    def mostrarSedes(self, sedesEncontradas):
+    def mostrarSedes(self, sedesEncontradas, fecha):
 
         
         sede_nombres = [restaurante.get_ubicacion() for restaurante in sedesEncontradas]
@@ -95,11 +96,52 @@ class Fechasreserv(tk.Frame):
 
         combo3.grid(row=3, column=1, padx=2, pady=10, sticky="w")
         
-        boton = tk.Button(self, text="Aceptar", height=1, command=lambda: self.reservacionPro(combo3.get()))
+        boton = tk.Button(self, text="Aceptar", height=1, command=lambda: self.reservacionPro(fecha, combo3.get()))
         boton.grid(row=3, column=2, padx=2, sticky="w")
         
-    def reservacionPro(self, fecha):
+    def reservacionPro(self, fecha, sedeElegida):
         
         for reserva in Reserva.listaReservas:
-            if reserva.getFecha() == fecha  and reserva.getMiSede() == sedesEncontradas:
-                messagebox.showinfo( "Ya está reservado")
+            if reserva.getFecha() == fecha  and reserva.getMiSede() == sedeElegida:
+                messagebox.showinfo( "Advertencia","Ya está reservado")
+                break
+            
+        self.registadoCliente()
+    
+    def registadoCliente(self):
+        self.entry
+        string= entry.get()
+        label.configure(text=string)
+
+        #Initialize a Label to display the User Input
+        label=Label(self, text="Digite su ID", font=("Arial", 15))
+        label.pack()
+
+        #Create an Entry widget to accept User Input
+        entry= Entry(self, width= 40)
+        entry.focus_set()
+        entry.pack()
+        
+        # # Se inicializa el frame para contener la etiqueta y la entrada
+        # entradaid = Frame(self, bg=BACKGROUND_CONTENEDOR)
+        # entradaid.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        # # Se inicializa la etiqueta para el id del cliente
+        # labelId = Label(entradaid, text="Digite su ID", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        # labelId.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
+        # # Se inicializa la entrada para el id del cliente
+        # self._entradaid = Entry(entradaid, font=FONT2)
+        # self._entradaid.grid(row=0, column=1, padx=10, pady=10, sticky="ew")
+        
+        # # Se inicializa el frame para contener la etiqueta y la entrada
+        # entradaid = tk.Frame(self, bg=BACKGROUND_CONTENEDOR)
+        # entradaid.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        # # Se inicializa la etiqueta para el id del cliente
+        # labelId = tk.Label(entradaid, text="Digite su nombre", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        # labelId.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
+        # # Se inicializa la entrada para el id del cliente
+        # self._entradaId = tk.Entry(entradaid, font=FONT2)
+        # self._entradaId.grid(row=0, column=1, padx=10, pady=10, sticky="ew")

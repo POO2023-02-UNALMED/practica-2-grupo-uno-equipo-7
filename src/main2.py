@@ -7,6 +7,8 @@ from gestorAplicacion.Restaurante import *
 from gestorAplicacion.Caja import *
 from gestorAplicacion.Item import *
 from gestorAplicacion.inventarioaply import *
+from gestorAplicacion.Reserva import *
+
 
 if __name__ == "__main__":
     cliente1 = Cliente("Juan Perez", 1, "Calle 123", "555-1234", "juanperez@example.com", "2021-01-01")
@@ -75,6 +77,7 @@ if __name__ == "__main__":
     Mesa("Mesa siete", "Cuatro o más personas", "Sede: Sandiego")
     Mesa("Mesa tres", "Dos personas", "Sede: Envigado")
 
+    Reserva(cliente1, Restaurante.sedes[0].get_ubicacion(),  Mesa.listaMesas[1].getUbicacion(), "2023-10-25 14:00 PM")
     
     app = Manager()
     app.mainloop()
