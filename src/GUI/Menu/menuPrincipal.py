@@ -6,7 +6,7 @@ from tkinter import messagebox
 from GUI.gestionInterfaz.consultarPlatoPreferido import ConsultarPlatoPreferido
 from GUI.gestionInterfaz.inventarioapp import inventarioapp
 from GUI.gestionInterfaz.ConsultarPlatoRecomendado import ConsultarPlatoRecomendado
-from GUI.gestionInterfaz.atencioncliente import Atencion_Cliente
+from GUI.gestionInterfaz.atencioncliente import AtencionCliente
 from GUI.gestionInterfaz.Reservaciones import Reservaciones
 from GUI.gestionInterfaz.Fechasreserv import Fechasreserv
 
@@ -87,7 +87,7 @@ class MenuPrincipal(Menu):
         self._padre.mostrarFuncionalidades(inventarioapp)
         
     def abrirAtencionCliente(self):
-        self._padre.mostrarFuncionalidades(Atencion_Cliente)
+        self._padre.mostrarFuncionalidades(AtencionCliente)
         
 
     def platoPreferido(self):
