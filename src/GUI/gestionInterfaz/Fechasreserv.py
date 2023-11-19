@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from gestorAplicacion.inventarioaply import Inventarioaply
 from gestorAplicacion.Restaurante import Restaurante
+from gestorAplicacion.Mesa import *
 dic= {"2023-10-25 14:00 PM":0, "2023-10-25 14:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
 tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
 
@@ -48,9 +49,17 @@ class Fechasreserv(tk.Frame):
         nuevo_frame1 = tk.Frame(self)
         nuevo_frame1.grid(row=2, column=0, columnspan=4, pady=10)
         
-        boton = tk.Button(self, text="Aceptar", height=1, command = self.aceptarOP(combo1.get(), combo2.get()))
+        boton = tk.Button(self, text="Aceptar", height=1, command=lambda: self.aceptarOP(combo1.get(), combo2.get()))
         boton.grid(row=1, column=2, padx=2, sticky="w")
         
     def aceptarOP(self, fecha, mesa):
         print(fecha, mesa)
+        
+        mesasEncontradas = Mesa.mesasDisponibles(mesa)
+        horariosEncontrados = Restaurante.horarios_disponibles(fecha)
+        sedesEncontradas = []
+        
+        for horario in horariosEncontrados:
+            for mesa in mesasEncontradas:
+                if (mesa.getUbicacion()):
   

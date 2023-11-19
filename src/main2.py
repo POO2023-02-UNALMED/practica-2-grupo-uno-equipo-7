@@ -67,6 +67,14 @@ if __name__ == "__main__":
                                  Caja(10000000,1237), 1234567, date.today(), Plato.getListadoplatos(), []))
 
     
+    Mesa("Mesa uno", "Dos personas", "Sede: Las Americas")
+    Mesa("Mesa dos", "Tres personas", "Sede: Envigado")
+    Mesa("Mesa tres", "Cuatro o más personas", "Sede: Belen")
+    Mesa("Mesa cinco", "Dos personas", "Sede: Belen")
+    Mesa("Mesa siete", "Tres personas", "Sede: Las Americas")
+    Mesa("Mesa siete", "Cuatro o más personas", "Sede: Sandiego")
+    Mesa("Mesa tres", "Dos personas", "Sede: Envigado")
+
     
     app = Manager()
     app.mainloop()
