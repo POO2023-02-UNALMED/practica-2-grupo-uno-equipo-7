@@ -59,7 +59,9 @@ class Fechasreserv(tk.Frame):
         horariosEncontrados = Restaurante.horarios_disponibles(fecha)
         sedesEncontradas = []
         
-        for horario in horariosEncontrados:
+        for restaurante in horariosEncontrados:
             for mesa in mesasEncontradas:
-                if (mesa.getUbicacion()):
-  
+                if (mesa.getUbicacion() == restaurante.getUbicacion()):
+                    sedesEncontradas.append(restaurante)
+                    
+                    print(sedesEncontradas)
