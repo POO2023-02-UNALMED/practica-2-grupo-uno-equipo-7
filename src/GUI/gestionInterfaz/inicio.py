@@ -15,7 +15,7 @@ class Inicio(Frame, Tk):
     VALUES  = [
         {"name": "David Alejandro Silva Uribe", "description":"Amante del fútbol", "email":"dsilvau@unal.edu.co"},
         {"name": "Andrés Felipe Guido Montoya", "description":"Apasionado por el fútbol y el anime", "email":"aguido@unal.edu.co" },
-        {"name":"Maria Camila Rios Mejia", "description":"Apasionada por el baile", "email":"mriosm@unal.edu.co"},
+        {"name":"Maria Camila Rios Mejia", "description":"Amante de los comics", "email":"mriosm@unal.edu.co"},
         {"name": "Manuel Fernando Menza Perdomo", "description":"Amante de la Formula 1 ", "email":"mmenza@unal.edu.co" },
         {"name": "Maria Jose Restrepo", "description":"Amante de los videojuegos", "email":"marestrepoo@unal.edu.co" }
     ]
