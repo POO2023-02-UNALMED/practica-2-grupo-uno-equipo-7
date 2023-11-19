@@ -13,16 +13,16 @@ class Reservaciones(Frame):
         self._controlador = controlador
         
         self._inicializarTitulo()
-        self._inicializarEntrada()
+        self._inicializarFecha()
         self._inicializarBoton()
         self._inicializarEtiquetaResultado()
         
     def _inicializarTitulo(self):    
         # Se inicializa el título  que va a estar en la parte superior de la ventana
-        labelInicial = Label(self, justify=CENTER, text="Consultar Plato Preferido", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelInicial = Label(self, justify=CENTER, text="Generar Reservaciones", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
         labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         
-    def _inicializarEntrada(self):
+    def _inicializarFecha(self):
         # Se inicializa el frame para contener la etiqueta y la entrada
         frameEntrada = Frame(self, bg=BACKGROUND_CONTENEDOR)
         frameEntrada.pack(side=TOP, fill=BOTH, padx=10, pady=10)
