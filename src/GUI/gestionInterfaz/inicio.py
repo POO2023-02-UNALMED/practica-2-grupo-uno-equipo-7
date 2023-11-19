@@ -17,7 +17,7 @@ class Inicio(Frame, Tk):
         {"name": "Andrés Felipe Guido Montoya", "description":"Apasionado por el fútbol y el anime", "email":"aguido@unal.edu.co" },
         {"name":"Maria Camila Rios Mejia", "description":"Apasionada por el baile", "email":"mriosm@unal.edu.co"},
         {"name": "Manuel Fernando Menza Perdomo", "description":"Amante de la Formula 1 ", "email":"mmenza@unal.edu.co" },
-        {"name": "Luan", "description":"Amante de la Formula 1", "email":"mmenza@unal.edu.co" }
+        {"name": "Maria Jose Restrepo", "description":"Amante de los videojuegos", "email":"marestrepoo@unal.edu.co" }
     ]
 
     def __init__(self, padre, controlador):
@@ -139,20 +139,20 @@ class Inicio(Frame, Tk):
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
             
-        elif self._numeroInicio == 4:
-            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+        elif self._numeroInicio == 4: #Luan
+            python_imagen1 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/l1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen1.image = python_imagen1
             self.imagen1.configure(image = python_imagen1)
 
-            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            python_imagen2 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/l2.jpeg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen2.image = python_imagen2
             self.imagen2.configure(image = python_imagen2)
 
-            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            python_imagen3 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/l3.jpeg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen3.image = python_imagen3
             self.imagen3.configure(image = python_imagen3)
 
-            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            python_imagen4 = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/l4.jpeg').resize((300,225), Image.Resampling.LANCZOS))
             self.imagen4.image = python_imagen4
             self.imagen4.configure(image = python_imagen4)
         
