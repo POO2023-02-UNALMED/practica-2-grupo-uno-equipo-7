@@ -6,6 +6,7 @@ from tkinter import messagebox
 from GUI.gestionInterfaz.consultarPlatoPreferido import ConsultarPlatoPreferido
 from GUI.gestionInterfaz.inventarioapp import inventarioapp
 from GUI.gestionInterfaz.ConsultarPlatoRecomendado import ConsultarPlatoRecomendado
+from GUI.gestionInterfaz.atencioncliente import Atencion_Cliente
 
 
 
@@ -42,6 +43,7 @@ class MenuPrincipal(Menu):
         menuProcesos.add_command(label="Consultar Plato Preferido", command= self.platoPreferido)
         menuProcesos.add_command(label="Consultar Plato Recomendado", command= self.platoRecomendado)
         menuProcesos.add_command(label="gestion inventario",command=self.abrirInventario)
+        menuProcesos.add_command(label="Atencion al cliente",command=self.abrirInventario)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
         #menuProcesos.add_command(label="Gestion inventario", comnad= )## ya lo relleno- Andrés
         
@@ -81,7 +83,8 @@ class MenuPrincipal(Menu):
     def abrirInventario(self):
         self._padre.mostrarFuncionalidades(inventarioapp)
         
-        
+    def abrirAtencionCliente(self):
+        self._padre.mostrarFuncionalidades(Atencion_Cliente)
         
 
     def platoPreferido(self):
