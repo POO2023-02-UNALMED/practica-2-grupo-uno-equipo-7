@@ -8,7 +8,7 @@ from gestorAplicacion.Reserva import *
 from GUI.estilos.style import *
 from tkinter import *
 from gestorAplicacion.Cliente import *
-
+from tkinter.ttk import Combobox
 class CancelarReserv(tk.Frame):
     def __init__(self, padre, controlador):
         super().__init__(padre)
@@ -54,38 +54,29 @@ class CancelarReserv(tk.Frame):
         
         
     def buscarReserva(self, id, nombre): 
+        
         reservasCliente = []
         
         for reserva in Reserva.listaReservas:
-            if (reserva.getCliente().getId() == id):
+            print( reserva.getCliente().getId() ,  int(id)  )
+            if (reserva.getCliente().getId() == int(id)):
                 reservasCliente.append(reserva)
+                
         
         self.mostrarReserva(reservasCliente)
 
     def mostrarReserva(self, reservas):
         
-        registro = tk.Toplevel(self)
-        registro.title("Reservas del Cliente")
+        # Se inicializa el desplegable para mostrar los platos recomendados para el cliente
+        self._desplegable = Combobox(self, state="readonly", font=FONT2)
+        self._desplegable.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         
-        reservas_nombres = [reserva.getCliente().getId() for reserva in reservas]
+        self._desplegable.set("Seleccione su reservación")
+        self._desplegable.bind("<<ComboboxSelected>>", lambda event: self.eliminar_reserva(self._desplegable.get()))  
         
-        valor_defecto_reservas = tk.StringVar(value="Reservas")
-        combo_style2 = ttk.Style()
-        combo_style2.configure('My.TCombobox', padding=[20, 5, 90, 5])
-        combo3 = ttk.Combobox(self, values=reservas_nombres, textvariable=valor_defecto_reservas, style='My.TCombobox')
-        combo3.grid(row=1, column=1, padx=2, pady=10, sticky="w")
-
-        otro_label3 = tk.Label(self, text="Seleccione su reserva", font=("Arial", 15), bg="white")
-        otro_label3.grid(row=3, column=0, padx=10, pady=10, sticky="e")
-
-        nuevo_frame1 = tk.Frame(self)
-        nuevo_frame1.grid(row=3, column=0, columnspan=4, pady=10)
-
-        combo3.grid(row=3, column=1, padx=2, pady=10, sticky="w")
+    def eliminar_reserva(self, reservaEliminada):
+        print(len(Reserva.listaReservas))
         
+        Reserva.listaReservas.remove(reservaEliminada)
         
-
-
-
-        # boton_guardar = tk.Button(registro, text="Aceptar", height=1, command=lambda: self.mostrarMensaje(entry_id.get(), entry_nm.get(), sedeElegida, mesa, fecha))
-        # boton_guardar.pack(pady=20)
+        print(len(Reserva.listaReservas))
