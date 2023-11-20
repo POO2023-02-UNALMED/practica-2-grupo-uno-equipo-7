@@ -98,10 +98,10 @@ class ModificarRes(tk.Frame):
         
         self._desplegable2.configure(values=["Dos personas", "Tres personas", "Cuatro o más personas"])
         self._desplegable2.set("Seleccione el nuevo tipo de mesa")
-        boton_aceptar = tk.Button(self, text="Aceptar", height=1, command=lambda: self.aceptarOP(self._desplegable1.get(),  self._desplegable2.get()))
+        boton_aceptar = tk.Button(self, text="Aceptar", height=1, command=lambda: self.aceptarOP(self._desplegable1.get(),  self._desplegable2.get(), reservaModificar))
         boton_aceptar.pack(pady=20)
         
-    def aceptarOP(self, fecha, mesa):
+    def aceptarOP(self, fecha, mesa, reservaModificar):
         sedesEncontradas = []   
         mesasEncontradas = Mesa.mesasDisponibles(mesa)
         horariosEncontrados = Restaurante.horarios_disponibles(fecha)
@@ -117,11 +117,11 @@ class ModificarRes(tk.Frame):
         if(len(sedesEncontradas) == 0):
             messagebox.showerror("Error", "No se encontraron sedes disponibles según su requerimiento")
         else:
-            self.mostrarSedes(sedesEncontradas, fecha, mesa)
+            self.mostrarSedes(sedesEncontradas, fecha, mesa, reservaModificar)
 
     
     
-    def mostrarSedes(self, sedesEncontradas, fecha, mesa):
+    def mostrarSedes(self, sedesEncontradas, fecha, mesa, reservaModificar):
 
         sede_nombres = [restaurante.get_ubicacion() for restaurante in sedesEncontradas]
 
@@ -132,29 +132,29 @@ class ModificarRes(tk.Frame):
         
         self._desplegable.configure(values=sede_nombres)
         self._desplegable.set("Seleccione la sede deseada")
-        boton_cancelar = tk.Button(self, text="Aceptar", height=1, command=lambda: self.actualizacionRe(self._desplegable1.get(), self._desplegable.get(), self._desplegable2.get() ))
+        boton_cancelar = tk.Button(self, text="Aceptar", height=1, command=lambda: self.actualizacionRe(fecha, sedesEncontradas, mesa, reservaModificar ))
         boton_cancelar.pack(pady=20)
 
         
-    def actualizacionRe(self, fecha, sedeElegida, mesa):
+    def actualizacionRe(self, fecha, sedeElegida, mesa, reservaModificar):
 
         for reserva in Reserva.listaReservas:
             if reserva.getFecha() == fecha  and reserva.getMiSede() == sedeElegida:
                 messagebox.showinfo( "Advertencia","Ya está reservado")
                 break 
-        self.actualizacion(fecha, sedeElegida, mesa)
+        self.actualizacion(fecha, sedeElegida, mesa, reservaModificar)
         
-    def actualizacion(self, fecha, sedeElegida, mesa):
+    def actualizacion(self, fecha, sedeElegida, mesa, reservaModificar):
+        print(reservaModificar)     
         nuevaReserva = None
-        for reserva in Reserva.listaReservas:
-            print(reserva.getMiSede(), sedeElegida)
-            if (reserva.getMiSede() == sedeElegida):
-                nuevaReserva = reserva
-            
-                
-        # nuevaReserva.setFecha(fecha) 
-        # nuevaReserva.setMiSede(sedeElegida)
-        # nuevaReserva.setMiMesa(mesa) 
         
-        # messagebox.showinfo( "Información", nuevaReserva.__str__())      
+        for reserva in Reserva.listaReservas:
+            if (reserva.__str__() == nuevaReserva):
+                nuevaReserva = reserva
+           
+        nuevaReserva.setFecha(fecha) 
+        nuevaReserva.setMiSede(sedeElegida)
+        nuevaReserva.setMiMesa(mesa) 
+        
+        messagebox.showinfo( "Información", nuevaReserva.__str__())      
         
