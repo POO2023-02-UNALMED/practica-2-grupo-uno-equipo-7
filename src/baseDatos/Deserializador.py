@@ -54,8 +54,9 @@ def SugerenciasT():
 
 def QuejasXTipo(tipo):
     Lista = []
-    with open("src/baseDatos/Quejas.pkl","rb") as picklefile:
-        Quejas = pickle.load(picklefile)
+    with open("src/baseDatos/Quejas.pkl", "rb") as picklefileQ:
+        Quejas = pickle.load(picklefileQ)
+    
     for queja in Quejas:
         if queja.getTipo() == tipo:
             Lista.append(queja)
@@ -64,8 +65,8 @@ def QuejasXTipo(tipo):
 
 def QuejasT():
     Lista = []
-    with open("src/baseDatos/Quejas.pkl","rb") as picklefile:
-        Quejas = pickle.load(picklefile)
+    with open("src/baseDatos/Quejas.pkl","rb") as picklefileQ:
+        Quejas = pickle.load(picklefileQ)
     
     for queja in Quejas:
         Lista.append(queja)

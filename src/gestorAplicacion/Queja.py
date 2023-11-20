@@ -14,7 +14,7 @@ class Queja():
     QuejasOtros = []
 
 
-    def __init__(self, name, tipe, algo= "", text=""):
+    def __init__(self, name, tipe = "Otros", algo= "", text=""):
         self._nombre = name
         self._tipo = tipe
         self._codigoReferencia = Queja.count
@@ -27,8 +27,10 @@ class Queja():
         elif tipe == "Empleado":
             Queja.QuejasEmpleados.append(self)
 
-        elif tipe == "Sedes":
+        elif tipe == "Sede":
             Queja.QuejasSedes.append(self)
+        elif tipe == "Otros":
+            Queja.QuejasOtros.append(self)
 
         Queja.Quejas.append(self)
 
@@ -53,17 +55,17 @@ class Queja():
     
     def __str__(self):
         
-        if self._tipo == "Otro":
+        if self._tipo == "Otros":
             return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n"  + "Realizo una queja: " + "'" + self.getTexto() + "'"
 
         elif self._tipo == "Sede":
-            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre la " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre: " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
         
         elif self._tipo == "Menu":
-            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre la " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre: " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
         
         elif self._tipo == "Empleado":
-            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre la " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre: " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
         
     
     @classmethod

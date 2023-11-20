@@ -9,7 +9,6 @@ if __name__ == "__main__":
    #a = Deserializador.QuejasT()
    #c = Deserializador.QuejasXTipo("Sede")
    #Serializador.main2()
-   #Serializador.aver()
    #Deserializador.imprimirAllQuejas()
    #for b in a: print(b)
    #for d in c: print(str(d))
