@@ -21,6 +21,17 @@ def imprimirSugerenciaXTipo(tipo):
             print(sugerencia)
             print("\n")
 
+            
+def imprimirAllQuejas():
+    Serializador.main2()
+    with open("src/baseDatos/Quejas.pkl","rb") as picklefile:
+        Sugerencias = pickle.load(picklefile)
+
+    for sugerencia in Sugerencias:
+        print(sugerencia)
+        print("\n")
+
+
 def SugerenciaXTipo(tipo):
     Lista = []
     with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
@@ -61,17 +72,6 @@ def QuejasT():
     
     return Lista
 
-def amonestaciones():
-    Lista = []
-    with open("src/baseDatos/Quejas.pkl", "rb") as picklefile:
-        Quejas = pickle.load(picklefile)
-
-    for queja in Quejas:
-        if queja.getTipo() == "Empleado":
-            a = queja.cantidadAmonestaciones()
-            Lista.append(a)
-
-    return Lista
 
 
 

@@ -640,13 +640,7 @@ def main():
                                         print(que)
                                         print("\n")
 
-                        elif opcionReportesQuejas == 6:
-                            Empleados = Empleado.getEmpleados()
-                            print("Mostrando amonestaciones ...")
-
-                            for empleado in Empleados:
-                                print("\n")
-                                print(Queja.cantidadAmonestaciones(empleado))
+                        else:
                             #Salir
                             pass    
             else:

@@ -31,16 +31,13 @@ class ReportesQuejas(Toplevel):
         botonQuejaO = Button(self, text="Reporte de quejas otros", command=self.reporte_quejas_otros, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonQuejaO.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        botonQuejaA = Button(self, text="Reporte amonestaciones", command=self.reporte_amonestaciones, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-        botonQuejaA.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-
         self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
 
     def reporte_todas_quejas(self):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
-        a = Deserializador.QuejasTT()
+        a = Deserializador.QuejasT()
         for resultado in a:
             self.mostrar_resultado(str(resultado))
             self.mostrar_resultado("\n")
@@ -73,14 +70,6 @@ class ReportesQuejas(Toplevel):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
         a = Deserializador.QuejasXTipo("Otro")
-        for resultado in a:
-            self.mostrar_resultado(str(resultado))
-            self.mostrar_resultado("\n")
-    
-    def reporte_amonestaciones(self):
-        # Limpiar el área de texto antes de mostrar un nuevo resultado
-        self.resultado_text.delete(1.0, 'end')
-        a = Deserializador.amonestaciones()
         for resultado in a:
             self.mostrar_resultado(str(resultado))
             self.mostrar_resultado("\n")

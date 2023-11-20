@@ -133,3 +133,9 @@ class Cliente(Persona):
     def fromJSON(json):
         return Cliente(json["nombre"], json["id"], json["direccion"], json["telefono"], json["email"], json["fechaRegistro"])
     
+    @staticmethod
+    def init_cliente():
+        cliente1 = Cliente("Juan Perez", 1, "Calle 123", "555-1234", "juanperez@example.com", "2021-01-01")
+        cliente2 = Cliente("Maria Garcia", 2, "Calle 456", "555-5678", "mariagarcia@example.com", "2021-02-01")
+        cliente3 = Cliente("Pedro Rodriguez", 3, "Calle 789", "555-9012", "pedrorodriguez@example.com", "2021-03-01")
+    

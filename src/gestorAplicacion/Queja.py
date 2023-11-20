@@ -3,7 +3,7 @@ from gestorAplicacion.Plato import Plato
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Restaurante import Restaurante
 
-class Queja(ServiciosClientes):
+class Queja():
 
     count = 1
 
@@ -14,31 +14,21 @@ class Queja(ServiciosClientes):
     QuejasOtros = []
 
 
-    def __init__(self, name, tipe, algo=None, text=""):
-        super().__init__(name, text)
+    def __init__(self, name, tipe, algo= "", text=""):
+        self._nombre = name
         self._tipo = tipe
         self._codigoReferencia = Queja.count
         Queja.count += 1
+        self._otro = algo
+        self._texto = text
 
         if tipe == "Menu":
-            plate = Plato.buscarPlato(algo)
-            self._plato = plate
             Queja.QuejasMenu.append(self)
         elif tipe == "Empleado":
-            worker = Empleado.buscarEmpleadoXNombre(algo)
-            if worker != None:
-                Empleado.nuevaAmonestacion(worker)  # Corregir aquí
-                self._empleado = worker
-                Queja.QuejasEmpleados.append(self)
-            else:
-                worker = None
+            Queja.QuejasEmpleados.append(self)
 
         elif tipe == "Sedes":
-            se = Restaurante.buscarSedeXUbicacion(algo)
-            self._sede = se
             Queja.QuejasSedes.append(self)
-        else:
-            Queja.QuejasOtros.append(self)
 
         Queja.Quejas.append(self)
 
@@ -51,26 +41,30 @@ class Queja(ServiciosClientes):
     def getTipo(self):
         return self._tipo
     
-    def getPlato(self):
-        return self._plato
+    def getNombre(self):
+        return self._nombre
     
-    def getEmpleado(self):
-        return self._empleado
+    def getOtro(self):
+        return self._otro
     
-    def getSede(self):
-        return self._sede
+    def getTexto(self):
+        return self._texto
+    
     
     def __str__(self):
-        if self.tipo == "Menu":
-            return  "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre() + "\n" + "Realizo una queja sobre el platillo: " + self.getPlato().getNombre() + "\n" + "'" + super().getRazon() + "'"
-
-        elif self.tipo == "Empleado":
-            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre() + "\n" + "Realizo una queja sobre el empleado: " + self.getEmpleado().getNombre() + "\n" + "'" + super().getRazon() + "'"
         
-        elif self.tipo == "Sede":
-            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre()  + "\n" + "Realizo una queja sobre la " + self.getSede().getUbicacion() + "\n"  + "'" + super().getRazon() + "'"
-        else:
-            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + super().getCliente().getNombre()  + "\n"  + "Realizo una queja: " + "'" + super().getRazon() + "'"
+        if self._tipo == "Otro":
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n"  + "Realizo una queja: " + "'" + self.getTexto() + "'"
+
+        elif self._tipo == "Sede":
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre la " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
+        
+        elif self._tipo == "Menu":
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre la " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
+        
+        elif self._tipo == "Empleado":
+            return "N. Referencia: " + str(self.getCodigoReferencia()) + "\nNombre: " + self.getNombre()  + "\n" + "Realizo una queja sobre la " + self.getOtro() + "\n"  + "'" + self.getTexto()+ "'"
+        
     
     @classmethod
     def getAllQuejas(cls):
@@ -132,7 +126,9 @@ class Queja(ServiciosClientes):
         else:
             return "Hay un total de (" + countQuejasOtros + ") quejas del tipo: OTRO."
     
-    @classmethod
-    def cantidadAmonestaciones(self):
-        return f"Nombre empleado: {self._empleado.getNombre()} tiene ({self._empleado.getAmonestaciones()})"
+    @staticmethod
+    def init_quejas():
+        q1 = Queja("Juan Perez", "Empleado", "Camilo Palacio", "Me cobro propina sin dar la autorización")
+        q2 = Queja("Juan Perez", "Empleado", "Camilo Palacio", "Es muy grosero, me insulto por dejar, segun él, poca propina")
+        q3 = Queja("Maria Lopez", "Sede", "Sede: Envigado", "No quisieron hacerme un domicilio")
         
