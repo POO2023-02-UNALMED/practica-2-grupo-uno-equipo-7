@@ -73,14 +73,12 @@ class CancelarReserv(tk.Frame):
         
         self._desplegable.configure(values=reservas)
         self._desplegable.set("Seleccione su reservación")
-        self._desplegable.bind("<<ComboboxSelected>>", lambda event: self.eliminar_reserva(self._desplegable.get()))  
+        boton_cancelar = tk.Button(self, text="Eliminar", height=1, command=lambda: self.eliminar_reserva(self._desplegable.get()))
+        boton_cancelar.pack(pady=20)
+
         
     def eliminar_reserva(self, reservaEliminada):
-        print(len(Reserva.listaReservas))
-        
-        Reserva.listaReservas.remove(reservaEliminada)
-        boton_cancelar = tk.Button(self, text="cancelar", height=1, command=lambda: self.buscarReserva(self._entradaId.get(), self._entradanm.get()))
-        boton_cancelar.pack(pady=20)
-        
-        
-        print(len(Reserva.listaReservas))
+        for reserva in Reserva.listaReservas:
+            if (reserva.__str__() == reservaEliminada):
+                Reserva.listaReservas.remove(reserva)
+                messagebox.showinfo( "Información","Su reserva ha sido cancelada")
