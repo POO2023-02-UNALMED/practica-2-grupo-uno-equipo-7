@@ -2,8 +2,8 @@ from tkinter import *
 from GUI.estilos.style import *
 from tkinter import messagebox
 from gestorAplicacion.Pedido import Pedido
-
-
+from gestorAplicacion.Empleado import Empleado
+from gestorAplicacion.Plato import Plato
 
 
 
@@ -14,56 +14,57 @@ from gestorAplicacion.Pedido import Pedido
 class VentanadePedidos(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
-        self.title("Nuevo Pedido")
+        self.title("Menu Disponible")
         self.configure(background=BACKGROUND_CONTENEDOR)
-
-
-    def mostrar_detalle_platillo(codigo):
-        # Esta función se llama cuando se selecciona un platillo en el menú
-        platillo = menu_platillos[codigo]
-        detalle = f"Código: {codigo}\nPlatillo: {platillo['nombre']}\nPrecio: ${platillo['precio']:.2f}"
-
-        # Actualizar la etiqueta de detalles con la información del platillo seleccionado
-        etiqueta_detalles.config(text=detalle)
+        labelInicial = Label(self, justify=CENTER, text="Menu Disponible", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        labelFinal = Label(self, justify=CENTER, text="¿Que desea Ordenar?", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelFinal.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     # Definir el menú de platillos con códigos, nombres y precios
-    menu_platillos = {
-        '001': {'nombre': 'Hamburguesa', 'precio': 8.99},
-        '002': {'nombre': 'Pizza', 'precio': 10.50},
-        '003': {'nombre': 'Ensalada', 'precio': 5.99},}
+        
+        plato1 = Label(self,justify=CENTER, text="Taco", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato1.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        precio1 = Label(self, justify=CENTER, text="1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        precio1.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        plato2 = Label(self, justify=CENTER, text="Tostada", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato2.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        precio2 = Label(self, justify=CENTER, text="2000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        precio2.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        plato3 = Label(self, justify=CENTER, text="Sope", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato3.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        precio3 = Label(self, justify=CENTER,text="3000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        precio3.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        plato4 = Label(self, justify=CENTER, text="Enchilada", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato4.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        precio4 = Label(self, justify=CENTER, text="4000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        precio4.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        plato5 = Label(self, justify=CENTER, text="Quesadilla", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        precio5 =Label(self, justify=CENTER, text="5000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        precio5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         # Agrega más platillos según sea necesario
-
 class VentanaDeOpcionesAdmin(Toplevel):
-    def __init__(self, ventana, pedidos):
-        self.ventana = ventana
-        self.ventana.title("Reporte de Pedidos")
-
-        # Crear una etiqueta para mostrar el reporte de pedidos
-        self.etiqueta_reporte = tk.Label(ventana, text="Reporte de Pedidos", font=("Helvetica", 16))
-        self.etiqueta_reporte.pack(pady=10)
-
-        # Crear un cuadro de texto para mostrar los detalles de los pedidos
-        self.texto_pedidos = tk.Text(ventana, height=10, width=40)
-        self.texto_pedidos.pack()
-
-        # Mostrar los detalles de los pedidos en el cuadro de texto
-        self.mostrar_reporte_pedidos(pedidos)
-
-    def mostrar_reporte_pedidos(self, pedidos):
-        for pedido in pedidos:
-            detalle_pedido = f"Pedido #{pedido['numero']}\n"
-            for platillo, cantidad in pedido['detalle'].items():
-                detalle_pedido += f"{platillo}: {cantidad} unidades\n"
-            detalle_pedido += f"Total: ${pedido['total']:.2f}\n\n"
-            self.texto_pedidos.insert(tk.END, detalle_pedido)
+    ##Mostrar los pedidos guardados hasta el momento
+    def ventanaDePedidosRegistrados(self):
+        ventana = Pedido.listado_pedidos(self)
 
 ##Ventanas secundarias
 class OpcionesdeAdmin(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
-        self.title("Nuevo Pedido")
+        self.title("Opciones de Administrador")
         self.configure(background=BACKGROUND_CONTENEDOR)
-        
+
+        #Bienvenida inicial
+        labelInicial = Label(self, justify=CENTER, text="Bienvenido al apartado de Opciones de administrador", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        labelFinal = Label(self, justify=CENTER, text="Por favor, ingrese el usuario y contraseña", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelFinal.pack(side=TOP, fill=BOTH, padx=10, pady=10)
                              
         # Etiqueta y entrada para la sugerencia
         label_Nombre = Label(self, text="Usuario: ", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
@@ -74,22 +75,31 @@ class OpcionesdeAdmin(Toplevel):
 
         label_Iden = Label(self, text="Contraseña:", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
         label_Iden.pack(side=TOP, pady=5)
-
-        self.entry_Iden = Entry(self, width=30)
-        self.entry_Iden.pack(side=TOP, pady=5)
-
-        opciones_tipo = ["De envio", "Para recoger"]
-        self.var_tipo = StringVar(self)
-        self.var_tipo.set(opciones_tipo[1])  # Establecer el valor predeterminado
-        menu_tipo = OptionMenu(self, self.var_tipo, *opciones_tipo)
-        menu_tipo.pack(side=TOP, pady=5)
-    
         
 
+        self.entry_Iden = Entry(self, width=30)
+        self.entry_Iden.pack(side=TOP, pady=5)    
+        
         # Botón para guardar la sugerencia
         boton_guardar = Button(self, text="Guardar", command=self.MostrarVentanaAdmin,bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
         boton_guardar.pack(side=TOP, pady=10)
 
+    # Botón para verificar el código
+        Button(self, text="Verificar", command=self.verificar_codigo, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+    def verificar_codigo(self):
+        codigo_empleado = self.entry_codigo.get()
+
+        ver = Empleado.buscarEmpleadoXCodigo(codigo_empleado)
+        # Verificar aquí si el código de empleado es válido
+        if ver != None:  
+            self.abrir_ReportesQuejas()
+
+        else:
+            # Muestra un mensaje de error o realiza alguna acción según tu lógica
+            print("Código de empleado no válido")
+    def abrir_ReportesQuejas(self):
+        ventana = ReportesQuejas(self)
     def MostrarVentanaAdmin(self):
         ventana = VentanaDeOpcionesAdmin(self)
         nombre = self.entry_Nombre.get()
@@ -106,7 +116,10 @@ class NuevoPedido(Toplevel):
         super().__init__(master)
         self.title("Nuevo Pedido")
         self.configure(background=BACKGROUND_CONTENEDOR)
-        
+        labelInicial = Label(self, justify=CENTER, text="Nuevo Pedido", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        labelFinal = Label(self, justify=CENTER, text="Por favor, ingrese los datos solicitados", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelFinal.pack(side=TOP, fill=BOTH, padx=10, pady=10)
                              
         # Etiqueta y entrada para la sugerencia
         label_Nombre = Label(self, text="Nombre: ", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
@@ -151,7 +164,6 @@ class NuevoPedido(Toplevel):
         pedido = Pedido(nombre, Identificacion, direccion, tipo)
         print(pedido)
 
-    
 #Ventana Inicial
 class OpcionesDePedidos(Frame):
     
