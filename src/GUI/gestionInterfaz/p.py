@@ -71,7 +71,8 @@ class k:
 
 
 # Crear botones
-        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command= self.show_articulo(codigo_entry.get(), nombre_entry.get()))
+        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command=lambda: self.show_articulo(codigo_entry.get(), nombre_entry.get()))
+
         boton_borrar = ttk.Button(self.frame_inf, text="Borrar")
     
 
@@ -92,7 +93,7 @@ class k:
         item=Item.buscar_item(nombre)
         
         if item==None:
-            label_precio= ttk.Label( self.frame_inf, text= "Items no encontradosss" )
+            label_precio= ttk.Label( self.frame_inf, text= "Item no encontrado")
             label_precio.grid(row=0, column=4, rowspan= 3, columnspan=2)
             
         else:
