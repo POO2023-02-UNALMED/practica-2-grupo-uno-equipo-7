@@ -10,6 +10,10 @@ from tkinter import *
 from gestorAplicacion.Cliente import *
 from tkinter.ttk import Combobox
 
+dic= {"2023-10-25 14:00 PM":0, "2023-10-25 18:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
+tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
+
+
 class ModificarRes(tk.Frame):
     def __init__(self, padre, controlador):
         super().__init__(padre)
@@ -20,10 +24,11 @@ class ModificarRes(tk.Frame):
         self._inicializarEntrada()
         
     def _inicializarTitulo(self):    
+
         # Se inicializa el título  que va a estar en la parte superior de la ventana
-        labelInicial = Label(self, justify=CENTER, text="Cancelar Reservación", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelInicial = Label(self, justify=CENTER, text="Modificar Reservación", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
         labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        
+    
     def _inicializarEntrada(self):
         # Se inicializa el frame para contener la etiqueta y la entrada
         frameEntrada = Frame(self, bg=BACKGROUND_CONTENEDOR)
@@ -74,12 +79,66 @@ class ModificarRes(tk.Frame):
         
         self._desplegable.configure(values=reservas)
         self._desplegable.set("Seleccione su reservación")
-        boton_cancelar = tk.Button(self, text="Eliminar", height=1, command=lambda: self.eliminar_reserva(self._desplegable.get()))
+        boton_cancelar = tk.Button(self, text="Modificar", height=1, command=lambda: self.modificar_reserva(self._desplegable.get()))
         boton_cancelar.pack(pady=20)
 
         
-    def eliminar_reserva(self, reservaEliminada):
-        for reserva in Reserva.listaReservas:
-            if (reserva.__str__() == reservaEliminada):
-                Reserva.listaReservas.remove(reserva)
-                messagebox.showinfo( "Información","Su reserva ha sido cancelada")
+    def modificar_reserva(self, reservaModificar):
+        
+        # Se inicializa el desplegable de fecha
+        self._desplegable1 = Combobox(self, state="readonly", font=FONT2)
+        self._desplegable1.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        
+        self._desplegable1.configure(values=["2023-10-25 14:00 PM", "2023-10-25 18:00 PM", "2023-10-26 12:00 PM", "2023-10-30 11:00 AM"])
+        self._desplegable1.set("Seleccione la nueva fecha")
+        
+        # Se inicializa el desplegable de mesa
+        self._desplegable2 = Combobox(self, state="readonly", font=FONT2)
+        self._desplegable2.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        
+        self._desplegable2.configure(values=["Dos personas", "Tres personas", "Cuatro o más personas"])
+        self._desplegable2.set("Seleccione el nuevo tipo de mesa")
+        boton_aceptar = tk.Button(self, text="Aceptar", height=1, command=lambda: self.aceptarOP(self._desplegable1.get(),  self._desplegable2.get()))
+        boton_aceptar.pack(pady=20)
+        
+    def aceptarOP(self, fecha, mesa):
+        sedesEncontradas = []   
+        mesasEncontradas = Mesa.mesasDisponibles(mesa)
+        horariosEncontrados = Restaurante.horarios_disponibles(fecha)
+        
+        horariosEncontrados = list( set( horariosEncontrados ) )
+
+        
+        for restaurante in horariosEncontrados:
+            for mesa in mesasEncontradas:
+                if (mesa.getUbicacion() == restaurante.get_ubicacion()):
+                    sedesEncontradas.append(restaurante)
+        
+        if(len(sedesEncontradas) == 0):
+            messagebox.showerror("Error", "No se encontraron sedes disponibles según su requerimiento")
+        else:
+            self.mostrarSedes(sedesEncontradas, fecha, mesa)
+
+    
+    
+    def mostrarSedes(self, sedesEncontradas, fecha, mesa):
+
+        sede_nombres = [restaurante.get_ubicacion() for restaurante in sedesEncontradas]
+
+        
+        # Se inicializa el desplegable para mostrar los platos recomendados para el cliente
+        self._desplegable = Combobox(self, state="readonly", font=FONT2)
+        self._desplegable.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        
+        self._desplegable.configure(values=sede_nombres)
+        self._desplegable.set("Seleccione la sede deseada")
+        boton_cancelar = tk.Button(self, text="Aceptar", height=1)
+        boton_cancelar.pack(pady=20)
+        
+        
+        
+        
+        # for reserva in Reserva.listaReservas:
+        #     if (reserva.__str__() == reservaEliminada):
+        #         Reserva.listaReservas.remove(reserva)
+        #         messagebox.showinfo( "Información","Su reserva ha sido cancelada")
