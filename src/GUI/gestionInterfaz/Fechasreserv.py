@@ -23,8 +23,8 @@ class Fechasreserv(tk.Frame):
         self.configure(background="white")
         
 
-        label1 = tk.Label(self, text="Generación de Reservas", font=("Arial", 40), fg="black")
-        label1.grid(row=0, column=2, columnspan=2, pady=10)
+        label1 = tk.Label(self, justify=CENTER, text="Generación de Reservas", bg=BACKGROUND_FRAMES, font=("Arial", 30), fg="white")
+        label1.grid(row=0, column=1, columnspan=2, pady=10)
 
         valor_defecto = tk.StringVar(value="Fechas")
         combo_style = ttk.Style()
@@ -35,7 +35,7 @@ class Fechasreserv(tk.Frame):
                              style='My.TCombobox', state="readonly")
         combo1.grid(row=1, column=1, padx=2, pady=10, sticky="w")
 
-        otro_label = tk.Label(self, text="Seleccionar Fecha ", font=("Arial", 20), bg="white")
+        otro_label = tk.Label(self, text="Seleccionar Fecha ", bg=BACKGROUND_FRAMES, font=("Arial", 20), fg="white")
         otro_label.grid(row=1, column=0, padx=10, pady=10, sticky="e")
         
         nuevo_frame = tk.Frame(self)
@@ -50,8 +50,8 @@ class Fechasreserv(tk.Frame):
                              style='My.TCombobox', state="readonly")
         combo2.grid(row=2, column=1, padx=2, pady=10, sticky="w")
 
-        otro_label2 = tk.Label(self, text="Seleccionar Mesa ", font=("Arial", 20), bg="white")
-        otro_label2.grid(row=2, column=0, padx=10, pady=10, sticky="e")
+        otro_label2 = tk.Label(self, text="Seleccionar Mesa ", bg=BACKGROUND_FRAMES, font=("Arial", 20), fg="white")
+        otro_label2.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         
         nuevo_frame1 = tk.Frame(self)
         nuevo_frame1.grid(row=2, column=0, columnspan=4, pady=10)
@@ -89,8 +89,8 @@ class Fechasreserv(tk.Frame):
         combo3 = ttk.Combobox(self, values=sede_nombres, textvariable=valor_defecto_sedes, style='My.TCombobox', state="readonly")
         combo3.grid(row=1, column=1, padx=2, pady=10, sticky="w")
 
-        otro_label3 = tk.Label(self, text="Seleccionar Sede ", font=("Arial", 20), bg="white")
-        otro_label3.grid(row=3, column=0, padx=10, pady=10, sticky="e")
+        otro_label3 = tk.Label(self, text="Seleccionar Sede ", bg=BACKGROUND_FRAMES, font=("Arial", 20), fg="white")
+        otro_label3.grid(row=3, column=0, padx=10, pady=10, sticky="w")
 
         nuevo_frame1 = tk.Frame(self)
         nuevo_frame1.grid(row=3, column=0, columnspan=4, pady=10)
