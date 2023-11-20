@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from gestorAplicacion.Restaurante import Restaurante
+from gestorAplicacion.Item import Item
 
 class k:
     def __init__(self, ventana, num):
@@ -56,6 +57,7 @@ class k:
 
     def precio_articulo_inventario(self):
         self.lbl_descripcion.config(text="Busqueda de precio de articulo especifico")
+        
    # crear etiquetas 
         etiqueta_criterio = ttk.Label(self.frame_inf, text="Criterio")
         etiqueta_valor = ttk.Label(self.frame_inf, text="Valor")
@@ -69,7 +71,7 @@ class k:
 
 
 # Crear botones
-        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar")
+        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command= self.show_articulo(codigo_entry.get(), nombre_entry.get(), Restaurante.sedes[self.num].inventario.listado_items))
         boton_borrar = ttk.Button(self.frame_inf, text="Borrar")
     
 
@@ -82,7 +84,25 @@ class k:
         boton_borrar.grid(row=5, column=3, columnspan=1, pady=5, sticky="ew")
         etiqueta_numero.grid(row=1, column=2, pady=5, sticky="w")
         etiqueta_nombre.grid(row=2, column=2, pady=5, sticky="w")
-        self.lbl_informacion.config(text="Precio del artículo en el inventario")  
+        self.lbl_informacion.config(text="Precio del artículo en el inventario")
+        
+        
+        
+    def show_articulo(self, num, nombre,listaItems):
+        item=Item.buscar_item(nombre, listaItems)
+        
+        if item==None:
+            label_precio= ttk.Label( self.frame_inf, text= "Items no encontrados" )
+            label_precio.grid(row=0, column=4, rowspan= 3, columnspan=2)
+            
+        else:
+            label_precio= ttk.Label(self.frame_inf,text= item.nombre + " "+ "Precio"+ str(item.cantidad)+ " X "+ str(num)+ "  =  "+  str(item.cantidad*num) )
+            label_precio.grid(row=0, column=4, rowspan= 3, columnspan=2)
+            
+        
+        
+        
+        
 
     def revisar_niveles_de_stock(self):
         self.lbl_informacion.config(text="Niveles de stock del inventario")
