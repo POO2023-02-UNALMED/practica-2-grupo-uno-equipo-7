@@ -36,7 +36,7 @@ class Sugerencia(ServiciosClientes):
         return self._tipo
     
     def __str__(self):
-        return "N. Referencia: " + str(self.getCodigoReferencia())   + "\nSugerencia tipo: " + self.getTipo() + "\n" + "''" + super().getRazon() + "''" + "\n"
+        return "N. Referencia: " + str(self.getCodigoReferencia())   + "\nSugerencia tipo: " + self.getTipo() + "\n" + "''" + super().getRazon() + "''"
 
     @classmethod
     def getTAllSugerences(cls):

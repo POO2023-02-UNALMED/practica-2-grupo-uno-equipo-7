@@ -74,6 +74,7 @@ if __name__ == "__main__":
     Empleado("Manuel Menza", "Gerente Administrativo", "3", 3000, 2)
     Empleado("Maria Jose Restrepo", "Gerente Administrativa", "4", 3000, 2)
     Empleado("Maria Camila Rios", "Gerente Administrativa", "5", 3000, 3)
+    Empleado("Camilo Palacio", "Mesero", "6", 1700, 1)
 
     Mesa("Mesa uno", "Dos personas", "Sede: Las Americas")
     Mesa("Mesa dos", "Tres personas", "Sede: Envigado")

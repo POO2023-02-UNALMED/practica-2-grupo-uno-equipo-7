@@ -1,6 +1,7 @@
 import pickle
 from baseDatos import Serializador
 from gestorAplicacion.Sugerencia import Sugerencia
+from gestorAplicacion.Queja import Queja
 
 def imprimirAllSugerencias():
     Serializador.main()
@@ -39,5 +40,39 @@ def SugerenciasT():
         Lista.append(sugerencia)
     
     return Lista
+
+def QuejasXTipo(tipo):
+    Lista = []
+    with open("src/baseDatos/Quejas.pkl","rb") as picklefile:
+        Quejas = pickle.load(picklefile)
+    for queja in Quejas:
+        if queja.getTipo() == tipo:
+            Lista.append(queja)
+    
+    return Lista
+
+def QuejasT():
+    Lista = []
+    with open("src/baseDatos/Quejas.pkl","rb") as picklefile:
+        Quejas = pickle.load(picklefile)
+    
+    for queja in Quejas:
+        Lista.append(queja)
+    
+    return Lista
+
+def amonestaciones():
+    Lista = []
+    with open("src/baseDatos/Quejas.pkl", "rb") as picklefile:
+        Quejas = pickle.load(picklefile)
+
+    for queja in Quejas:
+        if queja.getTipo() == "Empleado":
+            a = queja.cantidadAmonestaciones()
+            Lista.append(a)
+
+    return Lista
+
+
 
         

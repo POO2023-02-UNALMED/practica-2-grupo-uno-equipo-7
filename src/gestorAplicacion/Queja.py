@@ -14,34 +14,32 @@ class Queja(ServiciosClientes):
     QuejasOtros = []
 
 
-    def __init__(self, name, tipe, algo = None, text = ""):
+    def __init__(self, name, tipe, algo=None, text=""):
         super().__init__(name, text)
         self._tipo = tipe
         self._codigoReferencia = Queja.count
         Queja.count += 1
-        
-        if tipe == "Menu":
-            plate = Plato.buscarPlato(algo) #Recordatorio: Asegurarse de que exista el metodo en la clase Plato :D
 
+        if tipe == "Menu":
+            plate = Plato.buscarPlato(algo)
             self._plato = plate
             Queja.QuejasMenu.append(self)
-        
         elif tipe == "Empleado":
-            worker = Empleado.existeEmpleado(algo) #Recordatorio: Asegurarse de que exista el metodo en la clase Empleado :D SE SUPONE QUE SI XD
-            Empleado.nuevaAmonestacion(worker) #CHECK
+            worker = Empleado.buscarEmpleadoXNombre(algo)
+            if worker != None:
+                Empleado.nuevaAmonestacion(worker)  # Corregir aquí
+                self._empleado = worker
+                Queja.QuejasEmpleados.append(self)
+            else:
+                worker = None
 
-            self._empleado = worker
-            Queja.QuejasEmpleados.append(self)
-        
         elif tipe == "Sedes":
-            se = Restaurante.buscarSedeXUbicacion(algo) #Recordatorio: Asegurarse de que exista el metodo en la clase Restaurante :D
-
+            se = Restaurante.buscarSedeXUbicacion(algo)
             self._sede = se
             Queja.QuejasSedes.append(self)
-
-        else: 
+        else:
             Queja.QuejasOtros.append(self)
-        
+
         Queja.Quejas.append(self)
 
     def getCodigoReferencia(self):
@@ -134,6 +132,9 @@ class Queja(ServiciosClientes):
         else:
             return "Hay un total de (" + countQuejasOtros + ") quejas del tipo: OTRO."
     
-    @classmethod
-    def cantidadAmonestaciones(self, empleado):
-         return "Nombre empleado: " + empleado.getNombre() + " tiene (" + empleado.cantidadAmonestaciones() + ")" #Revisar metodo en la clase Empleado
+    
+    def cantidadAmonestaciones(self):
+        if hasattr(self, '_empleado') and self._empleado is not None:
+            return f"Nombre empleado: {self._empleado.getNombre()} tiene ({self._empleado.cantidadAmonestaciones()})"
+        else:
+            return f"Nombre empleado: {self._empleado.getNombre()} tiene ({self._empleado.cantidadAmonestaciones()})"

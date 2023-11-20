@@ -1,16 +1,275 @@
 from tkinter import *
 from tkinter import messagebox
 from gestorAplicacion.Sugerencia import Sugerencia
+from gestorAplicacion.Queja import Queja
 from gestorAplicacion.Empleado import Empleado
-from baseDatos import Deserializador
+from baseDatos import Deserializador,Serializador
 
-#Inicio Sugerencias
+#Inicio clases para la opcion Queja
+class ReportesQuejas(Toplevel):
+
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Reporte de Sugerencias")
+        self.configure(background="#72a18b")
+
+        Label(self, text="\nBienvenid@ de nuevo, por favor,\na continuacion elija una opcion:\n",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+
+        botonQuejas = Button(self, text="Reporte de todas las quejas", command=self.reporte_todas_quejas, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonQuejas.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonQuejaM = Button(self, text="Reporte de quejas del menu", command=self.reporte_quejas_menu, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonQuejaM.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonQuejaE = Button(self, text="Reporte de quejas sobre empleados", command=self.reporte_quejas_empleados, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonQuejaE.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonQuejaS = Button(self, text="Reporte de quejas de sede", command=self.reporte_quejas_sede, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonQuejaS.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonQuejaO = Button(self, text="Reporte de quejas otros", command=self.reporte_quejas_otros, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonQuejaO.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        botonQuejaA = Button(self, text="Reporte amonestaciones", command=self.reporte_amonestaciones, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonQuejaA.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
+
+    def reporte_todas_quejas(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.QuejasTT()
+        for resultado in a:
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def reporte_quejas_menu(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.QuejasXTipo("Menu")
+        for resultado in a:  
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def reporte_quejas_empleados(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.QuejasXTipo("Empleado")
+        for resultado in a: 
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def reporte_quejas_sede(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.QuejasXTipo("Sede")
+        for resultado in a:
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def reporte_quejas_otros(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.QuejasXTipo("Otro")
+        for resultado in a:
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+    
+    def reporte_amonestaciones(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.amonestaciones()
+        for resultado in a:
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def mostrar_resultado(self, resultado):
+        # Insertar el resultado en la última línea del área de texto
+        self.resultado_text.insert('end', resultado + '\n')
+        # Desplazar la vista de la caja de texto para mostrar la última línea
+        self.resultado_text.see('end')
+
+
+class VentanaVerificacionQueja(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Acesso Empleados")
+        self.configure(background="#72a18b")
+        
+        # Etiqueta de instrucción
+        Label(self, text="\nNecesita un código de empleado\npara poder acceder a esta funcion\n",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+        # Entry para ingresar el código
+        label_Queja = Label(self, text="Codigo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Queja.pack(side=TOP, pady=5)
+        self.entry_codigo = Entry(self)
+        self.entry_codigo.pack()
+
+        # Botón para verificar el código
+        Button(self, text="Verificar", command=self.verificar_codigo, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+    def verificar_codigo(self):
+        codigo_empleado = self.entry_codigo.get()
+
+        ver = Empleado.buscarEmpleadoXCodigo(codigo_empleado)
+        # Verificar aquí si el código de empleado es válido
+        if ver != None:  
+            self.abrir_ReportesQuejas()
+
+        else:
+            # Muestra un mensaje de error o realiza alguna acción según tu lógica
+            print("Código de empleado no válido")
+    def abrir_ReportesQuejas(self):
+        ventana = ReportesQuejas(self)
+
+class NuevaQueja(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Queja")
+        self.configure(background="#72a18b")
+
+        label_Nombre = Label(self, text="Nombre:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Nombre.pack(side=TOP, pady=5)
+        self.entry_Nombre = Entry(self, width=30)
+        self.entry_Nombre.pack(side=TOP, pady=5)
+
+        # Etiqueta y menú desplegable
+        label_tipo = Label(self, text="Tipo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_tipo.pack(side=TOP, pady=5)
+
+        opciones_tipo = ["Menu", "Empleado", "Sedes", "Otros"]
+        self.var_tipo = StringVar(self)
+        self.var_tipo.set(opciones_tipo[3])  # Establecer el valor predeterminado
+        menu_tipo = OptionMenu(self, self.var_tipo, *opciones_tipo)
+        menu_tipo.pack(side=TOP, pady=5)
+
+        self.otro_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.otro_text.pack(side='top', fill='both', padx=10, pady=10)
+
+        self.otro = ""
+
+        if self.var_tipo.get() == "Sede":
+            label_sede = Label(self, text="Sede:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+            label_sede.pack(side=TOP, pady=5)
+
+            opciones_sede = ["Sede: Envigado", "Sede: Sandiego", "Sede: Belen", "Sede: La America"]
+            self.var_sede = StringVar(self)
+            self.var_sede.set(opciones_sede[3])  # Establecer el valor predeterminado
+            menu_sede = OptionMenu(self, self.var_sede, *opciones_sede)
+            menu_sede.pack(side=TOP, pady=5)
+            self.otro = self.var_sede.get()
+        
+        elif self.var_tipo.get() == "Menu":
+            label_plato = Label(self, text="Plato:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+            label_plato.pack(side=TOP, pady=5)
+            self.entry_plato = Entry(self, width=30)
+            self.entry_plato.pack(side=TOP, pady=5)
+            self.otro = self.entry_queja.get()
+        
+        elif self.var_tipo.get() == "Empleado":
+            label_empleado = Label(self, text="Empleado:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+            label_empleado.pack(side=TOP, pady=5)
+            self.entry_empleado = Entry(self, width=30)
+            self.entry_empleado.pack(side=TOP, pady=5)
+            self.otro = self.entry_empleado.get()
+
+        # Etiqueta y entrada para la queja
+        label_Queja = Label(self, text="Queja:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Queja.pack(side=TOP, pady=5)
+
+        self.entry_queja = Entry(self, width=30)
+        self.entry_queja.pack(side=TOP, pady=5)
+
+        # Botón para guardar la queja
+        boton_guardar = Button(self, text="Guardar", command=self.confirmar_guardar_queja, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_guardar.pack(side=TOP, pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
+    
+    def cambiarOtro(self):
+        resultado = ""
+        tipo = self.var_tipo.get()
+        if tipo == "Menu":
+            resultado = "Por favor, ingrese el nombre del plato del cual quiere quejarse\nConsejo: Si no cuenta con el nombre del plato se le recomienda hacer una queja del tipo 'Otro'."
+        elif tipo == "Empleado":
+            resultado = "Por favor, ingrese el nombre del empleado del cual quiere quejarse\nConsejo: Si no cuenta con el nombre del empleado se le recomienda hacer una queja del tipo 'Otro'."
+        elif tipo == "Sede":
+            resultado = "Por favor, seleccione una sede:"
+        else:
+            resultado = ""
+        self.mostrar_resultado2(resultado)
+
+
+    def mostrar_resultado2(self, resultado):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.otro_text.delete(1.0, 'end')
+        # Insertar el resultado en el área de texto
+        self.otro_text_text.insert('end', resultado)
+    
+    def mostrar_resultado(self, resultado):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        # Insertar el resultado en el área de texto
+        self.resultado_text.insert('end', resultado)
+
+    def confirmar_guardar_queja(self):
+        nombre = self.entry_Nombre.get()
+        tipo = self.var_tipo.get()
+        algo = self.otro
+        queja_texto = self.entry_queja.get()
+
+        # Crear un mensaje de confirmación
+        mensaje_confirmacion = f"¿Está seguro que desea enviar esta queja?\nNombre: {nombre}\nTipo: {tipo}\n Sobre: {algo}\nSugerencia: {queja_texto}"
+
+        # Mostrar el cuadro de diálogo de confirmación
+        confirmacion = messagebox.askokcancel("Confirmación", mensaje_confirmacion)
+
+        if confirmacion:
+            qja = Queja(nombre, tipo, algo, queja_texto)
+            # Agregar a la serialización
+            Serializador.agregarQuejaNueva(qja)
+            # Mostrar el objeto sugerencia en el área de texto
+            self.mostrar_resultado(str(qja))
+            
+        else:
+            resultado = "La sugerencia no fue guardada"
+            self.mostrar_resultado(resultado)
+
+class VentanaQueja(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Opciones de Queja")
+        self.configure(background="#72a18b")
+
+        boton_crear_sugerencia = Button(self, text="Crear nueva queja", command=self.crear_nueva_Queja, bg="#a19f9f",font=("Roboto", 12), fg="#0a0a0a")
+        boton_crear_sugerencia.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        boton_reportes = Button(self, text="Reportes", command=self.mostrar_reportes, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_reportes.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+    def crear_nueva_Queja(self):
+        ventana_nueva_queja = NuevaQueja(self)
+    
+
+    def mostrar_reportes(self):
+        ventana = VentanaVerificacionQueja(self)
+    
+
+#Fin de clases para la opcion Queja
+
+#Inicio clases para la opcion sugerencias
 
 class ReportesSugerencia(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
         self.title("Reporte de Sugerencias")
         self.configure(background="#72a18b")
+
+        Label(self, text="\nBienvenid@ de nuevo, por favor,\na continuacion elija una opcion:\n",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
+
 
         botonSugerencias = Button(self, text="Reporte de todas las sugerencias", command=self.reporte_todas_sugerencias, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerencias.pack(side=TOP, fill=BOTH, padx=10, pady=10)
@@ -33,19 +292,16 @@ class ReportesSugerencia(Toplevel):
     def reporte_todas_sugerencias(self):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
-        # Lógica para el reporte de todas las sugerencias
         a = Deserializador.SugerenciasT()
         for resultado in a:
-            self.mostrar_resultado(resultado)
+            self.mostrar_resultado(str(resultado))
             self.mostrar_resultado("\n")
-
-
 
     def reporte_sugerencias_menu(self):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
         a = Deserializador.SugerenciaXTipo("Menu")
-        for resultado in a:   # Aquí deberías generar el contenido del reporte
+        for resultado in a:  
             self.mostrar_resultado(str(resultado))
             self.mostrar_resultado("\n")
 
@@ -53,8 +309,7 @@ class ReportesSugerencia(Toplevel):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
         a = Deserializador.SugerenciaXTipo("Empleado")
-        # Lógica para el reporte de sugerencias sobre empleados
-        for resultado in a:  # Aquí deberías generar el contenido del reporte
+        for resultado in a: 
             self.mostrar_resultado(str(resultado))
             self.mostrar_resultado("\n")
 
@@ -62,8 +317,7 @@ class ReportesSugerencia(Toplevel):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
         a = Deserializador.SugerenciaXTipo("Sede")
-        # Lógica para el reporte de sugerencias de sede
-        for resultado in a: # Aquí deberías generar el contenido del reporte
+        for resultado in a:
             self.mostrar_resultado(str(resultado))
             self.mostrar_resultado("\n")
 
@@ -71,9 +325,9 @@ class ReportesSugerencia(Toplevel):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
         a = Deserializador.SugerenciaXTipo("Otro")
-        # Lógica para el reporte de sugerencias otros
-        for resultado in a:  # Aquí deberías generar el contenido del reporte
+        for resultado in a:
             self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
 
     def mostrar_resultado(self, resultado):
         # Insertar el resultado en la última línea del área de texto
@@ -88,7 +342,7 @@ class VentanaVerificacionSugerencia(Toplevel):
         self.configure(background="#72a18b")
         
         # Etiqueta de instrucción
-        Label(self, text="Necesita un código de empleado para acceder a esta funcion",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
+        Label(self, text="\nNecesita un código de empleado\npara poder acceder a esta funcion\n",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
 
         # Entry para ingresar el código
         label_sugerencia = Label(self, text="Codigo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
@@ -107,7 +361,6 @@ class VentanaVerificacionSugerencia(Toplevel):
         if ver != None:  
             self.abrir_ReportesSugerencia()
 
-            print("Si funciona")
         else:
             # Muestra un mensaje de error o realiza alguna acción según tu lógica
             print("Código de empleado no válido")
@@ -162,14 +415,14 @@ class NuevaSugerencia(Toplevel):
 
         if confirmacion:
             sug = Sugerencia(tipo, sugerencia_texto)
+            # Agregar a la serialización
+            Serializador.agregarSugerenciaNueva(sug)
             # Mostrar el objeto sugerencia en el área de texto
             self.mostrar_resultado(str(sug))
+            
         else:
             resultado = "La sugerencia no fue guardada"
             self.mostrar_resultado(resultado)
-            
-        
-          
         
 class VentanaSugerencia(Toplevel):
     def __init__(self, master=None):
@@ -190,9 +443,7 @@ class VentanaSugerencia(Toplevel):
     def mostrar_reportes(self):
         ventana = VentanaVerificacionSugerencia(self)
     
-#Fin de sugerencias
-
-    
+#Fin de clases para la opcion sugerencias
 
 #Lo que va a importar el main
 class AtencionCliente(Frame):
@@ -217,7 +468,7 @@ class AtencionCliente(Frame):
         botonSugerencia.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonQueja(self):
-        botonQueja = Button(self, text="Queja", command=self.mostrar, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonQueja = Button(self, text="Queja", command=self._crear_ventana_queja, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonQueja.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonReseña(self):
@@ -230,6 +481,9 @@ class AtencionCliente(Frame):
 
     def _crear_ventana_sugerencia(self):
         ventana_sugerencia = VentanaSugerencia(self)
+
+    def _crear_ventana_queja(self):
+        ventana_sugerencia = VentanaQueja(self)
         
 
     def mostrar(self):

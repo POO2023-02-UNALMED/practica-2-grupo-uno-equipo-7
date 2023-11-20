@@ -43,7 +43,7 @@ class Empleado(Persona):
         return self._amonestaciones
     
     def nuevaAmonestacion(self,empleado):
-        empleados = self.Empleados
+        empleados = self.getEmpleados()
         for i in empleados:
             if i == empleado:
                 empleado.setAmonestaciones()
