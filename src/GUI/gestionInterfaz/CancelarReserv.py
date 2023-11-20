@@ -58,7 +58,6 @@ class CancelarReserv(tk.Frame):
         reservasCliente = []
         
         for reserva in Reserva.listaReservas:
-            print( reserva.getCliente().getId() ,  int(id)  )
             if (reserva.getCliente().getId() == int(id)):
                 reservasCliente.append(reserva)
                 
@@ -71,6 +70,7 @@ class CancelarReserv(tk.Frame):
         self._desplegable = Combobox(self, state="readonly", font=FONT2)
         self._desplegable.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         
+        self._desplegable.configure(values=reservas)
         self._desplegable.set("Seleccione su reservación")
         self._desplegable.bind("<<ComboboxSelected>>", lambda event: self.eliminar_reserva(self._desplegable.get()))  
         
