@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Empleado import Empleado
+from baseDatos import Deserializador
 
 #Inicio Sugerencias
 
@@ -26,25 +27,59 @@ class ReportesSugerencia(Toplevel):
         botonSugerenciaO = Button(self, text="Reporte de sugerencias otros", command=self.reporte_sugerencias_otros, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerenciaO.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
+
     def reporte_todas_sugerencias(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
         # Lógica para el reporte de todas las sugerencias
-        print("Reporte de todas las sugerencias")
+        a = Deserializador.SugerenciasT()
+        for resultado in a:
+            self.mostrar_resultado(resultado)
+            self.mostrar_resultado("\n")
+
+
 
     def reporte_sugerencias_menu(self):
-        # Lógica para el reporte de sugerencias del menú
-        print("Reporte de sugerencias del menú")
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.SugerenciaXTipo("Menu")
+        for resultado in a:   # Aquí deberías generar el contenido del reporte
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
 
     def reporte_sugerencias_empleados(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.SugerenciaXTipo("Empleado")
         # Lógica para el reporte de sugerencias sobre empleados
-        print("Reporte de sugerencias sobre empleados")
+        for resultado in a:  # Aquí deberías generar el contenido del reporte
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
 
     def reporte_sugerencias_sede(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.SugerenciaXTipo("Sede")
         # Lógica para el reporte de sugerencias de sede
-        print("Reporte de sugerencias de sede")
+        for resultado in a: # Aquí deberías generar el contenido del reporte
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
 
     def reporte_sugerencias_otros(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.SugerenciaXTipo("Otro")
         # Lógica para el reporte de sugerencias otros
-        print("Reporte de sugerencias otros")
+        for resultado in a:  # Aquí deberías generar el contenido del reporte
+            self.mostrar_resultado(str(resultado))
+
+    def mostrar_resultado(self, resultado):
+        # Insertar el resultado en la última línea del área de texto
+        self.resultado_text.insert('end', resultado + '\n')
+        # Desplazar la vista de la caja de texto para mostrar la última línea
+        self.resultado_text.see('end')
 
 class VentanaVerificacionSugerencia(Toplevel):
     def __init__(self, master=None):
@@ -106,25 +141,34 @@ class NuevaSugerencia(Toplevel):
         boton_guardar = Button(self, text="Guardar", command=self.confirmar_guardar_sugerencia, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         boton_guardar.pack(side=TOP, pady=10)
 
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
+
+    def mostrar_resultado(self, resultado):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        # Insertar el resultado en el área de texto
+        self.resultado_text.insert('end', resultado)
+
     def confirmar_guardar_sugerencia(self):
         tipo = self.var_tipo.get()
-        sugerencia = self.entry_sugerencia.get()
+        sugerencia_texto = self.entry_sugerencia.get()
 
         # Crear un mensaje de confirmación
-        mensaje_confirmacion = f"¿Está seguro que desea enviar esta sugerencia?\n\nTipo: {tipo}\nSugerencia: {sugerencia}"
+        mensaje_confirmacion = f"¿Está seguro que desea enviar esta sugerencia?\n\nTipo: {tipo}\nSugerencia: {sugerencia_texto}"
 
         # Mostrar el cuadro de diálogo de confirmación
         confirmacion = messagebox.askokcancel("Confirmación", mensaje_confirmacion)
 
         if confirmacion:
-            sug = Sugerencia(tipo, sugerencia)
-            print("Sugerencia guardada:", sug)
-            # Cerrar la ventana después de guardar la sugerencia
-            self.destroy()
-
+            sug = Sugerencia(tipo, sugerencia_texto)
+            # Mostrar el objeto sugerencia en el área de texto
+            self.mostrar_resultado(str(sug))
         else:
-            print("La sugerencia no fue guardada")
-            self.destroy()
+            resultado = "La sugerencia no fue guardada"
+            self.mostrar_resultado(resultado)
+            
+        
           
         
 class VentanaSugerencia(Toplevel):
@@ -141,9 +185,11 @@ class VentanaSugerencia(Toplevel):
 
     def crear_nueva_sugerencia(self):
         ventana_nueva_sugerencia = NuevaSugerencia(self)
+    
 
     def mostrar_reportes(self):
         ventana = VentanaVerificacionSugerencia(self)
+    
 #Fin de sugerencias
 
     
@@ -184,6 +230,7 @@ class AtencionCliente(Frame):
 
     def _crear_ventana_sugerencia(self):
         ventana_sugerencia = VentanaSugerencia(self)
+        
 
     def mostrar(self):
         print("Prueba")
