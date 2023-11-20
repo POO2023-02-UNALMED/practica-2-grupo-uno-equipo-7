@@ -71,7 +71,7 @@ class k:
 
 
 # Crear botones
-        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command= self.show_articulo(codigo_entry.get(), nombre_entry.get(), Restaurante.sedes[self.num].inventario.listado_items))
+        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command= self.show_articulo(codigo_entry.get(), nombre_entry.get()))
         boton_borrar = ttk.Button(self.frame_inf, text="Borrar")
     
 
@@ -88,8 +88,8 @@ class k:
         
         
         
-    def show_articulo(self, num, nombre,listaItems):
-        item=Item.buscar_item(nombre, listaItems)
+    def show_articulo(self, num, nombre):
+        item=Item.buscar_item(nombre)
         
         if item==None:
             label_precio= ttk.Label( self.frame_inf, text= "Items no encontradosss" )

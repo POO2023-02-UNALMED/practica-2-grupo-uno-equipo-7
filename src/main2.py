@@ -10,28 +10,36 @@ from gestorAplicacion.inventarioaply import *
 from gestorAplicacion.Reserva import *
 
 
+
 if __name__ == "__main__":
+    cliente1 = Cliente("Juan Perez", 1, "Calle 123", "555-1234", "juanperez@example.com", "2021-01-01")
+    cliente2 = Cliente("Maria Garcia", 2, "Calle 456", "555-5678", "mariagarcia@example.com", "2021-02-01")
+    cliente3 = Cliente("Pedro Rodriguez", 3, "Calle 789", "555-9012", "pedrorodriguez@example.com", "2021-03-01")
+
     cliente1 = Cliente("Juan Perez", 1, "Calle 123", "555-1234", "juanperez@example.com", "2021-01-01")
     cliente2 = Cliente("Maria Garcia", 2, "Calle 456", "555-5678", "mariagarcia@example.com", "2021-02-01")
     cliente3 = Cliente("Pedro Rodriguez", 3, "Calle 789", "555-9012", "pedrorodriguez@example.com", "2021-03-01")
 
     inventario1 = Inventarioaply()
     inventario2 = Inventarioaply()
+    inventario3 = Inventarioaply()
+    inventario4 = Inventarioaply()
 
-    item1 = Item("Tortilla",10, 1000,"2022-12-31", inventario1)
+    item1 = Item("Tortilla",10, 1000,"2024-12-31", inventario1)
     item2 = Item("Carne",15, 2000,"2022-12-31", inventario1)
     item3 = Item("Queso",10, 3000,"2022-12-31", inventario1)
-    item4 = Item("Lechuga",10, 4000,"2022-12-31", inventario1)
+    item4 = Item("Lechuga",10, 4000,"2024-12-31", inventario1)
     item5 = Item("Tomate",5, 5000,"2022-12-31", inventario1)
     item6 = Item("Tortilla",10, 1000,"2022-12-31", inventario2)
     item7 = Item("Carne",10, 2000,"2022-12-31", inventario2)
     item8 = Item("Queso",5, 3000,"2022-12-31", inventario2)
+    
 
     ingredientes1 = [item1, item2, item3, item4, item5]
     ingredientes2 = [item6, item2, item3, item4, item5]
     ingredientes3 = [item7, item2, item3, item4, item5]
     ingredientes4 = [item1, item2, item3, item4, item5]
-    ingredientes5 = [item6, item3, item2]
+    ingredientes5 = [item1, item8]
     
     plato1 = Plato("Taco", ingredientes1, 1000)
     plato2 = Plato("Tostada", ingredientes2, 2000)
@@ -54,19 +62,17 @@ if __name__ == "__main__":
     factura1 = Factura(1, 1, 1, "2022-11-01", 0, [plato2, plato3])
     factura2 = Factura(2, 2, 2, "2022-11-02", 0, [plato4, plato2])
     # crear restaurantes 
-    inventario1 = Inventarioaply()
-    inventario2 = Inventarioaply()
-    inventario3 = Inventarioaply()
-    inventario4 = Inventarioaply()
+  
 
-    Restaurante.sedes.append(Restaurante("Sede: Envigado", "Calle 1", inventario1,
-                                 Caja(1000000, 1234), 1234567, date.today(), Plato.getListadoplatos(), []))
-    Restaurante.sedes.append(Restaurante("Sede: Sandiego", "Calle 2", inventario2,
-                                 Caja(10000000, 1235), 1234567, date.today(), Plato.getListadoplatos(), []))
-    Restaurante.sedes.append(Restaurante("Sede: Belen", "Calle 3", inventario3,
-                                 Caja(10000000, 1236), 1234567, date.today(), Plato.getListadoplatos(), []))
-    Restaurante.sedes.append(Restaurante("Sede: La America", "Calle 4", inventario4,
-                                 Caja(10000000,1237), 1234567, date.today(), Plato.getListadoplatos(), []))
+    Restaurante("Sede: Envigado", "Calle 1", inventario1,
+                                 Caja(1000000, 1234), 1234567, date.today(), Plato.getListadoplatos(), [])
+    Restaurante("Sede: Sandiego", "Calle 2", inventario2,
+                                 Caja(10000000, 1235), 1234567, date.today(), Plato.getListadoplatos(), [])
+    Restaurante("Sede: Belen", "Calle 3", inventario3,
+                                 Caja(10000000, 1236), 1234567, date.today(), Plato.getListadoplatos(), [])
+    Restaurante("Sede: La America", "Calle 4", inventario4,
+                                 Caja(10000000,1237), 1234567, date.today(), Plato.getListadoplatos(), [])
+   
 
     #(self, nombre, cargo, sueldo, codigoSede):
     Empleado("David Silva", "Gerente Administrativo", "1", 3000, 1)

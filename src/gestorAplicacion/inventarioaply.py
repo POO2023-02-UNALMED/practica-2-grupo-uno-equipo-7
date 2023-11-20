@@ -38,7 +38,7 @@ class Inventarioaply:
     def mostrar_items_vencidos(self):
         items_vencidos = []
         for item in self.listado_items:
-            if item.esta_vencido():
+            if item.esta_vencido()==True:
                 items_vencidos.append(item)
         return items_vencidos
 
