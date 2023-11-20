@@ -8,6 +8,7 @@ from gestorAplicacion.Caja import *
 from gestorAplicacion.Item import *
 from gestorAplicacion.inventarioaply import *
 from gestorAplicacion.Reserva import *
+from gestorAplicacion.Pedido import *
 
 
 
@@ -25,7 +26,7 @@ if __name__ == "__main__":
     inventario3 = Inventarioaply()
     inventario4 = Inventarioaply()
 
-    item1 = Item("Tortilla",10, 1000,"2024-12-31", inventario1)
+    item1 = Item("Tortilla",0, 1000,"2024-12-31", inventario1)
     item2 = Item("Carne",15, 2000,"2022-12-31", inventario1)
     item3 = Item("Queso",10, 3000,"2022-12-31", inventario1)
     item4 = Item("Lechuga",10, 4000,"2024-12-31", inventario1)
@@ -61,6 +62,14 @@ if __name__ == "__main__":
     factura1 = Factura(1, 1, 1, "2022-11-01", 0, [plato1, plato2])
     factura1 = Factura(1, 1, 1, "2022-11-01", 0, [plato2, plato3])
     factura2 = Factura(2, 2, 2, "2022-11-02", 0, [plato4, plato2])
+
+    #crear pedidos nombre: str, identificacion:int, direccionPedido: str, tipoPedido: str 
+    pedido1 = Pedido("Sergio Perez", 1054456608, "El Chagualo", "De envio")
+    pedido2 = Pedido("Carlos Sainz", 1033556576, "Barrio España", "Para recoger")
+    pedido3 = Pedido("Fernando Alonso", 1984543324, "Barrio España", "Para Recoger")
+    pedido4 = Pedido("Juan Montoya", 4344434434, "Barrio America", "De envio")
+
+
     # crear restaurantes 
   
 

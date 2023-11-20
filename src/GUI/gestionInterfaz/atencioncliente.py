@@ -118,86 +118,75 @@ class NuevaQueja(Toplevel):
         super().__init__(master)
         self.title("Queja")
         self.configure(background="#72a18b")
+        self.geometry("900x1000")
 
         label_Nombre = Label(self, text="Nombre:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-        label_Nombre.pack(side=TOP, pady=5)
+        label_Nombre.pack(side="top", pady=5)
         self.entry_Nombre = Entry(self, width=30)
-        self.entry_Nombre.pack(side=TOP, pady=5)
+        self.entry_Nombre.pack(side="top", pady=5)
 
         # Etiqueta y menú desplegable
         label_tipo = Label(self, text="Tipo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-        label_tipo.pack(side=TOP, pady=5)
+        label_tipo.pack(side="top", pady=5)
 
-        opciones_tipo = ["Menu", "Empleado", "Sedes", "Otros"]
+        opciones_tipo = ["Menu", "Empleado", "Sede", "Otros"]
         self.var_tipo = StringVar(self)
         self.var_tipo.set(opciones_tipo[3])  # Establecer el valor predeterminado
-        menu_tipo = OptionMenu(self, self.var_tipo, *opciones_tipo)
-        menu_tipo.pack(side=TOP, pady=5)
+        menu_tipo = OptionMenu(self, self.var_tipo, *opciones_tipo, command=self.cambiarOtro)
+        menu_tipo.pack(side="top", pady=5)
+
+        
 
         self.otro_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-        self.otro_text.pack(side='top', fill='both', padx=10, pady=10)
+        self.otro_text.pack(side="top", fill="both", padx=10, pady=10)
 
-        self.otro = ""
-
-        if self.var_tipo.get() == "Sede":
-            label_sede = Label(self, text="Sede:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-            label_sede.pack(side=TOP, pady=5)
-
-            opciones_sede = ["Sede: Envigado", "Sede: Sandiego", "Sede: Belen", "Sede: La America"]
-            self.var_sede = StringVar(self)
-            self.var_sede.set(opciones_sede[3])  # Establecer el valor predeterminado
-            menu_sede = OptionMenu(self, self.var_sede, *opciones_sede)
-            menu_sede.pack(side=TOP, pady=5)
-            self.otro = self.var_sede.get()
-        
-        elif self.var_tipo.get() == "Menu":
-            label_plato = Label(self, text="Plato:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-            label_plato.pack(side=TOP, pady=5)
-            self.entry_plato = Entry(self, width=30)
-            self.entry_plato.pack(side=TOP, pady=5)
-            self.otro = self.entry_queja.get()
-        
-        elif self.var_tipo.get() == "Empleado":
-            label_empleado = Label(self, text="Empleado:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-            label_empleado.pack(side=TOP, pady=5)
-            self.entry_empleado = Entry(self, width=30)
-            self.entry_empleado.pack(side=TOP, pady=5)
-            self.otro = self.entry_empleado.get()
+        label_Sobre = Label(self, text="Sobre:", bg= "#a19f9f", font =("Roboto", 12), fg ="#0a0a0a")
+        label_Sobre.pack(side="top", pady=5)
+        self.entry_otro = Entry(self, width=30)
+        self.entry_otro.pack(side="top", pady=5)
+    
 
         # Etiqueta y entrada para la queja
         label_Queja = Label(self, text="Queja:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-        label_Queja.pack(side=TOP, pady=5)
+        label_Queja.pack(side="top", pady=5)
 
         self.entry_queja = Entry(self, width=30)
-        self.entry_queja.pack(side=TOP, pady=5)
+        self.entry_queja.pack(side="top", pady=5)
 
         # Botón para guardar la queja
         boton_guardar = Button(self, text="Guardar", command=self.confirmar_guardar_queja, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-        boton_guardar.pack(side=TOP, pady=10)
+        boton_guardar.pack(side="top", pady=10)
 
         self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
-        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
-    
-    def cambiarOtro(self):
+        self.resultado_text.pack(side="top", fill="both", padx=10, pady=10)
+
+    def cambiarOtro(self, *args):
         resultado = ""
         tipo = self.var_tipo.get()
-        if tipo == "Menu":
-            resultado = "Por favor, ingrese el nombre del plato del cual quiere quejarse\nConsejo: Si no cuenta con el nombre del plato se le recomienda hacer una queja del tipo 'Otro'."
+
+        # Primero, ocultar/mostrar menú y etiqueta de sede
+        if tipo == "Sede":
+            resultado = "Por favor, ingrese el nombre de la sede de la cual quiere quejarse en el apartado de 'Sobre:\nConsejo: Escriba 'Sede: ' y luego escriba la sede (Envigado/Sandiego/Belen/La America)"
+
+        elif tipo == "Otros":
+            resultado = "Por favor no llene el apartado 'Sobre: ', no es necesario"
+        # Luego, mostrar el texto correcto en el área de texto
+        elif tipo == "Menu":
+            resultado = "Por favor, ingrese el nombre del plato del cual quiere quejarse en el apartado de 'Sobre:'\nConsejo: Si no cuenta con el nombre del plato se le recomienda hacer una queja del tipo 'Otro'."
+            
         elif tipo == "Empleado":
-            resultado = "Por favor, ingrese el nombre del empleado del cual quiere quejarse\nConsejo: Si no cuenta con el nombre del empleado se le recomienda hacer una queja del tipo 'Otro'."
-        elif tipo == "Sede":
-            resultado = "Por favor, seleccione una sede:"
-        else:
-            resultado = ""
+            resultado = "Por favor, ingrese el nombre del empleado del cual quiere quejarse en el apartado de 'Sobre:' \nConsejo: Si no cuenta con el nombre del empleado se le recomienda hacer una queja del tipo 'Otro'."
+            
         self.mostrar_resultado2(resultado)
+
 
 
     def mostrar_resultado2(self, resultado):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.otro_text.delete(1.0, 'end')
         # Insertar el resultado en el área de texto
-        self.otro_text_text.insert('end', resultado)
-    
+        self.otro_text.insert('end', resultado)
+
     def mostrar_resultado(self, resultado):
         # Limpiar el área de texto antes de mostrar un nuevo resultado
         self.resultado_text.delete(1.0, 'end')
@@ -207,11 +196,11 @@ class NuevaQueja(Toplevel):
     def confirmar_guardar_queja(self):
         nombre = self.entry_Nombre.get()
         tipo = self.var_tipo.get()
-        algo = self.otro
+        algo = self.entry_otro.get()
         queja_texto = self.entry_queja.get()
 
         # Crear un mensaje de confirmación
-        mensaje_confirmacion = f"¿Está seguro que desea enviar esta queja?\nNombre: {nombre}\nTipo: {tipo}\n Sobre: {algo}\nSugerencia: {queja_texto}"
+        mensaje_confirmacion = f"¿Está seguro que desea enviar esta queja?\nNombre: {nombre}\nTipo: {tipo}\nSobre: {algo}\nSugerencia: {queja_texto}"
 
         # Mostrar el cuadro de diálogo de confirmación
         confirmacion = messagebox.askokcancel("Confirmación", mensaje_confirmacion)
@@ -221,8 +210,8 @@ class NuevaQueja(Toplevel):
             # Agregar a la serialización
             Serializador.agregarQuejaNueva(qja)
             # Mostrar el objeto sugerencia en el área de texto
-            self.mostrar_resultado(str(qja))
-            
+            self.mostrar_resultado(qja)
+
         else:
             resultado = "La sugerencia no fue guardada"
             self.mostrar_resultado(resultado)
@@ -366,7 +355,7 @@ class NuevaSugerencia(Toplevel):
         label_tipo = Label(self, text="Tipo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         label_tipo.pack(side=TOP, pady=5)
 
-        opciones_tipo = ["Menu", "Empleado", "Sedes", "Otros"]
+        opciones_tipo = ["Menu", "Empleado", "Sede", "Otros"]
         self.var_tipo = StringVar(self)
         self.var_tipo.set(opciones_tipo[3])  # Establecer el valor predeterminado
         menu_tipo = OptionMenu(self, self.var_tipo, *opciones_tipo)
