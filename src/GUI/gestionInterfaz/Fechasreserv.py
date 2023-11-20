@@ -105,9 +105,9 @@ class Fechasreserv(tk.Frame):
         for reserva in Reserva.listaReservas:
             if reserva.getFecha() == fecha  and reserva.getMiSede() == sedeElegida:
                 messagebox.showinfo( "Advertencia","Ya está reservado")
-                break    
-            else:
-                self.registadoCliente(fecha, sedeElegida, mesa)
+                return   
+        
+        self.registadoCliente(fecha, sedeElegida, mesa)
     
     def registadoCliente(self, fecha, sedeElegida, mesa):
         registro = tk.Toplevel(self)
@@ -116,22 +116,29 @@ class Fechasreserv(tk.Frame):
         label_id = tk.Label(registro, text="Digite su ID", font=("Arial", 15))
         label_id.pack(pady=10)
 
-        entry_id = tk.Entry(registro, width=40)
-        entry_id.focus_set()
-        entry_id.pack()
+        self._entry_id = tk.Entry(registro, width=40)
+        self._entry_id.focus_set()
+        self._entry_id.pack()
         
         label_nombre = tk.Label(registro, text="Digite su nombre", font=("Arial", 15))
         label_nombre.pack(pady=10)
 
-        entry_nm = tk.Entry(registro, width=40)
-        entry_nm.focus_set()
-        entry_nm.pack()
+        self._entry_nm = tk.Entry(registro, width=40)
+        self._entry_nm.focus_set()
+        self._entry_nm.pack()
 
-        boton_guardar = tk.Button(registro, text="Aceptar", height=1, command=lambda: self.mostrarMensaje(entry_id.get(), entry_nm.get(), sedeElegida, mesa, fecha))
+        boton_guardar = tk.Button(registro, text="Aceptar", height=1, command=lambda: self.mostrarMensaje(self._entry_id.get(), self._entry_nm.get(), sedeElegida, mesa, fecha))
         boton_guardar.pack(pady=20)
         
         
     def mostrarMensaje(self, id,nombre, sedeElegida, mesa, fecha):
+        clienteId = self._entry_id.get()
+        try:
+            nombreCliente = Cliente.buscarCliente(int(clienteId)).getNombre()
+            platoPreferido = Cliente.buscarPlatoPreferido(int(clienteId))
+        except:
+            messagebox.showerror("Error", "El id ingresado no es válido o no hay suficientes facturas para calcular el plato preferido")
+            return
         
         miCliente = Cliente(nombre,id)
         miReserva = Reserva(miCliente, sedeElegida, mesa, fecha)

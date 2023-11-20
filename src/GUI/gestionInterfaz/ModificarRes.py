@@ -60,7 +60,14 @@ class ModificarRes(tk.Frame):
         
         
     def buscarReserva(self, id, nombre): 
+        clienteId =  self._entradaId.get()
         
+        try:
+            nombreCliente = Cliente.buscarCliente(int(clienteId)).getNombre()
+            platoPreferido = Cliente.buscarPlatoPreferido(int(clienteId))
+        except:
+            messagebox.showerror("Error", "El id ingresado no es válido o no hay suficientes facturas para calcular el plato preferido")
+            return       
         reservasCliente = []
         
         for reserva in Reserva.listaReservas:
@@ -141,9 +148,9 @@ class ModificarRes(tk.Frame):
         for reserva in Reserva.listaReservas:
             if reserva.getFecha() == fecha  and reserva.getMiSede() == sedeElegida:
                 messagebox.showinfo( "Advertencia","Ya está reservado")
-                break 
-            else:
-                self.actualizacion(fecha, sedeElegida, mesa, reservaModificar)
+                return
+        
+        self.actualizacion(fecha, sedeElegida, mesa, reservaModificar)
         
     def actualizacion(self, fecha, sedeElegida, mesa, reservaModificar):
     
