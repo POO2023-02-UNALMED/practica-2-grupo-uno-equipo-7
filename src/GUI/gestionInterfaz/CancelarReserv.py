@@ -41,6 +41,13 @@ class CancelarReserv(tk.Frame):
         
         
     def buscarReserva(self, id): 
+        clienteId = self._entradaId.get()
+        try:
+            nombreCliente = Cliente.buscarCliente(int(clienteId)).getNombre()
+            platoPreferido = Cliente.buscarPlatoPreferido(int(clienteId))
+        except:
+            messagebox.showerror("Error", "El id ingresado no es válido")
+            return
         
         reservasCliente = []
         
@@ -53,6 +60,7 @@ class CancelarReserv(tk.Frame):
         self.mostrarReserva(reservasCliente)
 
     def mostrarReserva(self, reservas):
+
         
         # Se inicializa el desplegable para mostrar las reservaciones
         self._desplegable = Combobox(self, state="readonly", font=FONT2)
