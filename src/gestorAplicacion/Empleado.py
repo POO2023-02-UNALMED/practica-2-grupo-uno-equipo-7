@@ -77,6 +77,5 @@ class Empleado(Persona):
         for empleado in empleados:
             if empleado.getCodigo() == codigo:
                 return empleado
-            else:
-                return None
+        return None
 
