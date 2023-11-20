@@ -50,7 +50,7 @@ class inventarioapp(tk.Frame):
         var1=Restaurante.get_sedes()[number].inventario.obtener_items_sin_stock()
 
         if len(Restaurante.get_sedes()[number].inventario.obtener_items_sin_stock()) == 0:
-            message = "no hay items vencidos"
+            message = "no hay items vencidos."
         else:
             message = ""
             for i in var1:
