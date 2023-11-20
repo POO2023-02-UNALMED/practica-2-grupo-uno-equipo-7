@@ -64,8 +64,3 @@ def agregarQuejaNueva(nueva_sugerencia):
     with open("src/baseDatos/Quejas.pkl", "wb") as picklefile:
         pickle.dump(quejas_existentes, picklefile)
 
-def aver():
-    for queja in TodasSugerencias:
-        print(queja)
-
-
