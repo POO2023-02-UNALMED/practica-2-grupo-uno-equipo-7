@@ -137,7 +137,7 @@ class Fechasreserv(tk.Frame):
             nombreCliente = Cliente.buscarCliente(int(clienteId)).getNombre()
             platoPreferido = Cliente.buscarPlatoPreferido(int(clienteId))
         except:
-            messagebox.showerror("Error", "El id ingresado no es válido o no hay suficientes facturas para calcular el plato preferido")
+            messagebox.showerror("Error", "El id ingresado no es válido")
             return
         
         miCliente = Cliente(nombre,id)
