@@ -41,15 +41,15 @@ class Inicio(Frame, Tk):
 
         # Condiciones para mostrar cada una de las imagenes del sistema
         if self._numeroImagenesSistema == 0:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s1.png').resize((300,225), Image.Resampling.LANCZOS))
         elif self._numeroImagenesSistema == 1:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s2.png').resize((300,225), Image.Resampling.LANCZOS))
         elif self._numeroImagenesSistema == 2:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s3.png').resize((300,225), Image.Resampling.LANCZOS))
         elif self._numeroImagenesSistema == 3:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s4.png').resize((300,225), Image.Resampling.LANCZOS))
         else :
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s5.png').resize((300,225), Image.Resampling.LANCZOS))
 
         # cambiar la imagen en el label
         self.imagenesSistema.image = imagen_sistema
@@ -205,7 +205,7 @@ class Inicio(Frame, Tk):
     def inicializarWidgetsVentana2(self):
         """Funcion par inicializar los widgets con imagenes del sistema y el boton para ingresar al sistema"""
 
-        imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+        imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s1.png').resize((300,225), Image.Resampling.LANCZOS))
         
         self.imagenesSistema = Label(self._p4, pady=20)
         self.imagenesSistema.image = imagen_sistema
