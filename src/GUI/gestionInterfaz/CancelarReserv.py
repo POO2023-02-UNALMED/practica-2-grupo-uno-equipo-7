@@ -58,6 +58,7 @@ class CancelarReserv(tk.Frame):
         reservasCliente = []
         
         for reserva in Reserva.listaReservas:
+
             if (reserva.getCliente().getId() == int(id)):
                 reservasCliente.append(reserva)
                 

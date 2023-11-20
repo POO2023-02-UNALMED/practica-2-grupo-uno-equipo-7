@@ -12,6 +12,10 @@ class Cliente(Persona):
     contadorClientes = 0
     # create 3 clients
     
+    def __init__(self, nombre: str, id: str):
+        super().__init__(nombre, id)   
+        Cliente.clientes.append(self) 
+    
 
     def __init__(self, nombre: str, id: str, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
         super().__init__(nombre, id)
@@ -23,7 +27,6 @@ class Cliente(Persona):
         Cliente.contadorClientes += 1
         Cliente.clientes.append(self)
 
-        
 
     @staticmethod
     def buscarCliente(codigoCliente: int) -> 'Cliente':

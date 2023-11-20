@@ -83,7 +83,7 @@ if __name__ == "__main__":
     Mesa("Mesa siete", "Cuatro o más personas", "Sede: Sandiego")
     Mesa("Mesa tres", "Dos personas", "Sede: Envigado")
 
-    Reserva(cliente1, Restaurante.sedes[0].get_ubicacion(),  Mesa.listaMesas[1].getUbicacion(), "2023-10-25 14:00 PM")
+    Reserva(cliente1, Restaurante.sedes[0].get_ubicacion(),  Mesa.listaMesas[1], "2023-10-25 14:00 PM")
     
     app = Manager()
     app.mainloop()
