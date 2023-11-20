@@ -41,9 +41,9 @@ class Inicio(Frame, Tk):
 
         # Condiciones para mostrar cada una de las imagenes del sistema
         if self._numeroImagenesSistema == 0:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s1.png').resize((300,225), Image.Resampling.LANCZOS))
         elif self._numeroImagenesSistema == 1:
-            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
+            imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/s2.png').resize((300,225), Image.Resampling.LANCZOS))
         elif self._numeroImagenesSistema == 2:
             imagen_sistema = ImageTk.PhotoImage(Image.open(path+'/Imagenes/capturas_pantalla/sistema1.jpeg').resize((300,225), Image.Resampling.LANCZOS))
         elif self._numeroImagenesSistema == 3:
