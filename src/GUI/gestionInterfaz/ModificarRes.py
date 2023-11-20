@@ -145,11 +145,11 @@ class ModificarRes(tk.Frame):
         self.actualizacion(fecha, sedeElegida, mesa, reservaModificar)
         
     def actualizacion(self, fecha, sedeElegida, mesa, reservaModificar):
-        print(reservaModificar)     
+    
         nuevaReserva = None
         
         for reserva in Reserva.listaReservas:
-            if (reserva.__str__() == nuevaReserva):
+            if (reserva.__str__() == reservaModificar):
                 nuevaReserva = reserva
            
         nuevaReserva.setFecha(fecha) 
