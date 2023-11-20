@@ -41,10 +41,19 @@ class k:
         ## new frame
         self.frame_inf=ttk.Frame(self.ventana,padding="10")
         self.frame_inf.pack(side="top", fill="x", pady="0", anchor="n")
+        ### Consultar precio
+        self.texto_actual2="" 
+        self.varstring = tk.StringVar()
+        ##Consultar items vencidos
+        
+        
         
         
 
     def mostrar_inventario(self):
+        self.texto_actual2=""
+        for i in self.frame_inf.winfo_children():
+            i.destroy() 
         self.lbl_descripcion.config(text="Acá se muestra el inventario actualizado y listo")
         listaRepetidos=[]
         text1=Restaurante.get_sedes()[self.num].ubicacion
@@ -56,6 +65,11 @@ class k:
         
 
     def precio_articulo_inventario(self):
+        self.label_precio = ttk.Label(self.frame_inf, text="", background="red")
+        self.label_precio.grid(row=0, column=4, rowspan=3, columnspan=2)
+        self.varstring = tk.StringVar()
+        
+        
         self.lbl_descripcion.config(text="Busqueda de precio de articulo especifico")
         
    # crear etiquetas 
@@ -71,9 +85,9 @@ class k:
 
 
 # Crear botones
-        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command=lambda: self.show_articulo(codigo_entry.get(), nombre_entry.get()))
+        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command=lambda: [self.show_articulo(codigo_entry.get(), nombre_entry.get()),])
 
-        boton_borrar = ttk.Button(self.frame_inf, text="Borrar")
+        boton_borrar = ttk.Button(self.frame_inf, text="Borrar", command=lambda:[codigo_entry.delete(0, tk.END), nombre_entry.delete(0, tk.END)])
     
 
 # Organizar widgets usando grid
@@ -88,25 +102,58 @@ class k:
         self.lbl_informacion.config(text="Precio del artículo en el inventario")
         
         
-        
     def show_articulo(self, num, nombre):
-        item=Item.buscar_item(nombre)
+       item = Item.buscar_item(nombre)
+       
+       texto_actual=self.varstring.get()
+       precio=float (item.precio*num)
+       
+       
+       
+       
+       
+
+
+       if item is None:
+              self.varstring.set(self.texto_actual2)
+              self.texto_actual2 +="\n Item no encontrado "
+              self.label_precio.config(text=self.texto_actual2)
+              
+       else:
+           self.varstring.set( self.texto_actual2)
+           self.texto_actual2 += "\n" + texto_actual+ item.nombre + " " + "Precio" + str(item.precio) + " X " + str(num) + "  =  " + str(precio)
+           self.label_precio.config(text=self.texto_actual2)
+           
+
+       
+
+    
         
-        if item==None:
-            label_precio= ttk.Label( self.frame_inf, text= "Item no encontrado")
-            label_precio.grid(row=0, column=4, rowspan= 3, columnspan=2)
-            
-        else:
-            label_precio= ttk.Label(self.frame_inf,text= item.nombre + " "+ "Precio"+ str(item.cantidad)+ " X "+ str(num)+ "  =  "+  str(item.cantidad*num) )
-            label_precio.grid(row=0, column=4, rowspan= 3, columnspan=2)
-            
+              
         
         
         
         
 
     def revisar_niveles_de_stock(self):
+        text_stock="Los items sin stock son:"
+        for i in self.frame_inf.winfo_children():
+            i.destroy() 
+        
+        self.lbl_descripcion.config(text="Acá se muestran los items sin stock")
         self.lbl_informacion.config(text="Niveles de stock del inventario")
+        
+        for i in Restaurante.sedes[self.num].inventario.obtener_items_sin_stock():
+            text_stock += "\n"+i
+         
+        label_stock=ttk.Label(self.frame_inf, text=text_stock ) 
+        label_stock.place(x=50, y=50)
+           
+            
+            
+        
+        
+        
 
     def registrar_articulo_en_inventario(self):
         self.lbl_informacion.config(text="Registrar artículo en el inventario")
