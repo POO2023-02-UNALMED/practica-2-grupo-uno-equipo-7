@@ -79,5 +79,8 @@ class CancelarReserv(tk.Frame):
         print(len(Reserva.listaReservas))
         
         Reserva.listaReservas.remove(reservaEliminada)
+        boton_cancelar = tk.Button(self, text="cancelar", height=1, command=lambda: self.buscarReserva(self._entradaId.get(), self._entradanm.get()))
+        boton_cancelar.pack(pady=20)
+        
         
         print(len(Reserva.listaReservas))

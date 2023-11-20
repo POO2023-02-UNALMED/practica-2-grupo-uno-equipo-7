@@ -133,7 +133,7 @@ class Fechasreserv(tk.Frame):
         
     def mostrarMensaje(self, id,nombre, sedeElegida, mesa, fecha):
         
-        miCliente = Cliente(id,nombre)
+        miCliente = Cliente(nombre,id)
         miReserva = Reserva(miCliente, sedeElegida, mesa, fecha)
         messagebox.showinfo("Información", miReserva.__str__())
        
