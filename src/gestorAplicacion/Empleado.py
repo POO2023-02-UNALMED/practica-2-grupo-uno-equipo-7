@@ -79,3 +79,11 @@ class Empleado(Persona):
                 return empleado
         return None
 
+    @staticmethod
+    def init_empelado():
+        Empleado("David Silva", "Gerente Administrativo", "1", 3000, 1)
+        Empleado("Andres Guido", "Gerente Administrativo", "2", 3000, 1)
+        Empleado("Manuel Menza", "Gerente Administrativo", "3", 3000, 2)
+        Empleado("Maria Jose Restrepo", "Gerente Administrativa", "4", 3000, 2)
+        Empleado("Maria Camila Rios", "Gerente Administrativa", "5", 3000, 3)
+        Empleado("Camilo Palacio", "Mesero", "6", 1700, 1)
