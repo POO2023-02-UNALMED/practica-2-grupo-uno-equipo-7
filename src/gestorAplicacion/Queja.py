@@ -132,9 +132,7 @@ class Queja(ServiciosClientes):
         else:
             return "Hay un total de (" + countQuejasOtros + ") quejas del tipo: OTRO."
     
-    
+    @classmethod
     def cantidadAmonestaciones(self):
-        if hasattr(self, '_empleado') and self._empleado is not None:
-            return f"Nombre empleado: {self._empleado.getNombre()} tiene ({self._empleado.cantidadAmonestaciones()})"
-        else:
-            return f"Nombre empleado: {self._empleado.getNombre()} tiene ({self._empleado.cantidadAmonestaciones()})"
+        return f"Nombre empleado: {self._empleado.getNombre()} tiene ({self._empleado.getAmonestaciones()})"
+        
