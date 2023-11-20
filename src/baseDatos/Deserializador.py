@@ -1,12 +1,22 @@
 import pickle
+from baseDatos import Serializador
+from gestorAplicacion.Sugerencia import Sugerencia
 
-def main():
-    # Lectura del archivo serializado
-   
-    with open("src/baseDatos/Prueba.pkl","rb") as picklefile:
-        s = pickle.load(picklefile)
+def imprimirAllSugerencias():
+    Serializador.main()
+    with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
+        Sugerencias = pickle.load(picklefile)
 
-    #Ejecucion metodos para comporbar deserializacion
-    for a in s:
-        print(a)
+    for sugerencia in Sugerencias:
+        print(sugerencia)
         print("\n")
+
+def imprimirSugerenciaXTipo(tipo):
+    with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
+        Sugerencias = pickle.load(picklefile)
+
+    for sugerencia in Sugerencias:
+        if sugerencia.getTipo() == tipo:
+            print(sugerencia)
+            print("\n")
+        

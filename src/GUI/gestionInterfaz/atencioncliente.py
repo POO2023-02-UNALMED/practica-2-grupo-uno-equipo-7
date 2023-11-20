@@ -9,29 +9,51 @@ class ReportesSugerencia(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
         self.title("Reporte de Sugerencias")
+        self.configure(background="#72a18b")
 
-        botonSugerencias = Button(self, text="Reporte de todas las sugerencias", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerencias = Button(self, text="Reporte de todas las sugerencias", command=self.reporte_todas_sugerencias, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerencias.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        botonSugerenciaM = Button(self, text="Reporte de sugerencias del menu", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaM = Button(self, text="Reporte de sugerencias del menu", command=self.reporte_sugerencias_menu, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerenciaM.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        botonSugerenciaE = Button(self, text="Reporte de sugerencias sobre empleados", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaE = Button(self, text="Reporte de sugerencias sobre empleados", command=self.reporte_sugerencias_empleados, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerenciaE.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        botonSugerenciaS = Button(self, text="Reporte de sugerencias de sede", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaS = Button(self, text="Reporte de sugerencias de sede", command=self.reporte_sugerencias_sede, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerenciaS.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        botonSugerenciaO = Button(self, text="Reporte de sugerencias otros", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerenciaO = Button(self, text="Reporte de sugerencias otros", command=self.reporte_sugerencias_otros, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerenciaO.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+    def reporte_todas_sugerencias(self):
+        # Lógica para el reporte de todas las sugerencias
+        print("Reporte de todas las sugerencias")
+
+    def reporte_sugerencias_menu(self):
+        # Lógica para el reporte de sugerencias del menú
+        print("Reporte de sugerencias del menú")
+
+    def reporte_sugerencias_empleados(self):
+        # Lógica para el reporte de sugerencias sobre empleados
+        print("Reporte de sugerencias sobre empleados")
+
+    def reporte_sugerencias_sede(self):
+        # Lógica para el reporte de sugerencias de sede
+        print("Reporte de sugerencias de sede")
+
+    def reporte_sugerencias_otros(self):
+        # Lógica para el reporte de sugerencias otros
+        print("Reporte de sugerencias otros")
 
 class VentanaVerificacionSugerencia(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
         self.title("Acesso Empleados")
+        self.configure(background="#72a18b")
         
         # Etiqueta de instrucción
-        Label(self, text="Necesita un código de empleado para acceder a esta funcion").pack()
+        Label(self, text="Necesita un código de empleado para acceder a esta funcion",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
 
         # Entry para ingresar el código
         label_sugerencia = Label(self, text="Codigo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
@@ -40,7 +62,7 @@ class VentanaVerificacionSugerencia(Toplevel):
         self.entry_codigo.pack()
 
         # Botón para verificar el código
-        Button(self, text="Verificar", command=self.verificar_codigo).pack()
+        Button(self, text="Verificar", command=self.verificar_codigo, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a").pack()
 
     def verificar_codigo(self):
         codigo_empleado = self.entry_codigo.get()
@@ -141,23 +163,23 @@ class AtencionCliente(Frame):
         self._botonDevolucion()
 
     def _mostrarTitulo(self):
-        label1 = Label(self, text="Bienvenido al centro de Atencion al cliente\n¿Que desea realizar?", bg="#a19f9f", font=("Roboto", 20), fg="#0a0a0a")
+        label1 = Label(self, text="Bienvenido al centro de Atencion al cliente\n¿Que desea realizar?", bg="#72a18b", font=("Roboto", 20), fg="#0a0a0a")
         label1.pack(side=TOP, fill=BOTH, pady=10)
 
     def _botonSugerencia(self):
-        botonSugerencia = Button(self, text="Sugerencia", command=self._crear_ventana_sugerencia, font=("Roboto", 12), fg="#0a0a0a")
+        botonSugerencia = Button(self, text="Sugerencia", command=self._crear_ventana_sugerencia, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonSugerencia.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonQueja(self):
-        botonQueja = Button(self, text="Queja", command=self.mostrar, font=("Roboto", 12), fg="#0a0a0a")
+        botonQueja = Button(self, text="Queja", command=self.mostrar, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonQueja.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonReseña(self):
-        botonReseña = Button(self, text="Reseña", command=self.mostrar, font=("Roboto", 12), fg="#0a0a0a")
+        botonReseña = Button(self, text="Reseña", command=self.mostrar, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonReseña.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonDevolucion(self):
-        botonDevolucion = Button(self, text="Devolución", command=self.mostrar, font=("Roboto", 12), fg="#0a0a0a")
+        botonDevolucion = Button(self, text="Devolución", command=self.mostrar, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonDevolucion.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _crear_ventana_sugerencia(self):
