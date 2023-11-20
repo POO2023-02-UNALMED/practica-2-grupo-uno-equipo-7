@@ -67,7 +67,7 @@ class ModificarRes(tk.Frame):
 
     def mostrarReserva(self, reservas):
         
-        # Se inicializa el desplegable para mostrar los platos recomendados para el cliente
+        # Se inicializa el desplegable para mostrar las reservaciones
         self._desplegable = Combobox(self, state="readonly", font=FONT2)
         self._desplegable.pack(side=TOP, fill=BOTH, padx=10, pady=10)
         
