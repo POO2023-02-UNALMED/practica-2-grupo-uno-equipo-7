@@ -10,6 +10,7 @@ from GUI.gestionInterfaz.atencioncliente import AtencionCliente
 from GUI.gestionInterfaz.OpcionesDePedios import OpcionesDePedidos
 from GUI.gestionInterfaz.Fechasreserv import Fechasreserv
 from GUI.gestionInterfaz.CancelarReserv import CancelarReserv
+from GUI.gestionInterfaz.ModificarRes import ModificarRes
 
 
 
@@ -49,6 +50,7 @@ class MenuPrincipal(Menu):
         menuProcesos.add_command(label="Pedidos",command=self.abrirOpcionesPedidos)
         menuProcesos.add_command(label="Generar Reservaciones", command= self.GenerarReservaciones)
         menuProcesos.add_command(label="Cancelar Reservaciones", command= self.cancelarReservaciones)
+        menuProcesos.add_command(label="Modificar Reservaciones", command= self.modificarReservaciones)
         menuProcesos.add_command(label="Atencion al cliente",command=self.abrirAtencionCliente)
         menuAyuda.add_command(label="Acerca de", command=self.quienesSomos)### Acá estoy, Andrés.....
         #menuProcesos.add_command(label="Gestion inventario", comnad= )## ya lo relleno- Andrés
@@ -106,5 +108,8 @@ class MenuPrincipal(Menu):
         
     def cancelarReservaciones(self):
         self._padre.mostrarFuncionalidades(CancelarReserv)
+        
+    def modificarReservaciones(self):
+        self._padre.mostrarFuncionalidades(ModificarRes)
 
 
