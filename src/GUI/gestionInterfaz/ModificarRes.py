@@ -132,7 +132,7 @@ class ModificarRes(tk.Frame):
         
         self._desplegable.configure(values=sede_nombres)
         self._desplegable.set("Seleccione la sede deseada")
-        boton_cancelar = tk.Button(self, text="Aceptar", height=1, command=lambda: self.actualizacionRe(fecha, sedesEncontradas, mesa, reservaModificar ))
+        boton_cancelar = tk.Button(self, text="Aceptar", height=1, command=lambda: self.actualizacionRe(fecha, self._desplegable.get(), mesa, reservaModificar ))
         boton_cancelar.pack(pady=20)
 
         
@@ -142,7 +142,8 @@ class ModificarRes(tk.Frame):
             if reserva.getFecha() == fecha  and reserva.getMiSede() == sedeElegida:
                 messagebox.showinfo( "Advertencia","Ya está reservado")
                 break 
-        self.actualizacion(fecha, sedeElegida, mesa, reservaModificar)
+            else:
+                self.actualizacion(fecha, sedeElegida, mesa, reservaModificar)
         
     def actualizacion(self, fecha, sedeElegida, mesa, reservaModificar):
     

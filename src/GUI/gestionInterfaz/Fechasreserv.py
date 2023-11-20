@@ -32,7 +32,7 @@ class Fechasreserv(tk.Frame):
         # Crea un nuevo estilo personalizado (My.TCombobox) y ajusta la altura (padding)
         combo_style.configure('My.TCombobox', padding=[20, 5, 90, 5])
         combo1 = ttk.Combobox(self, values=["2023-10-25 14:00 PM", "2023-10-25 18:00 PM", "2023-10-26 12:00 PM", "2023-10-30 11:00 AM"], textvariable=valor_defecto,
-                             style='My.TCombobox')
+                             style='My.TCombobox', state="readonly")
         combo1.grid(row=1, column=1, padx=2, pady=10, sticky="w")
 
         otro_label = tk.Label(self, text="Seleccionar Fecha ", font=("Arial", 20), bg="white")
@@ -47,7 +47,7 @@ class Fechasreserv(tk.Frame):
         # Crea un nuevo estilo personalizado (My.TCombobox) y ajusta la altura (padding)
         combo_style.configure('My.TCombobox', padding=[20, 5, 90, 5])
         combo2 = ttk.Combobox(self, values=["Dos personas", "Tres personas", "Cuatro o más personas"], textvariable=valor_defecto,
-                             style='My.TCombobox')
+                             style='My.TCombobox', state="readonly")
         combo2.grid(row=2, column=1, padx=2, pady=10, sticky="w")
 
         otro_label2 = tk.Label(self, text="Seleccionar Mesa ", font=("Arial", 20), bg="white")
@@ -86,7 +86,7 @@ class Fechasreserv(tk.Frame):
         valor_defecto_sedes = tk.StringVar(value="Sedes")
         combo_style2 = ttk.Style()
         combo_style2.configure('My.TCombobox', padding=[20, 5, 90, 5])
-        combo3 = ttk.Combobox(self, values=sede_nombres, textvariable=valor_defecto_sedes, style='My.TCombobox')
+        combo3 = ttk.Combobox(self, values=sede_nombres, textvariable=valor_defecto_sedes, style='My.TCombobox', state="readonly")
         combo3.grid(row=1, column=1, padx=2, pady=10, sticky="w")
 
         otro_label3 = tk.Label(self, text="Seleccionar Sede ", font=("Arial", 20), bg="white")
@@ -105,9 +105,9 @@ class Fechasreserv(tk.Frame):
         for reserva in Reserva.listaReservas:
             if reserva.getFecha() == fecha  and reserva.getMiSede() == sedeElegida:
                 messagebox.showinfo( "Advertencia","Ya está reservado")
-                break 
-            
-        self.registadoCliente(fecha, sedeElegida, mesa)
+                break    
+            else:
+                self.registadoCliente(fecha, sedeElegida, mesa)
     
     def registadoCliente(self, fecha, sedeElegida, mesa):
         registro = tk.Toplevel(self)
