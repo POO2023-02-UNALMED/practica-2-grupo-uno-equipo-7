@@ -72,6 +72,17 @@ def QuejasT():
     
     return Lista
 
+def PedidosT():
+    Lista = []
+    with open("src/baseDatos/Pedidos.pkl","rb") as picklefileP:
+        Pedidos = pickle.load(picklefileP)
+    
+    for Pedido in Pedidos:
+        Lista.append(Pedido)
+    
+    return Lista
+
+
 
 
 

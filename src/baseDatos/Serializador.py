@@ -1,9 +1,11 @@
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
 from gestorAplicacion.inventarioaply import *
+from gestorAplicacion.Pedido import Pedido
 
 import pickle
-
+TodosLosPedidos = []
+TodosLosPedidos = Pedido.mostrarListPedidos()
 TodasSugerencias = []
 TodasSugerencias = Sugerencia.getTAllSugerences()
 TodasQuejas = []
@@ -33,6 +35,14 @@ def main2():
     with open("src/baseDatos/Quejas.pkl","wb") as picklefileQ:
         pickle.dump(TodasQuejas, picklefileQ)
 
+def main3():
+    pedido1 = Pedido("Sergio Perez", 1054456608, "El Chagualo", "De envio")
+    pedido2 = Pedido("Carlos Sainz", 1033556576, "Barrio España", "Para recoger")
+    pedido3 = Pedido("Fernando Alonso", 1984543324, "Barrio España", "Para Recoger")
+    pedido4 = Pedido("Juan Montoya", 4344434434, "Barrio America", "De envio")
+
+    with open("src/baseDatos/Pedidos.pkl","wb") as picklefileP:
+        pickle.dump(TodosLosPedidos, picklefileP)
 
 def agregarSugerenciaNueva(nueva_sugerencia):
     # Cargar las sugerencias existentes del archivo pickle
@@ -63,6 +73,21 @@ def agregarQuejaNueva(nueva_sugerencia):
     # Guardar la lista actualizada de sugerencias en el archivo pickle
     with open("src/baseDatos/Quejas.pkl", "wb") as picklefile:
         pickle.dump(quejas_existentes, picklefile)
+
+def AgregarNuevoPedido(nuevo_pedido):
+    # Cargar las sugerencias existentes del archivo pickle
+    try:
+        with open("src/baseDatos/Pedidos.pkl", "rb") as picklefileP:
+                Pedidos_existentes = pickle.load(picklefileP)
+    except FileNotFoundError:
+        Pedidos_existentes = []
+
+    # Agregar la nueva sugerencia a la lista de sugerencias
+    Pedidos_existentes.append(nuevo_pedido)
+
+    # Guardar la lista actualizada de sugerencias en el archivo pickle
+    with open("src/baseDatos/Pedidos.pkl", "wb") as picklefileP:
+        pickle.dump(Pedidos_existentes, picklefileP)
 
 def aver():
     for queja in TodasSugerencias:

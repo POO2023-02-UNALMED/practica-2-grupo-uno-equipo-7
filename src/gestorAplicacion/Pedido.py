@@ -44,9 +44,11 @@ class Pedido:
     def getDirPedido(self):
         return self._direccionPedido
     
-    def mostrarListPedidos(self):
-        return Pedido.listado_pedidos
+    @classmethod
+    def mostrarListPedidos(cls):
+        return cls.listado_pedidos
         #aquí se podria mostrar los pedidos anteriores, el estado, su dirección, el codigo del pedido, el monto total, etc.
+    
 
     
     def GenerarPedido(self):
