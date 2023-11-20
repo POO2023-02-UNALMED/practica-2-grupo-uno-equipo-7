@@ -5,10 +5,42 @@ from gestorAplicacion.Pedido import Pedido
 from gestorAplicacion.Empleado import Empleado
 from gestorAplicacion.Plato import Plato
 
+##Ventanas Finales
+class MostrarVentanaFinal(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Ventana de confirmación")
+        self.configure(background=BACKGROUND_CONTENEDOR)
+        labelInicial = Label(self, justify=CENTER, text="Pedido Confirmado", bg=BACKGROUND_FRAMES, font=FONT2, fg=FG)
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
+        labelInicial = Label(self, justify=CENTER, text="Su pedido esta en camino o lo espera para ser recogido", bg=BACKGROUND_FRAMES, font=FONT2, fg=FG)
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
+        labelInicial = Label(self, justify=CENTER, text="Gracias por comprar en el restaurante de Toño", bg=BACKGROUND_FRAMES, font=FONT2, fg=FG)
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
+##Ventanas semifinales
+class VentanaConfir(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Ventana de confirmación")
+        self.configure(background=BACKGROUND_CONTENEDOR)
+        labelInicial = Label(self, justify=CENTER, text="¿Desea confirmar su pedido?", bg=BACKGROUND_FRAMES, font=FONT2, fg=FG)
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
+        # Botón para confirmar el pedido
+        boton_guardar = Button(self, text="Confirmar", command=self.VentanaFin,bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        boton_guardar.pack(side=TOP, pady=10)
+
+        # Botón para no confirmar el pedido
+        boton_guardar = Button(self, text="No confirmar", command=self.MostrarMenu,bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        boton_guardar.pack(side=TOP, pady=10)
+
+    def MostrarMenu(self):
+        ventana = VentanadePedidos(self)
+    def VentanaFin(self):
+        ventana = MostrarVentanaFinal(self)
 
 ##Ventanas terciarias
 class VentanadePedidos(Toplevel):
@@ -16,38 +48,53 @@ class VentanadePedidos(Toplevel):
         super().__init__(master)
         self.title("Menu Disponible")
         self.configure(background=BACKGROUND_CONTENEDOR)
-        labelInicial = Label(self, justify=CENTER, text="Menu Disponible", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelInicial = Label(self, justify=CENTER, text="Menu Disponible", bg=BACKGROUND_FRAMES, font=FONT2, fg=FG)
         labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        labelFinal = Label(self, justify=CENTER, text="¿Que desea Ordenar?", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
-        labelFinal.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     # Definir el menú de platillos con códigos, nombres y precios
         
-        plato1 = Label(self,justify=CENTER, text="Taco", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        plato1.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        precio1 = Label(self, justify=CENTER, text="1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        precio1.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        plato1 = Label(self,justify=CENTER, text="Taco 1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato1.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        #precio1 = Label(self, justify=CENTER, text="1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        #precio1.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        plato2 = Label(self, justify=CENTER, text="Tostada", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        plato2.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        precio2 = Label(self, justify=CENTER, text="2000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        precio2.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        plato2 = Label(self, justify=CENTER, text="Tostada 1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato2.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        #precio2 = Label(self, justify=CENTER, text="2000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        #precio2.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        plato3 = Label(self, justify=CENTER, text="Sope", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        plato3.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        precio3 = Label(self, justify=CENTER,text="3000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        precio3.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        plato3 = Label(self, justify=CENTER, text="Sope 1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato3.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        #precio3 = Label(self, justify=CENTER,text="3000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        #precio3.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        plato4 = Label(self, justify=CENTER, text="Enchilada", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        plato4.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        precio4 = Label(self, justify=CENTER, text="4000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        precio4.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        plato4 = Label(self, justify=CENTER, text="Enchilada 1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato4.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        #precio4 = Label(self, justify=CENTER, text="4000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        #precio4.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
-        plato5 = Label(self, justify=CENTER, text="Quesadilla", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        plato5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        precio5 =Label(self, justify=CENTER, text="5000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
-        precio5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-        # Agrega más platillos según sea necesario
+        plato5 = Label(self, justify=CENTER, text="Quesadilla 1000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        plato5.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        #precio5 =Label(self, justify=CENTER, text="5000", bg=BACKGROUND_CONTENEDOR, font=FONT2, fg=FG)
+        #precio5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        # Aquí van los espacios de respuesta
+
+        labelFinal = Label(self, justify=CENTER, text="¿Cuantos platos desea ordenar?", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelFinal.pack(side=TOP, pady=5)
+        self.entry_Cantidad_Platos = Entry(self, width=30)
+        self.entry_Cantidad_Platos.pack(side=TOP, pady=5)
+
+        labelFinal2 = Label(self, justify=CENTER, text="¿Que desea ordenar?", bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        labelFinal2.pack(side=TOP, pady=5)
+        self.entry_Nombres_platos = Entry(self, width=30)
+        self.entry_Nombres_platos.pack(side=TOP, pady=5)
+
+        # Botón para guardar la sugerencia
+        boton_guardar = Button(self, text="Guardar", command=self.ventanaconfir,bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        boton_guardar.pack(side=TOP, pady=10)
+
+    def ventanaconfir(self):
+        ventana = VentanaConfir(self)
 class VentanaDeOpcionesAdmin(Toplevel):
     ##Mostrar los pedidos guardados hasta el momento
     def ventanaDePedidosRegistrados(self):
