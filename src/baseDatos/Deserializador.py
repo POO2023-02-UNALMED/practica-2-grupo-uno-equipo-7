@@ -81,7 +81,8 @@ def QuejasT():
 
 def PedidosT():
     Lista = []
-    with open("src/baseDatos/Pedidos.pkl","rb") as picklefileP:
+    ruta_absoluta = os.path.abspath("Pedidos.pkl")
+    with open(ruta_absoluta,"rb") as picklefileP:
         Pedidos = pickle.load(picklefileP)
     
     for Pedido in Pedidos:
