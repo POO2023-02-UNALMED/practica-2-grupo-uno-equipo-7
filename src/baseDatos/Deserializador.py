@@ -3,10 +3,12 @@ from baseDatos import Serializador
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
 from gestorAplicacion.Reserva import Reserva
+import os
 
 def imprimirAllSugerencias():
     Serializador.main()
-    with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
+    ruta_absoluta = os.path.abspath("Sugerencias.pkl")
+    with open(ruta_absoluta,"rb") as picklefile:
         Sugerencias = pickle.load(picklefile)
 
     for sugerencia in Sugerencias:
@@ -14,7 +16,8 @@ def imprimirAllSugerencias():
         print("\n")
 
 def imprimirSugerenciaXTipo(tipo):
-    with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
+    ruta_absoluta = os.path.abspath("Sugerencias.pkl")
+    with open(ruta_absoluta,"rb") as picklefile:
         Sugerencias = pickle.load(picklefile)
 
     for sugerencia in Sugerencias:
@@ -35,7 +38,8 @@ def imprimirAllQuejas():
 
 def SugerenciaXTipo(tipo):
     Lista = []
-    with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
+    ruta_absoluta = os.path.abspath("Sugerencias.pkl")
+    with open(ruta_absoluta,"rb") as picklefile:
         Sugerencias = pickle.load(picklefile)
     for sugerencia in Sugerencias:
         if sugerencia.getTipo() == tipo:
@@ -45,7 +49,8 @@ def SugerenciaXTipo(tipo):
 
 def SugerenciasT():
     Lista = []
-    with open("src/baseDatos/Sugerencias.pkl","rb") as picklefile:
+    ruta_absoluta = os.path.abspath("Sugerencias.pkl")
+    with open(ruta_absoluta,"rb") as picklefile:
         Sugerencias = pickle.load(picklefile)
     
     for sugerencia in Sugerencias:

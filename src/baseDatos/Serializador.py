@@ -4,6 +4,7 @@ from gestorAplicacion.Pedido import Pedido
 from gestorAplicacion.Reserva import Reserva
 from gestorAplicacion.Resena import Resena
 from gestorAplicacion.Devolucion import Devolucion
+import os
 
 import pickle
 
@@ -32,7 +33,8 @@ def main():
     
    #Creacion del archivo pickle
    
-    with open("src/baseDatos/Sugerencias.pkl","wb") as picklefile:
+    ruta_absoluta = os.path.abspath("Sugerencias.pkl")
+    with open(ruta_absoluta,"wb") as picklefile:
         pickle.dump(TodasSugerencias, picklefile)
     
 def main2():
@@ -92,7 +94,8 @@ def main6():
 def agregarSugerenciaNueva(nueva_sugerencia):
     # Cargar las sugerencias existentes del archivo pickle
     try:
-        with open("src/baseDatos/Sugerencias.pkl", "rb") as picklefile:
+        ruta_absoluta = os.path.abspath("Sugerencias.pkl")
+        with open(ruta_absoluta,"rb") as picklefile:
             sugerencias_existentes = pickle.load(picklefile)
     except FileNotFoundError:
         sugerencias_existentes = []
@@ -101,7 +104,8 @@ def agregarSugerenciaNueva(nueva_sugerencia):
     sugerencias_existentes.append(nueva_sugerencia)
 
     # Guardar la lista actualizada de sugerencias en el archivo pickle
-    with open("src/baseDatos/Sugerencias.pkl", "wb") as picklefile:
+    ruta_absoluta = os.path.abspath("Sugerencias.pkl")
+    with open(ruta_absoluta,"wb") as picklefile:
         pickle.dump(sugerencias_existentes, picklefile)
     
 def agregarQuejaNueva(nueva_queja):
