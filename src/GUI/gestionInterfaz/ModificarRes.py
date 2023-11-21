@@ -152,6 +152,5 @@ class ModificarRes(tk.Frame):
         nuevaReserva.setFecha(fecha) 
         nuevaReserva.setMiSede(sedeElegida)
         nuevaReserva.setMiMesa(mesa) 
-        Serializador.agregarReservaNueva(nuevaReserva)
         messagebox.showinfo( "Información", nuevaReserva.__str__())      
         
