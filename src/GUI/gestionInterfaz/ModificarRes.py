@@ -57,16 +57,15 @@ class ModificarRes(tk.Frame):
             messagebox.showerror("Error", "El id ingresado no es válido")
             return  
              
-        reservasCliente = Deserializador.deserializador_reservas()
-        lista = []
+        reservasCliente = []
         
-        for reserva in reservasCliente:
+        for reserva in Reserva.listaReservas:
 
             if (int(reserva.getCliente().getId()) == int(id)):
-                lista.append(reserva)
+                 reservasCliente.append(reserva)
                 
         
-        self.mostrarReserva(lista)
+        self.mostrarReserva(reservasCliente)
 
     def mostrarReserva(self, reservas):
         
@@ -153,6 +152,6 @@ class ModificarRes(tk.Frame):
         nuevaReserva.setFecha(fecha) 
         nuevaReserva.setMiSede(sedeElegida)
         nuevaReserva.setMiMesa(mesa) 
-        # Serializador.agregarReservaNueva(nuevaReserva)
+        Serializador.agregarReservaNueva(nuevaReserva)
         messagebox.showinfo( "Información", nuevaReserva.__str__())      
         
