@@ -16,7 +16,7 @@ class k:
         self.btn_1 = ttk.Button(self.tool_bar, text="1. Mostrar inventario", command=self.mostrar_inventario)
         self.btn_1.pack(side="left")
 
-        self.btn_2 = ttk.Button(self.tool_bar, text="2. Precio articulo inventario", command=self.precio_articulo_inventario)
+        self.btn_2 = ttk.Button(self.tool_bar, text="2. Precio articulo inventario y compra", command=self.precio_articulo_inventario)
         self.btn_2.pack(side="left")
 
         self.btn_3 = ttk.Button(self.tool_bar, text="3. Revisar niveles de Stock", command=self.revisar_niveles_de_stock)
