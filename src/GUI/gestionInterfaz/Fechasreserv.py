@@ -8,6 +8,7 @@ from gestorAplicacion.Reserva import *
 from GUI.estilos.style import *
 from tkinter import *
 from gestorAplicacion.Cliente import *
+from baseDatos import Deserializador,Serializador
 
 dic= {"2023-10-25 14:00 PM":0, "2023-10-25 18:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
 tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]

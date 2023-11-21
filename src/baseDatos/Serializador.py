@@ -2,6 +2,7 @@ from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
 from gestorAplicacion.inventarioaply import *
 from gestorAplicacion.Pedido import Pedido
+from gestorAplicacion.Reserva import Reserva
 
 import pickle
 TodosLosPedidos = []
@@ -93,4 +94,16 @@ def aver():
     for queja in TodasSugerencias:
         print(queja)
 
-
+def serializar_reservas(miReservas):
+    # Cargar reservas existentes
+    try:
+        with open("src/baseDatos/Reservas.pkl", "rb") as picklefile:
+            reservas_existentes = pickle.load(picklefile)
+    except FileNotFoundError:
+        reservas_existentes = []
+        
+    #Agregar nuevas Reservas
+    Reserva.listaReservas.append(miReservas)
+    
+    with open("src/baseDatos/Reservas.pkl", 'wb') as f:
+        pickle.dump(Reserva.listaReservas, f)
