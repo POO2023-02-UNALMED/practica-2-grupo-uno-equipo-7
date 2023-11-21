@@ -111,12 +111,6 @@ class Cliente(Persona):
                 platosRecomendados.append(plato)
         return platosRecomendados
 
-    @staticmethod
-    def registrarCliente() -> 'Cliente':
-        nombre = input("¿Cuál es su nombre?")
-        id = int(input("¿Cuál es su ID?"))
-        return Cliente(nombre, id)
-
     def __str__(self):
         return f"{self.nombre} ({self.id})"
 
