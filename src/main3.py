@@ -13,6 +13,8 @@ if __name__ == "__main__":
    #for b in a: print(b)
    #for d in c: print(str(d))
    #Serializador.main3()
-   a = Deserializador.PedidosT()
-   for b in a:
-    print(b)
+   #a = Deserializador.PedidosT()
+   #for b in a: print(b)
+   #Serializador.main4()
+   a = Deserializador.ResenasT()
+   for b in a: print(b)
