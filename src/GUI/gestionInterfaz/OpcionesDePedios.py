@@ -221,24 +221,10 @@ class NuevoPedido(Toplevel):
         
 
         # Botón para guardar la sugerencia
-        boton_guardar = Button(self, text="Guardar", command=self.MostrarMenu,bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
+        boton_guardar = Button(self, text="Guardar", command=self.registropedido,bg=BACKGROUND_FRAMES, font=FONT, fg=FG)
         boton_guardar.pack(side=TOP, pady=10)
-
-    def registropedido(self):
-        nombre = self.entry_Nombre
-        Identificacion = self.entry_Iden
-        direccion = self.entry_Direccion
-        tipo = self.var_tipo.get()
-        try: 
-            nombre == " "
-            Identificacion == ""
-            direccion == " "
         
-        except:
-            messagebox.showerror("Error", "Por favor, rellene todos los campos requeridos")
-            return
-        
-    
+ 
     
     def MostrarMenu(self):
         ventana = VentanadePedidos(self)
@@ -250,6 +236,7 @@ class NuevoPedido(Toplevel):
         # Aquí puedes realizar acciones con el tipo y la sugerencia, como guardar en una base de datos, etc.
         pedido = Pedido(nombre, Identificacion, direccion, tipo)
         Serializador.AgregarNuevoPedido(pedido)
+        self.MostrarMenu()
         
 #Ventana Inicial
 class OpcionesDePedidos(Frame):
