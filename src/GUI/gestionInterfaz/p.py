@@ -22,16 +22,15 @@ class k:
         self.btn_3 = ttk.Button(self.tool_bar, text="3. Revisar niveles de Stock", command=self.revisar_niveles_de_stock)
         self.btn_3.pack(side="left")
 
-        self.btn_4 = ttk.Button(self.tool_bar, text="4. Registrar artículo en inventario", command=self.registrar_articulo_en_inventario)
-        self.btn_4.pack(side="left")
+        
 
-        self.btn_5 = ttk.Button(self.tool_bar, text="5. Renovar inventario", command=self.renovar_inventario)
+        self.btn_5 = ttk.Button(self.tool_bar, text="4. Renovar inventario", command=self.renovar_inventario)
         self.btn_5.pack(side="left")
 
-        self.btn_6 = ttk.Button(self.tool_bar, text="6. Valor del inventario total", command=self.valor_del_inventario_total)
+        self.btn_6 = ttk.Button(self.tool_bar, text="5. Valor del inventario total", command=self.valor_del_inventario_total)
         self.btn_6.pack(side="left")
 
-        self.btn_7 = ttk.Button(self.tool_bar, text="7. Salir", command=self.salir)
+        self.btn_7 = ttk.Button(self.tool_bar, text="6. Salir", command=self.salir)
         self.btn_7.pack(side="left")
         self.lbl_descripcion=ttk.Label(self.ventana, text="Descripcion", padding="10",font=("Arial", 28, "bold") )
         self.lbl_descripcion.pack(side="top",  fill="x", pady=20, padx=200)
@@ -57,10 +56,11 @@ class k:
             i.destroy() 
         self.lbl_descripcion.config(text="Acá se muestra el inventario actualizado y listo")
         listaRepetidos=[]
+        dic=Restaurante.get_sedes()[self.num].inventario.diccionario_items
         text1=Restaurante.get_sedes()[self.num].ubicacion
-        for i in Restaurante.get_sedes()[self.num].inventario.listado_items:
+        for i in dic.keys():
             listaRepetidos.append(i)
-            text1+="\n"+ i.nombre +" "+ " "+str(i.cantidad)+" " + " " + str(i.fecha_vencimiento)
+            text1+="\n"+ i +" "+ " "+str(dic[i])+" " + " " 
             
         self.lbl_informacion.config(text=text1)
         
@@ -140,7 +140,7 @@ class k:
         
     def compra(self):
         for i in self.lista_compras.keys():
-            self. texto_actual2+= " \n "+Restaurante.sedes[self.num].caja.compra(i, self.lista_compras[i], Item.buscar_item(i.nombre).precio, Restaurante.sedes[self.num])
+            self. texto_actual2+= " \n "+Restaurante.sedes[self.num].caja.compra(i,Item.buscar_item(i.nombre).precio, self.lista_compras[i], Restaurante.sedes[self.num])
         
         self.label_precio.config(text=self.texto_actual2)
             
