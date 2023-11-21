@@ -75,13 +75,13 @@ def main5():
 
 def main6():
 
-    d1 = Devolucion("Juan Perez","5236","juan@gmail.com",1,"No me senti satisfecho con el pedido")
-    d2 = Devolucion("Juan Perez","5236","juan@gmail.com",2,"Pese a que me comi todo no me gusto el sabor")
-    d3 = Devolucion("Juan Perez","5236","juan@gmail.com",3,"No me habia dado cuenta pero me cobraron más de lo que consumi")
-    d4 = Devolucion("Juan Perez","5236","juan@gmail.com",4,"Me parece una estafa todo lo que me cobraron por lo poco que consumi")
-    d5 = Devolucion("Juan Perez","5236","juan@gmail.com",5,"La propina me la cobraron sin yo dar permiso")
-    d6 = Devolucion("Juan Perez","5236","juan@gmail.com",6,"No me gusto la comida")
-    d7 = Devolucion("Juan Perez","5236","juan@gmail.com",7,"Escuche al mesero renegando por la cantidad de propina que deposite")
+    d1 = Devolucion("JUAN PEREZ","5236","juan@gmail.com",1,"No me senti satisfecho con el pedido")
+    d2 = Devolucion("JUAN PEREZ","5236","juan@gmail.com",2,"Pese a que me comi todo no me gusto el sabor")
+    d3 = Devolucion("JUAN PEREZ","5236","juan@gmail.com",3,"No me habia dado cuenta pero me cobraron más de lo que consumi")
+    d4 = Devolucion("JUAN PEREZ","5236","juan@gmail.com",4,"Me parece una estafa todo lo que me cobraron por lo poco que consumi")
+    d5 = Devolucion("JUAN PEREZ","5236","juan@gmail.com",5,"La propina me la cobraron sin yo dar permiso")
+    d6 = Devolucion("JUAN PEREZ","5236","juan@gmail.com",6,"No me gusto la comida")
+    d7 = Devolucion("JUAN PEREZ","5236","juan@gmail.com",7,"Escuche al mesero renegando por la cantidad de propina que deposite")
 
     with open("src/baseDatos/Devoluciones.pkl","wb") as picklefileD:
         pickle.dump(TodasDevoluciones, picklefileD)

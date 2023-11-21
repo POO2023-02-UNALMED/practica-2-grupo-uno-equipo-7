@@ -146,8 +146,10 @@ def DevolucionesT():
     
     return Lista
 
-def DelXTipo(nombre):
+def DelXTipo(nombreIngreso):
     MisDevoluciones = []
+
+    nombre = nombreIngreso.upper()
     
     with open("src/baseDatos/Devoluciones.pkl", "rb") as picklefileD:
         devoluciones = pickle.load(picklefileD)
