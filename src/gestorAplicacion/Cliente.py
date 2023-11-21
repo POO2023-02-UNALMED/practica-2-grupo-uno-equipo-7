@@ -17,8 +17,8 @@ class Cliente(Persona):
         Cliente.clientes.append(self) 
     
 
-    def __init__(self, nombre: str, id: str, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
-        super().__init__(nombre, id)
+    def __init__(self, nombre: str, cel: str, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
+        super().__init__(nombre, cel)
         self.direccion = direccion
         self.telefono = telefono
         self.email = email
@@ -26,6 +26,19 @@ class Cliente(Persona):
         self.codigoCliente = Cliente.contadorClientes + 1
         Cliente.contadorClientes += 1
         Cliente.clientes.append(self)
+
+    def getEmail(self):
+        return self.email
+    
+    def setEmail(self, correo):
+        self.email = correo
+    
+    def getTelefono(self):
+        return self.telefono
+    
+    def setTelefono(self, tel):
+        self.telefono = tel
+        
 
 
     @staticmethod
@@ -97,12 +110,6 @@ class Cliente(Persona):
             if ingredientesSimilares >= 3 and Item.buscar_item(eliminar) not in plato.ingredientes:
                 platosRecomendados.append(plato)
         return platosRecomendados
-
-    @staticmethod
-    def registrarCliente() -> 'Cliente':
-        nombre = input("¿Cuál es su nombre?")
-        id = int(input("¿Cuál es su ID?"))
-        return Cliente(nombre, id)
 
     def __str__(self):
         return f"{self.nombre} ({self.id})"

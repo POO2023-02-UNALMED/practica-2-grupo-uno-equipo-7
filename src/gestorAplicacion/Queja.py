@@ -1,7 +1,3 @@
-from gestorAplicacion.ServiciosClientes import ServiciosClientes
-from gestorAplicacion.Plato import Plato
-from gestorAplicacion.Empleado import Empleado
-from gestorAplicacion.Restaurante import Restaurante
 
 class Queja():
 

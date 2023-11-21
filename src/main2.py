@@ -28,9 +28,9 @@ if __name__ == "__main__":
 
     item1 = Item("Tortilla",0, 1000,"2024-12-31", inventario1)
     item2 = Item("Carne",15, 2000,"2022-12-31", inventario1)
-    item3 = Item("Queso",10, 3000,"2022-12-31", inventario1)
+    item3 = Item("Queso",10, 3000,"2024-12-31", inventario1)
     item4 = Item("Lechuga",10, 4000,"2024-12-31", inventario1)
-    item5 = Item("Tomate",5, 5000,"2022-12-31", inventario1)
+    item5 = Item("Tomate",0, 5000,"2022-12-31", inventario1)
     item6 = Item("Tortilla",10, 1000,"2022-12-31", inventario2)
     item7 = Item("Carne",10, 2000,"2022-12-31", inventario2)
     item8 = Item("Queso",5, 3000,"2022-12-31", inventario2)
@@ -100,6 +100,9 @@ if __name__ == "__main__":
     Mesa("Mesa tres", "Dos personas", "Sede: Envigado")
 
     Reserva(cliente1, Restaurante.sedes[0].get_ubicacion(),  Mesa.listaMesas[1], "2023-10-25 14:00 PM")
+   
+
+    
     
     app = Manager()
     app.mainloop()

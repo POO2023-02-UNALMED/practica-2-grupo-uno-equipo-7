@@ -14,7 +14,7 @@ class inventarioapp(tk.Frame):
     def __init__(self, padre, controlador):
         super().__init__(padre)
         self.controlador = controlador
-        self.configure(background="white")
+        self.configure(background="blue")
         
         
     

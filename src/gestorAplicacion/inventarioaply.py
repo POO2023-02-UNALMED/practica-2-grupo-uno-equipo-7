@@ -52,8 +52,9 @@ class Inventarioaply:
             self.retirar_items(item.nombre, item.cantidad)
 
     def hay_suficiente_stock(self, item, cantidad_deseada):
-        if item in self.diccionario_items:
-            return self.diccionario_items[item] >= cantidad_deseada
+        if item in self.diccionario_items.keys():
+            if self.diccionario_items[item] >= cantidad_deseada:
+                return True
         return False
 
     def obtener_items_sin_stock(self):

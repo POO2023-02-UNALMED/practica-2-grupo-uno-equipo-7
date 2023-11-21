@@ -11,11 +11,14 @@ class Caja:
 
     def compra(self, objeto, precio, cantidad, restaurante_asociado):
         costo_total = precio * cantidad
+        if objeto is  None:
+            return "Obejto no valido"
 
         if self.dinero_caja >= costo_total:
             self.dinero_caja -= costo_total
             self.total_egresos += costo_total
-            restaurante_asociado.inventario.añadir_items(objeto.get_nombre(), cantidad)
+            restaurante_asociado.inventario.añadir_items(objeto.nombre, cantidad)
+            
             return "Compra exitosa"
         else:
             return "No hay suficiente dinero en la caja para realizar la compra. Debe ingresar dinero en caja para hacer posible la compra."

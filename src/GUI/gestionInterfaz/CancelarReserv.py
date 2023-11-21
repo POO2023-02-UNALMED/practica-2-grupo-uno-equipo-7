@@ -9,6 +9,7 @@ from GUI.estilos.style import *
 from tkinter import *
 from gestorAplicacion.Cliente import *
 from tkinter.ttk import Combobox
+from baseDatos import Deserializador,Serializador
 class CancelarReserv(tk.Frame):
     def __init__(self, padre, controlador):
         super().__init__(padre)
@@ -54,7 +55,7 @@ class CancelarReserv(tk.Frame):
         for reserva in Reserva.listaReservas:
 
             if (int(reserva.getCliente().getId()) == int(id)):
-                reservasCliente.append(reserva)
+                 reservasCliente.append(reserva)
                 
         
         self.mostrarReserva(reservasCliente)

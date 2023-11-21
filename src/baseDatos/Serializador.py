@@ -1,15 +1,24 @@
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
-from gestorAplicacion.inventarioaply import *
 from gestorAplicacion.Pedido import Pedido
+from gestorAplicacion.Reserva import Reserva
+from gestorAplicacion.Resena import Resena
+from gestorAplicacion.Devolucion import Devolucion
 
 import pickle
+
 TodosLosPedidos = []
 TodosLosPedidos = Pedido.mostrarListPedidos()
 TodasSugerencias = []
 TodasSugerencias = Sugerencia.getTAllSugerences()
 TodasQuejas = []
 TodasQuejas = Queja.getAllQuejas()
+TodasResenas = []
+TodasResenas = Resena.getRecopilatorio()
+reservas =  []
+reservas = Reserva.getLista()
+TodasDevoluciones = Devolucion.getDevoluciones()
+
 
 def main():
     #Objetos creados 
@@ -44,6 +53,42 @@ def main3():
     with open("src/baseDatos/Pedidos.pkl","wb") as picklefileP:
         pickle.dump(TodosLosPedidos, picklefileP)
 
+def main4():
+
+    r1 = Resena("Anonimo", "Gran lugar para pasar el tiempo en familia, muy buena la atención", 4)
+    r2 = Resena("Julian Vargas", "Me gustaron los pozoles", 5)
+    r3 = Resena("Marta Wayne", "La comida estaba fria y tardaron mucho en atendernos, mal ahí", 2)
+    r4 = Resena("Barbara Gordon", "Muy buen servicio a domicilio, todo llego a tiempo y recien hecho", 5)
+    r5 = Resena("Anonimo", "Que fea la sede de Belen, casi nos roban al salir", 1)
+    r6 = Resena("Anonimo", "Mi mujer se enfermo despues de comer en una de sus sedes", 1)
+    r7 = Resena("Carol Diaz", "Excelente atención", 5)
+    r8 = Resena("Santiago Lopez", "Muy buenas porciones y de sabor delicioso", 5)
+    r9 = Resena("Esteban Tabares", "La atención en el local de las Americas fue muy buena, hicimos un evento familiar y todo salio perfecto", 5)
+    r10 = Resena("Elizabeth Bennet", "La tortilla estaba dura pero lo demas muy rico", 3)
+
+    with open("src/baseDatos/Resenas.pkl","wb") as picklefileR:
+        pickle.dump(TodasResenas, picklefileR)
+    
+def main5():
+    with open("src/baseDatos/Reserva.pkl","wb") as picklefileRe:
+        pickle.dump(reservas, picklefileRe)
+
+def main6():
+
+    d1 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","1","No me senti satisfecho con el pedido")
+    d2 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","2","Pese a que me comi todo no me gusto el sabor")
+    d3 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","3","No me habia dado cuenta pero me cobraron más de lo que consumi")
+    d4 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","4","Me parece una estafa todo lo que me cobraron por lo poco que consumi")
+    d5 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","5","La propina me la cobraron sin yo dar permiso")
+    d6 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","6","No me gusto la comida")
+    d7 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","7","Escuche al mesero renegando por la cantidad de propina que deposite")
+
+    with open("src/baseDatos/Devoluciones.pkl","wb") as picklefileD:
+        pickle.dump(TodasDevoluciones, picklefileD)
+
+
+#funciones
+
 def agregarSugerenciaNueva(nueva_sugerencia):
     # Cargar las sugerencias existentes del archivo pickle
     try:
@@ -59,7 +104,7 @@ def agregarSugerenciaNueva(nueva_sugerencia):
     with open("src/baseDatos/Sugerencias.pkl", "wb") as picklefile:
         pickle.dump(sugerencias_existentes, picklefile)
     
-def agregarQuejaNueva(nueva_sugerencia):
+def agregarQuejaNueva(nueva_queja):
     # Cargar las quejas existentes del archivo pickle
     try:
         with open("src/baseDatos/Quejas.pkl", "rb") as picklefile:
@@ -67,30 +112,73 @@ def agregarQuejaNueva(nueva_sugerencia):
     except FileNotFoundError:
         quejas_existentes = []
 
-    # Agregar la nueva sugerencia a la lista de sugerencias
-    quejas_existentes.append(nueva_sugerencia)
+    # Agregar la nueva queja a la lista de quejas
+    quejas_existentes.append(nueva_queja)
 
-    # Guardar la lista actualizada de sugerencias en el archivo pickle
+    # Guardar la lista actualizada de quejas en el archivo pickle
     with open("src/baseDatos/Quejas.pkl", "wb") as picklefile:
         pickle.dump(quejas_existentes, picklefile)
 
 def AgregarNuevoPedido(nuevo_pedido):
-    # Cargar las sugerencias existentes del archivo pickle
+    # Cargar los pedidos existentes del archivo pickle
     try:
         with open("src/baseDatos/Pedidos.pkl", "rb") as picklefileP:
                 Pedidos_existentes = pickle.load(picklefileP)
     except FileNotFoundError:
         Pedidos_existentes = []
 
-    # Agregar la nueva sugerencia a la lista de sugerencias
+    # Agregar el nuevo a la lista de pedidos
     Pedidos_existentes.append(nuevo_pedido)
 
-    # Guardar la lista actualizada de sugerencias en el archivo pickle
+    # Guardar la lista actualizada de pedidos en el archivo pickle
     with open("src/baseDatos/Pedidos.pkl", "wb") as picklefileP:
         pickle.dump(Pedidos_existentes, picklefileP)
 
-def aver():
-    for queja in TodasSugerencias:
-        print(queja)
+def agregarResenaNueva(nueva_resena):
+    # Cargar las reseñas existentes del archivo pickle
+    try:
+        with open("src/baseDatos/Resenas.pkl", "rb") as picklefileR:
+            resenas_existentes = pickle.load(picklefileR)
+    except FileNotFoundError:
+        resenas_existentes = []
+
+    # Agregar la nueva reseña a la lista de reseñas
+    resenas_existentes.append(nueva_resena)
+
+    # Guardar la lista actualizada de reseñas en el archivo pickle
+    with open("src/baseDatos/Resenas.pkl", "wb") as picklefileR:
+        pickle.dump(resenas_existentes, picklefileR)
+
+def agregarReservaNueva(nueva_reserva):
+
+    # Cargar las reservas existentes del archivo pickle
+    try:
+        with open("src/baseDatos/Reserva.pkl", "rb") as picklefileRe:
+            reservas_existentes = pickle.load(picklefileRe)
+    except FileNotFoundError:
+        reservas_existentes = []
+
+    # Agregar la nueva reserva a la lista de reservas
+    reservas_existentes.append(nueva_reserva)
+
+    # Guardar la lista actualizada de reserva en el archivo pickle
+    with open("src/baseDatos/Reserva.pkl", "wb") as picklefileRe:
+        pickle.dump(reservas_existentes, picklefileRe)
+
+def agregarSolicitudNueva(nueva_solicitud):
+
+    # Cargar las reservas existentes del archivo pickle
+    try:
+        with open("src/baseDatos/Devoluciones.pkl", "rb") as picklefileD:
+            del_existentes = pickle.load(picklefileD)
+    except FileNotFoundError:
+        del_existentes = []
+
+    # Agregar la nueva reserva a la lista de reservas
+    del_existentes.append(nueva_solicitud)
+
+    # Guardar la lista actualizada de reserva en el archivo pickle
+    with open("src/baseDatos/Devoluciones.pkl", "wb") as picklefileD:
+        pickle.dump(del_existentes, picklefileD)
 
 

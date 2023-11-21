@@ -3,6 +3,7 @@ from datetime import datetime
 
 class Item:
     listado_items=[]
+    listado_total=[]
     total_items=0
   
 
@@ -13,6 +14,7 @@ class Item:
         self.fecha_vencimiento = datetime.strptime(fecha_vencimiento, '%Y-%m-%d') if fecha_vencimiento else None
         self.inventario = inventario
         Item.listado_items.append(self)
+        Item.listado_total.append(self)
         Item.total_items+=1
         
         
@@ -59,10 +61,11 @@ class Item:
     
     @staticmethod
     def buscar_item(nombre):
-      for item in Item.listado_items:
-        if item.get_nombre() == nombre:
+      nombre = nombre.lower()
+      for item in Item.listado_total:
+        if item.nombre.lower() == nombre:
             return item
-        return None
+      return None
 
     @staticmethod
     def get_listado_items():

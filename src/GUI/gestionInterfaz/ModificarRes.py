@@ -9,6 +9,7 @@ from GUI.estilos.style import *
 from tkinter import *
 from gestorAplicacion.Cliente import *
 from tkinter.ttk import Combobox
+from baseDatos import Deserializador,Serializador
 
 dic= {"2023-10-25 14:00 PM":0, "2023-10-25 18:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
 tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
@@ -54,13 +55,14 @@ class ModificarRes(tk.Frame):
             platoPreferido = Cliente.buscarPlatoPreferido(int(clienteId))
         except:
             messagebox.showerror("Error", "El id ingresado no es válido")
-            return       
+            return  
+             
         reservasCliente = []
         
         for reserva in Reserva.listaReservas:
 
             if (int(reserva.getCliente().getId()) == int(id)):
-                reservasCliente.append(reserva)
+                 reservasCliente.append(reserva)
                 
         
         self.mostrarReserva(reservasCliente)
@@ -150,6 +152,5 @@ class ModificarRes(tk.Frame):
         nuevaReserva.setFecha(fecha) 
         nuevaReserva.setMiSede(sedeElegida)
         nuevaReserva.setMiMesa(mesa) 
-        
         messagebox.showinfo( "Información", nuevaReserva.__str__())      
         
