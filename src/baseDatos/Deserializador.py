@@ -123,7 +123,7 @@ def countCalificacionResenas():
     cant = len(Lista)
     promedio = count/cant
 
-    S = "El promedio de calificaciones es --> " + promedio
+    S = "El promedio de calificaciones es --> " + str(promedio)
         
     if promedio >=3 and promedio <4:
         S += "\nLa satisfacion general de los clientes es regular :/"
