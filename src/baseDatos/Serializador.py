@@ -14,6 +14,8 @@ TodasQuejas = []
 TodasQuejas = Queja.getAllQuejas()
 TodasResenas = []
 TodasResenas = Resena.getRecopilatorio()
+reservas =  []
+reservas = Reserva.getLista()
 
 
 def main():
@@ -64,6 +66,11 @@ def main4():
 
     with open("src/baseDatos/Resenas.pkl","wb") as picklefileR:
         pickle.dump(TodasResenas, picklefileR)
+    
+def main5():
+    with open("src/baseDatos/Reserva.pkl","wb") as picklefileRe:
+        pickle.dump(reservas, picklefileRe)
+
 
 #funciones
 
