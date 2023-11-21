@@ -149,7 +149,12 @@ def DevolucionesT():
 def DelXTipo(nombreIngreso):
     MisDevoluciones = []
 
-    nombre = nombreIngreso.upper()
+    a = ""
+
+    for letra in nombreIngreso:
+        a +=str(letra)
+    
+    nombre = a.upper()
     
     with open("src/baseDatos/Devoluciones.pkl", "rb") as picklefileD:
         devoluciones = pickle.load(picklefileD)

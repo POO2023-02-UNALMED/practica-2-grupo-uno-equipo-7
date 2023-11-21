@@ -4,12 +4,71 @@ from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
 from gestorAplicacion.Resena import Resena
 from gestorAplicacion.Empleado import Empleado
+from gestorAplicacion.Devolucion import Devolucion
 from baseDatos import Deserializador,Serializador
 
 #Inicio clases para la opcion Devolucion
+class VerMisSolicitudes(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Buscar mis solicitude")
+        self.configure(background="#72a18b")
+        labelInicial = Label(self, justify=CENTER, text="Bienvenid@ para continuar por favor ingrese su nombre y luego\npresione 'Mostrar Solicitudes' para ver todas sus solicitudes", bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a")
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        label_Nombre = Label(self, text="Nombre:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Nombre.pack(side="top", pady=5)
+        self.entry_Nombre = Entry(self, width=30)
+        self.entry_Nombre.pack(side="top", pady=5)
+        
+        boton_mostrar = Button(self, text="Mostrar Solicitudes", command=self.mostrarRepositorio, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_mostrar.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
+    
+    def mostrarRepositorio(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        nombre = self.entry_Nombre.get()
+        a = Deserializador.DelXTipo(nombre)
+        for resultado in a:
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def mostrar_resultado(self, resultado):
+        # Insertar el resultado en la última línea del área de texto
+        self.resultado_text.insert('end', resultado + '\n')
+        # Desplazar la vista de la caja de texto para mostrar la última línea
+        self.resultado_text.see('end')
 
 class SolicitudesDevolucion(Toplevel):
-    pass
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Todas las Solicitudes")
+        self.configure(background="#72a18b")
+        labelInicial = Label(self, justify=CENTER, text="Bienvenid@ al repositorio de solicitudes\nPresione 'Mostrar Repositorio' para ver todas las solicitudes", bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a")
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        
+        boton_mostrar = Button(self, text="Mostrar repositorio", command=self.mostrarRepositorio, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_mostrar.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
+    
+    def mostrarRepositorio(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.DevolucionesT()
+        for resultado in a:
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def mostrar_resultado(self, resultado):
+        # Insertar el resultado en la última línea del área de texto
+        self.resultado_text.insert('end', resultado + '\n')
+        # Desplazar la vista de la caja de texto para mostrar la última línea
+        self.resultado_text.see('end')
 
 class VentanaVerificacionDevolucion(Toplevel):
     def __init__(self, master=None):
@@ -44,7 +103,74 @@ class VentanaVerificacionDevolucion(Toplevel):
         ventana = SolicitudesDevolucion(self)
 
 class NuevaSolucitud(Toplevel):
-    pass
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Nueva Solucitud")
+        self.configure(background="#72a18b")
+        self.geometry("900x1000")
+
+        label_Nombre = Label(self, text="Nombre:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Nombre.pack(side="top", pady=5)
+        self.entry_Nombre = Entry(self, width=30)
+        self.entry_Nombre.pack(side="top", pady=5)
+
+        label_Cedula = Label(self, text="Cedula:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Cedula.pack(side="top", pady=5)
+        self.entry_Cedula = Entry(self, width=30)
+        self.entry_Cedula.pack(side="top", pady=5)
+
+        label_Correo = Label(self, text="Correo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Correo.pack(side="top", pady=5)
+        self.entry_Correo = Entry(self, width=30)
+        self.entry_Correo.pack(side="top", pady=5)
+
+        label_NFactura = Label(self, text="No. Factura:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_NFactura.pack(side="top", pady=5)
+        self.entry_NFactura = Entry(self, width=30)
+        self.entry_NFactura.pack(side="top", pady=5)
+
+        label_Texto = Label(self, text="Razon de su solicitud:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Texto.pack(side="top", pady=5)
+        self.entry_Texto = Entry(self, width=30)
+        self.entry_Texto.pack(side="top", pady=5)
+
+        # Botón para guardar la queja
+        boton_guardar = Button(self, text="Guardar", command=self.confirmar_guardar_solicitud, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_guardar.pack(side="top", pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side="top", fill="both", padx=10, pady=10)
+    
+    def mostrar_resultado(self, resultado):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        # Insertar el resultado en el área de texto
+        self.resultado_text.insert('end', resultado)
+    
+    def confirmar_guardar_solicitud(self):
+        nombreIngreso = self.entry_Nombre.get()
+        nombre = nombreIngreso.upper()
+        cedula = self.entry_Cedula.get()
+        correo = self.entry_Correo.get()
+        factura = self.entry_NFactura.get()
+        texto_texto = self.entry_Texto.get()
+
+        # Crear un mensaje de confirmación
+        mensaje_confirmacion = f"¿Está seguro que desea enviar esta solicitud?\nNombre: {nombreIngreso}\nCedula: {cedula}\nCorreo: {correo}\nNo. Factura: {factura}\nRazon de solicitud: {texto_texto}"
+
+        # Mostrar el cuadro de diálogo de confirmación
+        confirmacion = messagebox.askokcancel("Confirmación", mensaje_confirmacion)
+
+        if confirmacion:
+            dlv = Devolucion(nombre, cedula, correo, factura, texto_texto)
+            # Agregar a la serialización
+            Serializador.agregarSolicitudNueva(dlv)
+            # Mostrar el objeto sugerencia en el área de texto
+            self.mostrar_resultado(dlv)
+
+        else:
+            resultado = "La solicitud no fue guardada"
+            self.mostrar_resultado(resultado)
 
 class VentanaDevolucion(Toplevel):
     def __init__(self, master=None):
@@ -52,7 +178,7 @@ class VentanaDevolucion(Toplevel):
         self.title("Opciones de Devolucion")
         self.configure(background="#72a18b")
 
-        boton_solucitudes = Button(self, text="Ver las solicitudes de Devoluciones", command=self.mostrar_solicitud, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_solucitudes = Button(self, text="Ver las solicitudes de Devoluciones", command=self.mostrar_solicitudes, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         boton_solucitudes.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
         boton_crear_solicitud = Button(self, text="Realizar una nueva solicitud", command=self.crear_nueva_solicitud, bg="#a19f9f",font=("Roboto", 12), fg="#0a0a0a")
@@ -62,7 +188,7 @@ class VentanaDevolucion(Toplevel):
         boton_estado.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def mostrar_estados(self):
-        ventana = VentanaVerificacionResena(self)
+        ventana = VerMisSolicitudes(self)
 
     def crear_nueva_solicitud(self):
         ventana = NuevaSolucitud(self)
@@ -331,7 +457,6 @@ class ReportesQuejas(Toplevel):
         # Desplazar la vista de la caja de texto para mostrar la última línea
         self.resultado_text.see('end')
 
-
 class VentanaVerificacionQueja(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
@@ -367,7 +492,7 @@ class VentanaVerificacionQueja(Toplevel):
 class NuevaQueja(Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
-        self.title("Queja")
+        self.title("Nueva Queja")
         self.configure(background="#72a18b")
         self.geometry("900x1000")
 
@@ -673,7 +798,7 @@ class VentanaSugerencia(Toplevel):
     
 #Fin de clases para la opcion sugerencias
 
-#Lo que va a importar el main
+#clase principal:
 class AtencionCliente(Frame):
 
     def __init__(self, padre, controlador):
@@ -704,7 +829,7 @@ class AtencionCliente(Frame):
         botonReseña.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonDevolucion(self):
-        botonDevolucion = Button(self, text="Devolución", command=self.mostrar, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonDevolucion = Button(self, text="Devolución", command=self._crear_ventana_devolucion, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonDevolucion.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _crear_ventana_sugerencia(self):
@@ -715,9 +840,8 @@ class AtencionCliente(Frame):
     
     def _crear_ventana_resena(self):
         ventana_resena = VentanaResena(self)
-        
-
-    def mostrar(self):
-        print("Prueba")
+    
+    def _crear_ventana_devolucion(self):
+        ventana_devolucion = VentanaDevolucion(self)
 
     
