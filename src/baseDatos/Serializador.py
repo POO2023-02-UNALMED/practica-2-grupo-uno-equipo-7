@@ -118,17 +118,18 @@ def agregarQuejaNueva(nueva_queja):
     # Cargar las quejas existentes del archivo pickle
     try:
         ruta_absoluta = os.path.abspath("Quejas.pkl")
-        with open(ruta_absoluta, "rb") as picklefile:
-            quejas_existentes = pickle.load(picklefile)
+        with open(ruta_absoluta,"rb") as picklefileQ:
+                Quejas_existentes = pickle.load(picklefileQ)
     except FileNotFoundError:
-        quejas_existentes = []
+        Quejas_existentes = []
 
-    # Agregar la nueva queja a la lista de quejas
-    quejas_existentes.append(nueva_queja)
+    # Agregar el nuevo a la lista de pedidos
+    Quejas_existentes.append(nueva_queja)
 
-    # Guardar la lista actualizada de quejas en el archivo pickle
-    with open(ruta_absoluta, "wb") as picklefile:
-        pickle.dump(quejas_existentes, picklefile)
+    # Guardar la lista actualizada de pedidos en el archivo pickle
+    ruta_absoluta = os.path.abspath("Quejas.pkl")
+    with open(ruta_absoluta,"wb") as picklefileQ:
+        pickle.dump(Quejas_existentes, picklefileQ)
 
 
 def AgregarNuevoPedido(nuevo_pedido):
