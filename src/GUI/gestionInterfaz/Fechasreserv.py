@@ -100,7 +100,7 @@ class Fechasreserv(tk.Frame):
         
         boton = tk.Button(self, text="Aceptar", height=1, command=lambda: self.reservacionPro(fecha, combo3.get(), mesa))
         boton.grid(row=3, column=2, padx=2, sticky="w")
-        
+   
     def reservacionPro(self, fecha, sedeElegida, mesa):
         
         for reserva in Reserva.listaReservas:
@@ -144,5 +144,6 @@ class Fechasreserv(tk.Frame):
         miCliente = Cliente(nombre,id)
         miReserva = Reserva(miCliente, sedeElegida, mesa, fecha)
         messagebox.showinfo("Información", miReserva.__str__())
+
        
         
