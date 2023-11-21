@@ -2,8 +2,196 @@ from tkinter import *
 from tkinter import messagebox
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
+from gestorAplicacion.Resena import Resena
 from gestorAplicacion.Empleado import Empleado
 from baseDatos import Deserializador,Serializador
+
+#Inicio clases para la opcion Devolucion
+
+#Fin clases para la opcion Devolucion
+
+#Inicio clases para la opcion Reseña
+class ReporteCalificaciones(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Reporte de calificaciones")
+        self.configure(background="#72a18b")
+        labelInicial = Label(self, justify=CENTER, text="Bienvenid@ al reporte de calificaciones\nPresione 'Mostrar reporte' para el reporte", bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a")
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        
+        boton_mostrar = Button(self, text="Mostrar reporte", command=self.mostrarReporte, bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a")
+        boton_mostrar.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='bottom', fill='both', padx=10, pady=10)
+    
+    def mostrarReporte(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        resultado =  Deserializador.countCalificacionResenas()
+        self.mostrar_resultado(str(resultado))
+
+    def mostrar_resultado(self, resultado):
+        # Insertar el resultado en la última línea del área de texto
+        self.resultado_text.insert('end', resultado + '\n')
+        # Desplazar la vista de la caja de texto para mostrar la última línea
+        self.resultado_text.see('end')
+
+class VentanaVerificacionResena(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Acesso Empleados")
+        self.configure(background="#72a18b")
+        
+        # Etiqueta de instrucción
+        Label(self, text="\nNecesita un código de empleado\npara poder acceder a esta funcion\n",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+        # Entry para ingresar el código
+        label_Queja = Label(self, text="Codigo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Queja.pack(side=TOP, pady=5)
+        self.entry_codigo = Entry(self)
+        self.entry_codigo.pack()
+
+        # Botón para verificar el código
+        Button(self, text="Verificar", command=self.verificar_codigo, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+    def verificar_codigo(self):
+        codigo_empleado = self.entry_codigo.get()
+
+        ver = Empleado.buscarEmpleadoXCodigo(codigo_empleado)
+        # Verificar aquí si el código de empleado es válido
+        if ver != None:  
+            self.abrir_ReporteCalificaciones()
+
+        else:
+            # Muestra un mensaje de error o realiza alguna acción según tu lógica
+            print("Código de empleado no válido")
+    def abrir_ReporteCalificaciones(self):
+        ventana = ReporteCalificaciones(self)
+
+class NuevaResena(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Reseña")
+        self.configure(background="#72a18b")
+        self.geometry("900x1000")
+
+        label_Nombre = Label(self, text="Nombre:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Nombre.pack(side="top", pady=5)
+        self.entry_Nombre = Entry(self, width=30)
+        self.entry_Nombre.pack(side="top", pady=5)
+
+        self.otro_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.otro_text.pack(side="top", fill="both", padx=10, pady=10)
+        self.otro_text.insert('end', "Por favor, si desea que su reseña sea anonima en el apartado nombre escriba: 'Anonimo'")
+
+        # Etiqueta y menú desplegable
+        label_calificacion = Label(self, text="Calificacion:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_calificacion.pack(side="top", pady=5)
+
+        opciones_tipo = [1,2,3,4,5]
+        self.var_tipo = IntVar(self)
+        self.var_tipo.set(opciones_tipo[3])  # Establecer el valor predeterminado
+        menu_tipo = OptionMenu(self, self.var_tipo, *opciones_tipo)
+        menu_tipo.pack(side=TOP, pady=5)
+
+    
+        # Etiqueta y entrada para la queja
+        label_resena = Label(self, text="Reseña:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_resena.pack(side="top", pady=5)
+
+        self.entry_resena = Entry(self, width=30)
+        self.entry_resena.pack(side="top", pady=5)
+
+        # Botón para guardar la queja
+        boton_guardar = Button(self, text="Guardar", command=self.confirmar_guardar_resena, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_guardar.pack(side="top", pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side="top", fill="both", padx=10, pady=10)
+
+    def mostrar_resultado(self, resultado):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        # Insertar el resultado en el área de texto
+        self.resultado_text.insert('end', resultado)
+
+    def confirmar_guardar_resena(self):
+        nombre = self.entry_Nombre.get()
+        cal = self.var_tipo.get()
+        a = int(cal)
+        resena_texto = self.entry_resena.get()
+
+        # Crear un mensaje de confirmación
+        mensaje_confirmacion = f"¿Está seguro que desea enviar esta reseña?\nNombre: {nombre}\nCalificacion: {cal}\nReseña: {resena_texto}"
+
+        # Mostrar el cuadro de diálogo de confirmación
+        confirmacion = messagebox.askokcancel("Confirmación", mensaje_confirmacion)
+
+        if confirmacion:
+            rna = Resena(nombre, resena_texto, a)
+            # Agregar a la serialización
+            Serializador.agregarResenaNueva(rna)
+            # Mostrar el objeto sugerencia en el área de texto
+            self.mostrar_resultado(rna)
+
+        else:
+            resultado = "La reseña no fue guardada"
+            self.mostrar_resultado(resultado)
+
+class RepositorioResenas(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Repositorio de Reseñas")
+        self.configure(background="#72a18b")
+        labelInicial = Label(self, justify=CENTER, text="Bienvenid@ al repositorio de Reseñas\nPresione 'Mostrar Repositorio' para ver todas las reseñas", bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a")
+        labelInicial.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+        
+        boton_mostrar = Button(self, text="Mostrar repositorio", command=self.mostrarRepositorio, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_mostrar.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        self.resultado_text = Text(self, height=10, width=50, wrap='word', bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        self.resultado_text.pack(side='top', fill='both', padx=10, pady=10)
+    
+    def mostrarRepositorio(self):
+        # Limpiar el área de texto antes de mostrar un nuevo resultado
+        self.resultado_text.delete(1.0, 'end')
+        a = Deserializador.ResenasT()
+        for resultado in a:
+            self.mostrar_resultado(str(resultado))
+            self.mostrar_resultado("\n")
+
+    def mostrar_resultado(self, resultado):
+        # Insertar el resultado en la última línea del área de texto
+        self.resultado_text.insert('end', resultado + '\n')
+        # Desplazar la vista de la caja de texto para mostrar la última línea
+        self.resultado_text.see('end')
+
+class VentanaResena(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Opciones de Reseña")
+        self.configure(background="#72a18b")
+
+        boton_repositorio = Button(self, text="Repositorio de reseñas", command=self.mostrar_repositorio, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_repositorio.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        boton_crear_Resena = Button(self, text="Crear nueva reseña", command=self.crear_nueva_resena, bg="#a19f9f",font=("Roboto", 12), fg="#0a0a0a")
+        boton_crear_Resena.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        boton_cal = Button(self, text="Reporte de calificaciones", command=self.mostrar_reporte_calificaciones, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_cal.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+    def mostrar_reporte_calificaciones(self):
+        ventana = VentanaVerificacionResena(self)
+
+    def crear_nueva_resena(self):
+        ventana = NuevaResena(self)
+    
+
+    def mostrar_repositorio(self):
+        ventana = RepositorioResenas(self)
+#Fin clases para la opcion Reseñas
 
 #Inicio clases para la opcion Queja
 class ReportesQuejas(Toplevel):
@@ -200,7 +388,7 @@ class NuevaQueja(Toplevel):
         queja_texto = self.entry_queja.get()
 
         # Crear un mensaje de confirmación
-        mensaje_confirmacion = f"¿Está seguro que desea enviar esta queja?\nNombre: {nombre}\nTipo: {tipo}\nSobre: {algo}\nSugerencia: {queja_texto}"
+        mensaje_confirmacion = f"¿Está seguro que desea enviar esta queja?\nNombre: {nombre}\nTipo: {tipo}\nSobre: {algo}\nQueja: {queja_texto}"
 
         # Mostrar el cuadro de diálogo de confirmación
         confirmacion = messagebox.askokcancel("Confirmación", mensaje_confirmacion)
@@ -213,7 +401,7 @@ class NuevaQueja(Toplevel):
             self.mostrar_resultado(qja)
 
         else:
-            resultado = "La sugerencia no fue guardada"
+            resultado = "La queja no fue guardada"
             self.mostrar_resultado(resultado)
 
 class VentanaQueja(Toplevel):
@@ -450,7 +638,7 @@ class AtencionCliente(Frame):
         botonQueja.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonReseña(self):
-        botonReseña = Button(self, text="Reseña", command=self.mostrar, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        botonReseña = Button(self, text="Reseña", command=self._crear_ventana_resena, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
         botonReseña.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 
     def _botonDevolucion(self):
@@ -462,6 +650,9 @@ class AtencionCliente(Frame):
 
     def _crear_ventana_queja(self):
         ventana_sugerencia = VentanaQueja(self)
+    
+    def _crear_ventana_resena(self):
+        ventana_resena = VentanaResena(self)
         
 
     def mostrar(self):
