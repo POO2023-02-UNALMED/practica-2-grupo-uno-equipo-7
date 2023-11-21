@@ -16,7 +16,7 @@ class k:
         self.btn_1 = ttk.Button(self.tool_bar, text="1. Mostrar inventario", command=self.mostrar_inventario)
         self.btn_1.pack(side="left")
 
-        self.btn_2 = ttk.Button(self.tool_bar, text="2. Precio articulo inventario", command=self.precio_articulo_inventario)
+        self.btn_2 = ttk.Button(self.tool_bar, text="2. Precio articulo inventario y compra", command=self.precio_articulo_inventario)
         self.btn_2.pack(side="left")
 
         self.btn_3 = ttk.Button(self.tool_bar, text="3. Revisar niveles de Stock", command=self.revisar_niveles_de_stock)
@@ -24,13 +24,9 @@ class k:
 
         
 
-        self.btn_5 = ttk.Button(self.tool_bar, text="4. Renovar inventario", command=self.renovar_inventario)
-        self.btn_5.pack(side="left")
+        
 
-        self.btn_6 = ttk.Button(self.tool_bar, text="5. Valor del inventario total", command=self.valor_del_inventario_total)
-        self.btn_6.pack(side="left")
-
-        self.btn_7 = ttk.Button(self.tool_bar, text="6. Salir", command=self.salir)
+        self.btn_7 = ttk.Button(self.tool_bar, text="4. Salir", command=self.salir)
         self.btn_7.pack(side="left")
         self.lbl_descripcion=ttk.Label(self.ventana, text="Descripcion", padding="10",font=("Arial", 28, "bold") )
         self.lbl_descripcion.pack(side="top",  fill="x", pady=20, padx=200)
@@ -66,7 +62,7 @@ class k:
         
 
     def precio_articulo_inventario(self):
-        self.label_precio = ttk.Label(self.frame_inf, text="", background="red")
+        self.label_precio = ttk.Label(self.frame_inf, text="")
         self.label_precio.grid(row=0, column=5, rowspan=3, columnspan=2)
         self.varstring = tk.StringVar()
         
@@ -122,6 +118,8 @@ class k:
               
               self.texto_actual2 +="\n Item no encontrado "
               self.label_precio.config(text=self.texto_actual2)
+              self.lista_compras[item]= num
+              
               
        else:
            
@@ -140,9 +138,13 @@ class k:
         
     def compra(self):
         for i in self.lista_compras.keys():
-            self. texto_actual2+= " \n "+Restaurante.sedes[self.num].caja.compra(i,Item.buscar_item(i.nombre).precio, self.lista_compras[i], Restaurante.sedes[self.num])
+            if i is None:
+                self.texto_actual2="Compra invalida"
+            else:    
+                self. texto_actual2= " \n "+Restaurante.sedes[self.num].caja.compra(i,Item.buscar_item(i.nombre).precio, self.lista_compras[i], Restaurante.sedes[self.num])
         
         self.label_precio.config(text=self.texto_actual2)
+        self.lista_compras.clear()
             
         
         
@@ -163,12 +165,18 @@ class k:
         
         
         text_stock+="\n Los siguientes platos se encuentran agotados: "
+        
         for e in Restaurante.sedes[self.num].menu:
+            
             e.disponibilidadPlato()
             if e.disponibilidad==False:
-                d= ", ".join(e.IngredientesFaltantes())
-                text_stock+="\n " +  e.nombre + " los ingredientes faltantes son :" + d 
-        self.lbl_informacion.config(text=text_stock)
+                d= ", ".join(e.IngredientesFaltantes(Restaurante.sedes[self.num].inventario))
+                
+                text_stock+="\n " +  e.nombre + " los ingredientes faltantes son :" + d
+                self.lbl_informacion.config(text=text_stock)
+            
+        
+        
          
         
            
