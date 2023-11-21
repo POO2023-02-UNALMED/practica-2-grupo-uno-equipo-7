@@ -17,8 +17,8 @@ class Cliente(Persona):
         Cliente.clientes.append(self) 
     
 
-    def __init__(self, nombre: str, id: str, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
-        super().__init__(nombre, id)
+    def __init__(self, nombre: str, cel: str, direccion: str = None, telefono: str = None, email: str = None, fechaRegistro: str = None):
+        super().__init__(nombre, cel)
         self.direccion = direccion
         self.telefono = telefono
         self.email = email
@@ -26,6 +26,19 @@ class Cliente(Persona):
         self.codigoCliente = Cliente.contadorClientes + 1
         Cliente.contadorClientes += 1
         Cliente.clientes.append(self)
+
+    def getEmail(self):
+        return self.email
+    
+    def setEmail(self, correo):
+        self.email = correo
+    
+    def getTelefono(self):
+        return self.telefono
+    
+    def setTelefono(self, tel):
+        self.telefono = tel
+        
 
 
     @staticmethod

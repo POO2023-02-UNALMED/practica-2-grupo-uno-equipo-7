@@ -135,6 +135,40 @@ def countCalificacionResenas():
         S += "\nLa satisfacion general  de los clientes es buena :D"
 
     return S
+
+def DevolucionesT():
+    Lista = []
+    with open("src/baseDatos/Devoluciones.pkl","rb") as picklefileD:
+        devoluciones = pickle.load(picklefileD)
+    
+    for devolucion in devoluciones:
+        Lista.append(devolucion)
+    
+    return Lista
+
+def DelXTipo(nombreIngreso):
+    MisDevoluciones = []
+
+    a = ""
+
+    for letra in nombreIngreso:
+        a +=str(letra)
+    
+    nombre = a.upper()
+    
+    with open("src/baseDatos/Devoluciones.pkl", "rb") as picklefileD:
+        devoluciones = pickle.load(picklefileD)
+    
+    for devolucion in devoluciones:
+        if nombre == devolucion.getNombre():
+            MisDevoluciones.append(devolucion)
+    
+    return MisDevoluciones
+    
+
+    
+
+
     
 
 
