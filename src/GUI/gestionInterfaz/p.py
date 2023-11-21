@@ -156,7 +156,7 @@ class k:
         for e in Restaurante.sedes[self.num].menu:
             e.disponibilidadPlato()
             if e.disponibilidad==False:
-                d= " ".join(e.IngredientesFaltantes())
+                d= ", ".join(e.IngredientesFaltantes())
                 text_stock+="\n " +  e.nombre + " los ingredientes faltantes son :" + d 
         self.lbl_informacion.config(text=text_stock)
          
