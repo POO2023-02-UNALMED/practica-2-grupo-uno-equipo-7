@@ -97,8 +97,8 @@ def aver():
 def serializar_reservas(miReservas):
     # Cargar reservas existentes
     try:
-        with open("src/baseDatos/Reservas.pkl", "rb") as picklefile:
-            reservas_existentes = pickle.load(picklefile)
+        with open("src/baseDatos/Reservas.pkl", "rb") as f:
+            reservas_existentes = pickle.load(f)
     except FileNotFoundError:
         reservas_existentes = []
         

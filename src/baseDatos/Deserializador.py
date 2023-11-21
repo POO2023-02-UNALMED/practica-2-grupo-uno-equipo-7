@@ -2,6 +2,7 @@ import pickle
 from baseDatos import Serializador
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
+from gestorAplicacion.Reserva import Reserva
 
 def imprimirAllSugerencias():
     Serializador.main()
@@ -83,8 +84,10 @@ def PedidosT():
     
     return Lista
 
+def deserializador_reservas():
+    
+    with open("src/baseDatos/Reservas.pkl","rb") as picklefile:
+        reservas = pickle.load(picklefile)
 
-
-
-
-        
+    for reservas in Reserva:
+        Reserva.listaReservas.append(reservas)
