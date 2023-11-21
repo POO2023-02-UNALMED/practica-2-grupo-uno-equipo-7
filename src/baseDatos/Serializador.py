@@ -72,7 +72,8 @@ def main4():
         pickle.dump(TodasResenas, picklefileR)
     
 def main5():
-    with open("src/baseDatos/Reserva.pkl","wb") as picklefileRe:
+    ruta_absoluta = os.path.abspath("Reserva.pkl")
+    with open(ruta_absoluta,"wb") as picklefileRe:
         pickle.dump(reservas, picklefileRe)
 
 def main6():
@@ -157,7 +158,8 @@ def agregarReservaNueva(nueva_reserva):
 
     # Cargar las reservas existentes del archivo pickle
     try:
-        with open("src/baseDatos/Reserva.pkl", "rb") as picklefileRe:
+        ruta_absoluta = os.path.abspath("Reserva.pkl")
+        with open(ruta_absoluta, "rb") as picklefileRe:
             reservas_existentes = pickle.load(picklefileRe)
     except FileNotFoundError:
         reservas_existentes = []
@@ -166,7 +168,8 @@ def agregarReservaNueva(nueva_reserva):
     reservas_existentes.append(nueva_reserva)
 
     # Guardar la lista actualizada de reserva en el archivo pickle
-    with open("src/baseDatos/Reserva.pkl", "wb") as picklefileRe:
+    ruta_absoluta = os.path.abspath("Reserva.pkl")
+    with open(ruta_absoluta, "wb") as picklefileRe:
         pickle.dump(reservas_existentes, picklefileRe)
 
 def agregarSolicitudNueva(nueva_solicitud):

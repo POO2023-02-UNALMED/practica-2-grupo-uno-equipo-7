@@ -92,7 +92,8 @@ def PedidosT():
 def deserializador_reservas():
     
     Lista = []
-    with open("src/baseDatos/Reserva.pkl","rb") as picklefileP:
+    ruta_absoluta = os.path.abspath("Reserva.pkl")
+    with open(ruta_absoluta,"rb") as picklefileP:
         Reserva = pickle.load(picklefileP)
     
     for  reserva in Reserva:
