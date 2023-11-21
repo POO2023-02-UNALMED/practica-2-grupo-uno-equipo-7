@@ -8,6 +8,7 @@ from gestorAplicacion.Reserva import *
 from GUI.estilos.style import *
 from tkinter import *
 from gestorAplicacion.Cliente import *
+from baseDatos import Deserializador,Serializador
 
 dic= {"2023-10-25 14:00 PM":0, "2023-10-25 18:00 PM":1, "2023-10-26 12:00 PM": 2, "2023-10-30 11:00 AM":3}
 tipoMesa = ["Dos personas", "Tres personas", "Cuatro o más personas"]
@@ -99,7 +100,7 @@ class Fechasreserv(tk.Frame):
         
         boton = tk.Button(self, text="Aceptar", height=1, command=lambda: self.reservacionPro(fecha, combo3.get(), mesa))
         boton.grid(row=3, column=2, padx=2, sticky="w")
-        
+   
     def reservacionPro(self, fecha, sedeElegida, mesa):
         
         for reserva in Reserva.listaReservas:
@@ -142,6 +143,8 @@ class Fechasreserv(tk.Frame):
         
         miCliente = Cliente(nombre,id)
         miReserva = Reserva(miCliente, sedeElegida, mesa, fecha)
+        # Serializador.agregarReservaNueva(miReserva)
         messagebox.showinfo("Información", miReserva.__str__())
+
        
         

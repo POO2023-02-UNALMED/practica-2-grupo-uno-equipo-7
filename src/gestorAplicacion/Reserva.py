@@ -35,3 +35,7 @@ class Reserva:
 
     def __str__(self):
         return f"El cliente {self.getCliente().getId()} tiene su reservación para la fecha {self.getFecha()} en la {self.getMiSede()} y, escogió la mesa {self.getMiMesa().getTipoMesa()}"
+    
+    @classmethod
+    def getLista(cls):
+        return cls.listaReservas

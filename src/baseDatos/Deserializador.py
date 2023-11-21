@@ -2,6 +2,7 @@ import pickle
 from baseDatos import Serializador
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
+from gestorAplicacion.Reserva import Reserva
 
 def imprimirAllSugerencias():
     Serializador.main()
@@ -83,8 +84,59 @@ def PedidosT():
     
     return Lista
 
+def deserializador_reservas():
+    
+    Lista = []
+    with open("src/baseDatos/Reserva.pkl","rb") as picklefileP:
+        Reserva = pickle.load(picklefileP)
+    
+    for  reserva in Reserva:
+        Lista.append(reserva)
+    
+    return Lista
 
+def ResenasT():
+    Lista = []
+    with open("src/baseDatos/Resenas.pkl","rb") as picklefileP:
+        resenas = pickle.load(picklefileP)
+    
+    for resena in resenas:
+        Lista.append(resena)
+    
+    return Lista
 
+def countCalificacionResenas():
+    count = 0
+    promedio = 0
+    Lista = []
+    with open("src/baseDatos/Resenas.pkl","rb") as picklefileP:
+        resenas = pickle.load(picklefileP)
+    
+    for resena in resenas:
+        Lista.append(resena)
+    
+    for cal in Lista:
+        a = cal.getCalificacion()
+        a = int(a)
+        count += a
+    
+    cant = len(Lista)
+    promedio = count/cant
 
-
+    S = "El promedio de calificaciones es --> " + promedio
         
+    if promedio >=3 and promedio <4:
+        S += "\nLa satisfacion general de los clientes es regular :/"
+            
+    elif promedio <3:
+        S += "\nLa satisfacion general de los clientes es mala :c"
+            
+    else:
+        S += "\nLa satisfacion general  de los clientes es buena :D"
+
+    return S
+    
+
+
+
+    
