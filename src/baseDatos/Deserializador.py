@@ -28,7 +28,8 @@ def imprimirSugerenciaXTipo(tipo):
             
 def imprimirAllQuejas():
     Serializador.main2()
-    with open("src/baseDatos/Quejas.pkl","rb") as picklefile:
+    ruta_absoluta = os.path.abspath("Quejas.pkl")
+    with open(ruta_absoluta,"rb") as picklefile:
         Sugerencias = pickle.load(picklefile)
 
     for sugerencia in Sugerencias:
@@ -60,7 +61,8 @@ def SugerenciasT():
 
 def QuejasXTipo(tipo):
     Lista = []
-    with open("src/baseDatos/Quejas.pkl", "rb") as picklefileQ:
+    ruta_absoluta = os.path.abspath("Quejas.pkl")
+    with open(ruta_absoluta,"rb") as picklefileQ:
         Quejas = pickle.load(picklefileQ)
     
     for queja in Quejas:
@@ -71,7 +73,8 @@ def QuejasXTipo(tipo):
 
 def QuejasT():
     Lista = []
-    with open("src/baseDatos/Quejas.pkl","rb") as picklefileQ:
+    ruta_absoluta = os.path.abspath("Quejas.pkl")
+    with open(ruta_absoluta,"rb") as picklefileQ:
         Quejas = pickle.load(picklefileQ)
     
     for queja in Quejas:
@@ -104,7 +107,8 @@ def deserializador_reservas():
 
 def ResenasT():
     Lista = []
-    with open("src/baseDatos/Resenas.pkl","rb") as picklefileP:
+    ruta_absoluta = os.path.abspath("Resenas.pkl")
+    with open(ruta_absoluta,"rb") as picklefileP:
         resenas = pickle.load(picklefileP)
     
     for resena in resenas:
@@ -116,7 +120,8 @@ def countCalificacionResenas():
     count = 0
     promedio = 0
     Lista = []
-    with open("src/baseDatos/Resenas.pkl","rb") as picklefileP:
+    ruta_absoluta = os.path.abspath("Resenas.pkl")
+    with open(ruta_absoluta,"rb") as picklefileP:
         resenas = pickle.load(picklefileP)
     
     for resena in resenas:
@@ -145,7 +150,8 @@ def countCalificacionResenas():
 
 def DevolucionesT():
     Lista = []
-    with open("src/baseDatos/Devoluciones.pkl","rb") as picklefileD:
+    ruta_absoluta = os.path.abspath("Devoluciones.pkl")
+    with open(ruta_absoluta,"rb") as picklefileD:
         devoluciones = pickle.load(picklefileD)
     
     for devolucion in devoluciones:
@@ -163,7 +169,8 @@ def DelXTipo(nombreIngreso):
     
     nombre = a.upper()
     
-    with open("src/baseDatos/Devoluciones.pkl", "rb") as picklefileD:
+    ruta_absoluta = os.path.abspath("Devoluciones.pkl")
+    with open(ruta_absoluta,"rb") as picklefileD:
         devoluciones = pickle.load(picklefileD)
     
     for devolucion in devoluciones:
