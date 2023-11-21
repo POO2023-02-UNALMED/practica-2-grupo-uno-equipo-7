@@ -9,6 +9,7 @@ from GUI.estilos.style import *
 from tkinter import *
 from gestorAplicacion.Cliente import *
 from tkinter.ttk import Combobox
+from baseDatos import Deserializador,Serializador
 class CancelarReserv(tk.Frame):
     def __init__(self, padre, controlador):
         super().__init__(padre)
@@ -49,15 +50,16 @@ class CancelarReserv(tk.Frame):
             messagebox.showerror("Error", "El id ingresado no es válido")
             return
         
-        reservasCliente = []
+        reservasCliente = Deserializador.deserializador_reservas()
+        lista = []
         
-        for reserva in Reserva.listaReservas:
+        for reserva in reservasCliente:
 
             if (int(reserva.getCliente().getId()) == int(id)):
-                reservasCliente.append(reserva)
+                lista.append(reserva)
                 
         
-        self.mostrarReserva(reservasCliente)
+        self.mostrarReserva(lista)
 
     def mostrarReserva(self, reservas):
 
