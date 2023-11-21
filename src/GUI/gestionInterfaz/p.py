@@ -24,13 +24,9 @@ class k:
 
         
 
-        self.btn_5 = ttk.Button(self.tool_bar, text="4. Renovar inventario", command=self.renovar_inventario)
-        self.btn_5.pack(side="left")
+        
 
-        self.btn_6 = ttk.Button(self.tool_bar, text="5. Valor del inventario total", command=self.valor_del_inventario_total)
-        self.btn_6.pack(side="left")
-
-        self.btn_7 = ttk.Button(self.tool_bar, text="6. Salir", command=self.salir)
+        self.btn_7 = ttk.Button(self.tool_bar, text="4. Salir", command=self.salir)
         self.btn_7.pack(side="left")
         self.lbl_descripcion=ttk.Label(self.ventana, text="Descripcion", padding="10",font=("Arial", 28, "bold") )
         self.lbl_descripcion.pack(side="top",  fill="x", pady=20, padx=200)
@@ -166,7 +162,7 @@ class k:
         for e in Restaurante.sedes[self.num].menu:
             e.disponibilidadPlato()
             if e.disponibilidad==False:
-                d= ", ".join(e.IngredientesFaltantes())
+                d= ", ".join(e.IngredientesFaltantes(Restaurante.sedes[self.num].inventario))
                 text_stock+="\n " +  e.nombre + " los ingredientes faltantes son :" + d 
         self.lbl_informacion.config(text=text_stock)
          

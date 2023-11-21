@@ -65,7 +65,7 @@ class Item:
       for item in Item.listado_total:
         if item.nombre.lower() == nombre:
             return item
-        return None
+      return None
 
     @staticmethod
     def get_listado_items():

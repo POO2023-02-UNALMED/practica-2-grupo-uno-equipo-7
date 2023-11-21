@@ -9,7 +9,7 @@ from gestorAplicacion.Factura import Factura
 
 from gestorAplicacion.Sugerencia import Sugerencia
 from gestorAplicacion.Queja import Queja
-from gestorAplicacion.Reseña import Reseña
+#from gestorAplicacion.Reseña import Reseña
 from gestorAplicacion.Devolucion import Devolucion
 
 

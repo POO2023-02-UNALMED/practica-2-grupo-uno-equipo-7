@@ -100,10 +100,7 @@ if __name__ == "__main__":
     Mesa("Mesa tres", "Dos personas", "Sede: Envigado")
 
     Reserva(cliente1, Restaurante.sedes[0].get_ubicacion(),  Mesa.listaMesas[1], "2023-10-25 14:00 PM")
-    for i in Item.listado_total:
-        print(i.nombre)
-        
-    print(Item.buscar_item("tomate"))
+    
     
     app = Manager()
     app.mainloop()

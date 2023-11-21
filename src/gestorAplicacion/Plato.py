@@ -93,17 +93,15 @@ class Plato:
 
     def disponibilidadPlato(self):
         for i in self.ingredientes:
-            if not i:
-                continue
+            
             if not i.inventario.hay_suficiente_stock(i, 1):
                 self.disponibilidad = False
 
-    def IngredientesFaltantes(self):
+    def IngredientesFaltantes(self, inventario):
         listadoFaltantes = []
         for i in self.ingredientes:
-            if not i:
-                continue
-            if not i.inventario.hay_suficiente_stock(i, 1):
+            
+            if  inventario.hay_suficiente_stock(i.nombre, 1)==False:
                 listadoFaltantes.append(i.nombre)
         return listadoFaltantes
 
