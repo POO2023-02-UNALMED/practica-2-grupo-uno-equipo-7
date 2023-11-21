@@ -143,7 +143,7 @@ class Fechasreserv(tk.Frame):
         
         miCliente = Cliente(nombre,id)
         miReserva = Reserva(miCliente, sedeElegida, mesa, fecha)
-        Serializador.agregarReservaNueva(miReserva)
+        # Serializador.agregarReservaNueva(miReserva) #Está comentado porque, cuando lo descomento, me corre la funcionalidad bien en el main2, pero no en el archivo .bat, dice que el fichero Reserva.pkl no está en el directorio y no se pudo solucionar.
         messagebox.showinfo("Información", miReserva.__str__())
 
        
