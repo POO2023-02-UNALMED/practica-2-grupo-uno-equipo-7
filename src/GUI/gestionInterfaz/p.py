@@ -85,7 +85,7 @@ class k:
 
 
 # Crear botones
-        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command=lambda: [self.show_articulo(codigo_entry.get(), nombre_entry.get()),])
+        boton_aceptar = ttk.Button(self.frame_inf, text="Aceptar", command=lambda: [self.show_articulo(int(codigo_entry.get()), nombre_entry.get()),])
 
         boton_borrar = ttk.Button(self.frame_inf, text="Borrar", command=lambda:[codigo_entry.delete(0, tk.END), nombre_entry.delete(0, tk.END)])
     
@@ -102,11 +102,12 @@ class k:
         self.lbl_informacion.config(text="Precio del artículo en el inventario")
         
         
-    def show_articulo(self, num, nombre):
+    def show_articulo(self, num:int , nombre):
        item = Item.buscar_item(nombre)
        
+       
        texto_actual=self.varstring.get()
-       precio=float (item.precio*num)
+       
        
        
        
@@ -120,8 +121,9 @@ class k:
               self.label_precio.config(text=self.texto_actual2)
               
        else:
+           
            self.varstring.set( self.texto_actual2)
-           self.texto_actual2 += "\n" + texto_actual+ item.nombre + " " + "Precio" + str(item.precio) + " X " + str(num) + "  =  " + str(precio)
+           self.texto_actual2 += f" \n  {item.nombre} Precio {item.precio} X {num} = {num*item.precio}"
            self.label_precio.config(text=self.texto_actual2)
            
 
@@ -136,6 +138,8 @@ class k:
         
 
     def revisar_niveles_de_stock(self):
+        
+       
         text_stock="Los items sin stock son:"
         for i in self.frame_inf.winfo_children():
             i.destroy() 
@@ -145,9 +149,18 @@ class k:
         
         for i in Restaurante.sedes[self.num].inventario.obtener_items_sin_stock():
             text_stock += "\n"+i
+        self.lbl_descripcion.config(text="Acá se muestran los items sin stock")
+        
+        
+        text_stock+="\n Los siguientes platos se encuentran agotados: "
+        for e in Restaurante.sedes[self.num].menu:
+            e.disponibilidadPlato()
+            if e.disponibilidad==False:
+                d= " ".join(e.IngredientesFaltantes())
+                text_stock+="\n " +  e.nombre + " los ingredientes faltantes son :" + d 
+        self.lbl_informacion.config(text=text_stock)
          
-        label_stock=ttk.Label(self.frame_inf, text=text_stock ) 
-        label_stock.place(x=50, y=50)
+        
            
             
             

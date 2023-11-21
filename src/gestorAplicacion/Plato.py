@@ -95,7 +95,7 @@ class Plato:
         for i in self.ingredientes:
             if not i:
                 continue
-            if not i.getInventario().haySuficienteStock(i, 1):
+            if not i.inventario.hay_suficiente_stock(i, 1):
                 self.disponibilidad = False
 
     def IngredientesFaltantes(self):
@@ -103,8 +103,8 @@ class Plato:
         for i in self.ingredientes:
             if not i:
                 continue
-            if not i.getInventario().haySuficienteStock(i, 1):
-                listadoFaltantes.append(i.getNombre())
+            if not i.inventario.hay_suficiente_stock(i, 1):
+                listadoFaltantes.append(i.nombre)
         return listadoFaltantes
 
     @classmethod
