@@ -3,7 +3,7 @@ from gestorAplicacion.Cliente import Cliente
 class ServiciosClientes:
 
     def __init__ (self, nombre = "Anonimo" , text = None):
-        cliente = Cliente.buscarClienteXNombre(nombre)
+        cliente = Cliente(nombre, "11111111")
         self._cliente = cliente 
         self._razon = text
 

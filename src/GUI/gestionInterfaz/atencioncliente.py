@@ -8,6 +8,69 @@ from baseDatos import Deserializador,Serializador
 
 #Inicio clases para la opcion Devolucion
 
+class SolicitudesDevolucion(Toplevel):
+    pass
+
+class VentanaVerificacionDevolucion(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Acesso Empleados")
+        self.configure(background="#72a18b")
+        
+        # Etiqueta de instrucción
+        Label(self, text="\nNecesita un código de empleado\npara poder acceder a esta funcion\n",bg = "#72a18b", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+        # Entry para ingresar el código
+        label_Queja = Label(self, text="Codigo:", bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        label_Queja.pack(side=TOP, pady=5)
+        self.entry_codigo = Entry(self)
+        self.entry_codigo.pack()
+
+        # Botón para verificar el código
+        Button(self, text="Verificar", command=self.verificar_codigo, bg = "#a19f9f", font=("Roboto", 12), fg="#0a0a0a").pack()
+
+    def verificar_codigo(self):
+        codigo_empleado = self.entry_codigo.get()
+
+        ver = Empleado.buscarEmpleadoXCodigo(codigo_empleado)
+        # Verificar aquí si el código de empleado es válido
+        if ver != None:  
+            self.abrir_solicitudes()
+
+        else:
+            # Muestra un mensaje de error o realiza alguna acción según tu lógica
+            print("Código de empleado no válido")
+    def abrir_solicitudes(self):
+        ventana = SolicitudesDevolucion(self)
+
+class NuevaSolucitud(Toplevel):
+    pass
+
+class VentanaDevolucion(Toplevel):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.title("Opciones de Devolucion")
+        self.configure(background="#72a18b")
+
+        boton_solucitudes = Button(self, text="Ver las solicitudes de Devoluciones", command=self.mostrar_solicitud, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_solucitudes.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        boton_crear_solicitud = Button(self, text="Realizar una nueva solicitud", command=self.crear_nueva_solicitud, bg="#a19f9f",font=("Roboto", 12), fg="#0a0a0a")
+        boton_crear_solicitud.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+        boton_estado = Button(self, text="Revisar el estado de mi solicitud", command=self.mostrar_estados, bg="#a19f9f", font=("Roboto", 12), fg="#0a0a0a")
+        boton_estado.pack(side=TOP, fill=BOTH, padx=10, pady=10)
+
+    def mostrar_estados(self):
+        ventana = VentanaVerificacionResena(self)
+
+    def crear_nueva_solicitud(self):
+        ventana = NuevaSolucitud(self)
+    
+
+    def mostrar_solicitudes(self):
+        ventana = VentanaVerificacionDevolucion(self)
+
 #Fin clases para la opcion Devolucion
 
 #Inicio clases para la opcion Reseña
@@ -422,7 +485,6 @@ class VentanaQueja(Toplevel):
 
     def mostrar_reportes(self):
         ventana = VentanaVerificacionQueja(self)
-    
 
 #Fin de clases para la opcion Queja
 
