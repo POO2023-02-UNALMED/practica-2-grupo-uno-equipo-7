@@ -11,6 +11,8 @@ class Caja:
 
     def compra(self, objeto, precio, cantidad, restaurante_asociado):
         costo_total = precio * cantidad
+        if objeto is  None:
+            return "Obejto no valido"
 
         if self.dinero_caja >= costo_total:
             self.dinero_caja -= costo_total

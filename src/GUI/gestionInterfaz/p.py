@@ -62,7 +62,7 @@ class k:
         
 
     def precio_articulo_inventario(self):
-        self.label_precio = ttk.Label(self.frame_inf, text="", background="red")
+        self.label_precio = ttk.Label(self.frame_inf, text="")
         self.label_precio.grid(row=0, column=5, rowspan=3, columnspan=2)
         self.varstring = tk.StringVar()
         
@@ -118,6 +118,8 @@ class k:
               
               self.texto_actual2 +="\n Item no encontrado "
               self.label_precio.config(text=self.texto_actual2)
+              self.lista_compras[item]= num
+              
               
        else:
            
@@ -136,9 +138,13 @@ class k:
         
     def compra(self):
         for i in self.lista_compras.keys():
-            self. texto_actual2+= " \n "+Restaurante.sedes[self.num].caja.compra(i,Item.buscar_item(i.nombre).precio, self.lista_compras[i], Restaurante.sedes[self.num])
+            if i is None:
+                self.texto_actual2="Compra invalida"
+            else:    
+                self. texto_actual2= " \n "+Restaurante.sedes[self.num].caja.compra(i,Item.buscar_item(i.nombre).precio, self.lista_compras[i], Restaurante.sedes[self.num])
         
         self.label_precio.config(text=self.texto_actual2)
+        self.lista_compras.clear()
             
         
         
@@ -159,12 +165,18 @@ class k:
         
         
         text_stock+="\n Los siguientes platos se encuentran agotados: "
+        
         for e in Restaurante.sedes[self.num].menu:
+            
             e.disponibilidadPlato()
             if e.disponibilidad==False:
                 d= ", ".join(e.IngredientesFaltantes(Restaurante.sedes[self.num].inventario))
-                text_stock+="\n " +  e.nombre + " los ingredientes faltantes son :" + d 
-        self.lbl_informacion.config(text=text_stock)
+                
+                text_stock+="\n " +  e.nombre + " los ingredientes faltantes son :" + d
+                self.lbl_informacion.config(text=text_stock)
+            
+        
+        
          
         
            

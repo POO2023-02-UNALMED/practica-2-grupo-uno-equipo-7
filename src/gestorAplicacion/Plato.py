@@ -92,10 +92,19 @@ class Plato:
         return [ingredientesSimilares, ingredientes]
 
     def disponibilidadPlato(self):
+        aux=[]
         for i in self.ingredientes:
             
-            if not i.inventario.hay_suficiente_stock(i, 1):
-                self.disponibilidad = False
+            if  i.inventario.hay_suficiente_stock(i.nombre, 1)==False:
+                aux.append(False)
+            else :
+                aux.append(True)
+                
+        if all(aux)==True:
+            self.disponibilidad = True
+        else:
+            self.disponibilidad = False
+        
 
     def IngredientesFaltantes(self, inventario):
         listadoFaltantes = []
