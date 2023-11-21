@@ -43,7 +43,8 @@ def main2():
     q2 = Queja("Juan Perez", "Empleado", "Camilo Palacio", "Es muy grosero, me insulto por dejar, segun él, poca propina")
     q3 = Queja("Maria Lopez", "Sede", "Sede: Envigado", "No quisieron hacerme un domicilio")
 
-    with open("src/baseDatos/Quejas.pkl","wb") as picklefileQ:
+    ruta_absoluta = os.path.abspath("Quejas.pkl")
+    with open(ruta_absoluta,"wb") as picklefileQ:
         pickle.dump(TodasQuejas, picklefileQ)
 
 def main3():
@@ -51,6 +52,7 @@ def main3():
     pedido2 = Pedido("Carlos Sainz", 1033556576, "Barrio España", "Para recoger")
     pedido3 = Pedido("Fernando Alonso", 1984543324, "Barrio España", "Para Recoger")
     pedido4 = Pedido("Juan Montoya", 4344434434, "Barrio America", "De envio")
+
 
     ruta_absoluta = os.path.abspath("Pedidos.pkl")
     with open(ruta_absoluta,"wb") as picklefileP:
@@ -69,7 +71,8 @@ def main4():
     r9 = Resena("Esteban Tabares", "La atención en el local de las Americas fue muy buena, hicimos un evento familiar y todo salio perfecto", 5)
     r10 = Resena("Elizabeth Bennet", "La tortilla estaba dura pero lo demas muy rico", 3)
 
-    with open("src/baseDatos/Resenas.pkl","wb") as picklefileR:
+    ruta_absoluta = os.path.abspath("Resena.pkl")
+    with open(ruta_absoluta,"wb") as picklefileR:
         pickle.dump(TodasResenas, picklefileR)
     
 def main5():
@@ -87,7 +90,8 @@ def main6():
     d6 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","6","No me gusto la comida")
     d7 = Devolucion("JUAN PEREZ","5236","juan@gmail.com","7","Escuche al mesero renegando por la cantidad de propina que deposite")
 
-    with open("src/baseDatos/Devoluciones.pkl","wb") as picklefileD:
+    ruta_absoluta = os.path.abspath("Devoluciones.pkl")
+    with open(ruta_absoluta,"wb") as picklefileD:
         pickle.dump(TodasDevoluciones, picklefileD)
 
 
@@ -113,7 +117,8 @@ def agregarSugerenciaNueva(nueva_sugerencia):
 def agregarQuejaNueva(nueva_queja):
     # Cargar las quejas existentes del archivo pickle
     try:
-        with open("src/baseDatos/Quejas.pkl", "rb") as picklefile:
+        ruta_absoluta = os.path.abspath("Quejas.pkl")
+        with open(ruta_absoluta,"wb") as picklefile:
             quejas_existentes = pickle.load(picklefile)
     except FileNotFoundError:
         quejas_existentes = []
@@ -122,14 +127,15 @@ def agregarQuejaNueva(nueva_queja):
     quejas_existentes.append(nueva_queja)
 
     # Guardar la lista actualizada de quejas en el archivo pickle
-    with open("src/baseDatos/Quejas.pkl", "wb") as picklefile:
+    ruta_absoluta = os.path.abspath("Quejas.pkl")
+    with open(ruta_absoluta,"wb") as picklefile:
         pickle.dump(quejas_existentes, picklefile)
 
 def AgregarNuevoPedido(nuevo_pedido):
     # Cargar los pedidos existentes del archivo pickle
     try:
         ruta_absoluta = os.path.abspath("Pedidos.pkl")
-        with open(ruta_absoluta, "rb") as picklefileP:
+        with open(ruta_absoluta,"wb") as picklefileP:
                 Pedidos_existentes = pickle.load(picklefileP)
     except FileNotFoundError:
         Pedidos_existentes = []
@@ -139,13 +145,14 @@ def AgregarNuevoPedido(nuevo_pedido):
 
     # Guardar la lista actualizada de pedidos en el archivo pickle
     ruta_absoluta = os.path.abspath("Pedidos.pkl")
-    with open(ruta_absoluta, "wb") as picklefileP:
+    with open(ruta_absoluta,"wb") as picklefileP:
         pickle.dump(Pedidos_existentes, picklefileP)
 
 def agregarResenaNueva(nueva_resena):
     # Cargar las reseñas existentes del archivo pickle
     try:
-        with open("src/baseDatos/Resenas.pkl", "rb") as picklefileR:
+        ruta_absoluta = os.path.abspath("Resenas.pkl")
+        with open(ruta_absoluta,"wb") as picklefileR:
             resenas_existentes = pickle.load(picklefileR)
     except FileNotFoundError:
         resenas_existentes = []
@@ -154,7 +161,8 @@ def agregarResenaNueva(nueva_resena):
     resenas_existentes.append(nueva_resena)
 
     # Guardar la lista actualizada de reseñas en el archivo pickle
-    with open("src/baseDatos/Resenas.pkl", "wb") as picklefileR:
+    ruta_absoluta = os.path.abspath("Resenas.pkl")
+    with open(ruta_absoluta,"wb") as picklefileR:
         pickle.dump(resenas_existentes, picklefileR)
 
 def agregarReservaNueva(nueva_reserva):
@@ -179,7 +187,8 @@ def agregarSolicitudNueva(nueva_solicitud):
 
     # Cargar las reservas existentes del archivo pickle
     try:
-        with open("src/baseDatos/Devoluciones.pkl", "rb") as picklefileD:
+        ruta_absoluta = os.path.abspath("Devoluciones.pkl")
+        with open(ruta_absoluta,"wb") as picklefileD:
             del_existentes = pickle.load(picklefileD)
     except FileNotFoundError:
         del_existentes = []
@@ -188,7 +197,8 @@ def agregarSolicitudNueva(nueva_solicitud):
     del_existentes.append(nueva_solicitud)
 
     # Guardar la lista actualizada de reserva en el archivo pickle
-    with open("src/baseDatos/Devoluciones.pkl", "wb") as picklefileD:
+    ruta_absoluta = os.path.abspath("Devoluciones.pkl")
+    with open(ruta_absoluta,"wb") as picklefileD:
         pickle.dump(del_existentes, picklefileD)
 
 
