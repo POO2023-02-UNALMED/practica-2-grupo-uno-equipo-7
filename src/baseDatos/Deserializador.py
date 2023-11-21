@@ -86,11 +86,14 @@ def PedidosT():
 
 def deserializador_reservas():
     
-    with open("src/baseDatos/Reservas.pkl","rb") as picklefile:
-        reservas = pickle.load(picklefile)
-        for reservas in Reserva:
-            Reserva.listaReservas.append(reservas)
-        return reservas
+    Lista = []
+    with open("src/baseDatos/Reserva.pkl","rb") as picklefileP:
+        Reserva = pickle.load(picklefileP)
+    
+    for  reserva in Reserva:
+        Lista.append(reserva)
+    
+    return Lista
 
 def ResenasT():
     Lista = []

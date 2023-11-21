@@ -143,6 +143,7 @@ class Fechasreserv(tk.Frame):
         
         miCliente = Cliente(nombre,id)
         miReserva = Reserva(miCliente, sedeElegida, mesa, fecha)
+        Serializador.agregarReservaNueva(miReserva)
         messagebox.showinfo("Información", miReserva.__str__())
 
        
