@@ -6,10 +6,13 @@ from gestorAplicacion.Sugerencia import Sugerencia
 if __name__ == "__main__":
     # sug = Sugerencia("Otro", "Este es el mensaje")}
    #Deserializador.imprimirAllSugerencias()
-   a = Deserializador.QuejasT()
-   c = Deserializador.QuejasXTipo("Sede")
+   #a = Deserializador.QuejasT()
+   #c = Deserializador.QuejasXTipo("Sede")
    #Serializador.main2()
-   #Serializador.aver()
    #Deserializador.imprimirAllQuejas()
-   for b in a: print(b)
-   for d in c: print(str(d))
+   #for b in a: print(b)
+   #for d in c: print(str(d))
+   #Serializador.main3()
+   a = Deserializador.PedidosT()
+   for b in a:
+    print(b)
